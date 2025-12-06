@@ -20,7 +20,8 @@ export default function LandingPage() {
             <nav className="container mx-auto px-6 py-6">
                 <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                        <Image src="/TAXA.png" alt="TAXA Logo" width={40} height={40} className="object-contain" />
+                        <Image src="/moneybag.png" alt="TAXA Logo" width={50} height={50} className="object-contain" priority />
+                        <span className="text-3xl font-bold text-primary">TAXA</span>
                     </Link>
                     <div className="flex items-center space-x-4">
                         <LanguageSwitcher />
@@ -41,15 +42,51 @@ export default function LandingPage() {
             </nav>
 
             {/* Hero Section */}
-            <section className="container mx-auto px-6 py-20 text-center">
-                <div className="max-w-4xl mx-auto">
+            <section className="container mx-auto px-6 pt-20 pb-12 text-center relative overflow-hidden">
+                {/* Decorative background elements */}
+                <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+                
+                <div className="max-w-4xl mx-auto relative">
+                    {/* Trust badges */}
+                    <div className="flex items-center justify-center space-x-4 mb-8">
+                        <div className="px-4 py-2 bg-bg-card rounded-full shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span className="text-sm font-medium text-text-dark">AI-Powered</span>
+                        </div>
+                        <div className="px-4 py-2 bg-bg-card rounded-full shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] flex items-center space-x-2">
+                            <Shield className="w-4 h-4 text-accent" />
+                            <span className="text-sm font-medium text-text-dark">Secure</span>
+                        </div>
+                        <div className="px-4 py-2 bg-bg-card rounded-full shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-accent rounded-full"></div>
+                            <span className="text-sm font-medium text-text-dark">Fast & Easy</span>
+                        </div>
+                    </div>
+
                     <h1 className="text-6xl font-bold text-primary mb-6 leading-tight">
                         {t('landing.title')}
                         <span className="text-accent"> {t('landing.subtitle')}</span>
                     </h1>
-                    <p className="text-xl text-text-light mb-12 leading-relaxed">
+                    <p className="text-xl text-text-light mb-8 leading-relaxed">
                         {t('landing.description')}
                     </p>
+                    
+                    {/* Key benefits */}
+                    <div className="flex items-center justify-center space-x-6 mb-12 text-sm text-text-light">
+                        <div className="flex items-center space-x-2">
+                            <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span>Automatické spracovanie</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span>AI asistent 24/7</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span>Bezpečné úložisko</span>
+                        </div>
+                    </div>
                     <div className="flex items-center justify-center space-x-4">
                         <Link
                             href="/register"
@@ -69,7 +106,7 @@ export default function LandingPage() {
             </section>
 
             {/* Features Section */}
-            <section className="container mx-auto px-6 py-20">
+            <section className="container mx-auto px-6 pt-8 pb-20">
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Feature 1 - AI Consultant */}
                     <Link href="/dashboard/chat" className="block">

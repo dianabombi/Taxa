@@ -49,6 +49,12 @@
         "subtitle": "Čo by ste chceli dnes urobiť?",
         "no_documents": "Zatiaľ ste nenahrali žiadne dokumenty.",
         "upload_now": "Nahrať teraz",
+        "logout": "Odhlásiť sa",
+        "nav": {
+            "dashboard": "Prehľad",
+            "upload": "Nahrať",
+            "chat": "AI Konzultant"
+        },
         "upload_card": {
             "title": "Nahrať dokument",
             "description": "Nahrajte faktúry, zmluvy alebo iné daňové dokumenty na automatické spracovanie"

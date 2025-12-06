@@ -1,18 +1,39 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Sparkles, Upload as UploadIcon, X, FileText, ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
+import { Upload as UploadIcon, X, FileText, ArrowLeft, LogOut, User, Home, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/LanguageContext';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { API_BASE_URL } from '@/lib/api';
 
 export default function UploadPage() {
     const router = useRouter();
     const { t } = useLanguage();
+    const [user, setUser] = useState<any>(null);
     const [files, setFiles] = useState<File[]>([]);
     const [uploading, setUploading] = useState(false);
     const [dragActive, setDragActive] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const userData = localStorage.getItem('user');
+        if (!token || !userData) {
+            router.push('/login');
+            return;
+        }
+        setUser(JSON.parse(userData));
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        router.push('/');
+    };
+
+    if (!user) return null;
 
     const handleDrag = (e: React.DragEvent) => {
         e.preventDefault();
@@ -66,16 +87,67 @@ export default function UploadPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-            <div className="container mx-auto px-6 py-12">
-                <Link href="/dashboard" className="inline-flex items-center space-x-2 text-gray-300 hover:text-white mb-8 transition-colors">
-                    <ArrowLeft className="w-5 h-5" />
-                    <span>{t('dashboard.back_to_dashboard')}</span>
-                </Link>
+        <div className="min-h-screen bg-bg-main">
+            {/* Navigation */}
+            <nav className="border-b border-text-light/10 bg-bg-card shadow-[0_4px_8px_#A3B1C6]">
+                <div className="container mx-auto px-6 py-4">
+                    <div className="flex items-center justify-between">
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                            <Image src="/moneybag.png" alt="TAXA Logo" width={40} height={40} className="object-contain" priority />
+                            <span className="text-2xl font-bold text-primary">TAXA</span>
+                        </Link>
+                        
+                        {/* Navigation Menu */}
+                        <div className="flex items-center space-x-2">
+                            <Link
+                                href="/dashboard"
+                                className="flex items-center space-x-2 px-4 py-2 rounded-xl text-text-dark hover:text-accent hover:bg-bg-main/50 transition-all"
+                            >
+                                <Home className="w-5 h-5" />
+                                <span className="font-medium">{t('dashboard.nav.dashboard')}</span>
+                            </Link>
+                            <Link
+                                href="/dashboard/upload"
+                                className="flex items-center space-x-2 px-4 py-2 rounded-xl text-accent bg-bg-main/50 transition-all"
+                            >
+                                <UploadIcon className="w-5 h-5" />
+                                <span className="font-medium">{t('dashboard.nav.upload')}</span>
+                            </Link>
+                            <Link
+                                href="/dashboard/chat"
+                                className="flex items-center space-x-2 px-4 py-2 rounded-xl text-text-dark hover:text-accent hover:bg-bg-main/50 transition-all"
+                            >
+                                <MessageSquare className="w-5 h-5" />
+                                <span className="font-medium">{t('dashboard.nav.chat')}</span>
+                            </Link>
+                        </div>
 
+                        {/* Right Side */}
+                        <div className="flex items-center space-x-4">
+                            <LanguageSwitcher />
+                            <div className="flex items-center space-x-3 px-4 py-2 bg-bg-card rounded-xl shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
+                                <User className="w-5 h-5 text-accent" />
+                                <span className="text-text-dark font-medium">{user.name}</span>
+                            </div>
+                            <button
+                                onClick={handleLogout}
+                                className="p-2 text-text-light hover:text-error transition-colors rounded-lg hover:bg-error/10"
+                                title={t('dashboard.logout')}
+                            >
+                                <LogOut className="w-5 h-5" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div className="container mx-auto px-6 py-12">
                 <div className="max-w-2xl mx-auto">
-                    <h1 className="text-4xl font-bold text-white mb-4">{t('upload.title')}</h1>
-                    <p className="text-gray-300 mb-8">{t('upload.description')}</p>
+                    <div className="mb-8">
+                        <h1 className="text-4xl font-bold text-primary mb-2">{t('upload.title')}</h1>
+                        <p className="text-text-light text-lg">{t('upload.description')}</p>
+                    </div>
 
                     {/* Upload Area */}
                     <div
@@ -83,17 +155,19 @@ export default function UploadPage() {
                         onDragLeave={handleDrag}
                         onDragOver={handleDrag}
                         onDrop={handleDrop}
-                        className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all ${dragActive
-                            ? 'border-purple-500 bg-purple-500/10'
-                            : 'border-white/20 bg-white/5'
+                        className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all bg-bg-card shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] ${dragActive
+                            ? 'border-accent scale-105'
+                            : 'border-text-light/20'
                             }`}
                     >
-                        <UploadIcon className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                        <h3 className="text-xl font-bold text-white mb-2">
+                        <div className="w-20 h-20 bg-accent rounded-xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]">
+                            <UploadIcon className="w-10 h-10 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-primary mb-2">
                             {t('upload.drag_drop')}
                         </h3>
-                        <p className="text-gray-300 mb-4">{t('upload.or')}</p>
-                        <label className="inline-block px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all cursor-pointer">
+                        <p className="text-text-light mb-6">{t('upload.or')}</p>
+                        <label className="inline-block px-8 py-3 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all cursor-pointer">
                             <input
                                 type="file"
                                 multiple
@@ -103,28 +177,30 @@ export default function UploadPage() {
                             />
                             {t('upload.button')}
                         </label>
-                        <p className="text-sm text-gray-400 mt-4">
+                        <p className="text-sm text-text-light mt-4">
                             {t('upload.file_types')}
                         </p>
                     </div>
 
                     {/* Selected Files */}
                     {files.length > 0 && (
-                        <div className="mt-8 bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-                            <h3 className="text-lg font-bold text-white mb-4">{t('upload.selected_files').replace('{{count}}', files.length.toString())}</h3>
+                        <div className="mt-8 bg-bg-card rounded-3xl p-6 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
+                            <h3 className="text-lg font-bold text-primary mb-4">{t('upload.selected_files').replace('{{count}}', files.length.toString())}</h3>
                             <div className="space-y-3">
                                 {files.map((file, idx) => (
-                                    <div key={idx} className="flex items-center justify-between bg-white/5 rounded-lg p-3">
+                                    <div key={idx} className="flex items-center justify-between bg-bg-main rounded-xl p-4 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
                                         <div className="flex items-center space-x-3">
-                                            <FileText className="w-5 h-5 text-purple-400" />
+                                            <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center shadow-[2px_2px_4px_#A3B1C6,-2px_-2px_4px_#FFFFFF]">
+                                                <FileText className="w-5 h-5 text-white" />
+                                            </div>
                                             <div>
-                                                <p className="text-white font-medium">{file.name}</p>
-                                                <p className="text-sm text-gray-400">{(file.size / 1024).toFixed(2)} KB</p>
+                                                <p className="text-text-dark font-medium">{file.name}</p>
+                                                <p className="text-sm text-text-light">{(file.size / 1024).toFixed(2)} KB</p>
                                             </div>
                                         </div>
                                         <button
                                             onClick={() => setFiles(files.filter((_, i) => i !== idx))}
-                                            className="p-1 text-gray-400 hover:text-red-400 transition-colors"
+                                            className="p-2 text-text-light hover:text-error transition-colors rounded-lg hover:bg-error/10"
                                         >
                                             <X className="w-5 h-5" />
                                         </button>
@@ -135,7 +211,7 @@ export default function UploadPage() {
                             <button
                                 onClick={handleUpload}
                                 disabled={uploading}
-                                className="w-full mt-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all disabled:opacity-50"
+                                className="w-full mt-6 py-3 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] active:shadow-[inset_4px_4px_8px_#A3B1C6,inset_-4px_-4px_8px_#FFFFFF] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {uploading ? t('upload.uploading') : t('upload.upload_button')}
                             </button>

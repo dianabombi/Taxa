@@ -15,8 +15,9 @@ export default function Footer() {
                 <div className="grid md:grid-cols-4 gap-8 mb-8">
                     {/* Company Info */}
                     <div>
-                        <Link href="/" className="flex items-center mb-4 hover:opacity-80 transition-opacity w-fit">
-                            <Image src="/TAXA.png" alt="TAXA Logo" width={30} height={30} className="object-contain" />
+                        <Link href="/" className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity w-fit">
+                            <Image src="/moneybag.png" alt="TAXA Logo" width={35} height={35} className="object-contain" priority />
+                            <span className="text-xl font-bold text-primary">TAXA</span>
                         </Link>
                         <p className="text-text-light text-sm leading-relaxed mb-4">
                             Professional tax management platform for self-employed individuals and businesses.

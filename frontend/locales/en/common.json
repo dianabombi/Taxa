@@ -49,6 +49,12 @@
         "subtitle": "What would you like to do today?",
         "no_documents": "You haven't uploaded any documents yet.",
         "upload_now": "Upload now",
+        "logout": "Logout",
+        "nav": {
+            "dashboard": "Dashboard",
+            "upload": "Upload",
+            "chat": "AI Consultant"
+        },
         "upload_card": {
             "title": "Upload Document",
             "description": "Upload invoices, contracts or other tax documents for automatic processing"

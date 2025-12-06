@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Footer from '@/components/Footer';
 import { API_BASE_URL } from '@/lib/api';
 
 
@@ -62,21 +63,53 @@ function LoginForm() {
     };
 
     return (
-        <div className="min-h-screen bg-bg-main flex items-center justify-center px-6">
-            <div className="max-w-md w-full">
-                {/* Logo & Language Switcher */}
-                <div className="flex items-center justify-between mb-8">
+        <div className="min-h-screen bg-bg-main">
+            {/* Top Navigation */}
+            <nav className="container mx-auto px-6 py-6">
+                <div className="grid lg:grid-cols-2 gap-12">
                     <div>
                         <Link href="/" className="flex items-center space-x-3">
-                            <Image src="/TAXA.png" alt="TAXA Logo" width={50} height={50} className="object-contain" />
+                            <Image src="/moneybag.png" alt="TAXA Logo" width={50} height={50} className="object-contain" priority />
+                            <span className="text-3xl font-bold text-primary">TAXA</span>
                         </Link>
-                        <p className="text-sm text-text-light mt-2">Účtovníctvo ľahko a jednoducho</p>
                     </div>
-                    <LanguageSwitcher />
+                    <div className="w-full max-w-xl mx-auto lg:mx-0 flex justify-end items-center">
+                        <LanguageSwitcher />
+                    </div>
                 </div>
+            </nav>
 
-                {/* Card */}
-                <div className="bg-bg-card rounded-3xl p-10 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
+            {/* Main Content - Two Columns */}
+            <div className="container mx-auto px-6 py-12">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Left Side - Tagline */}
+                    <div className="hidden lg:flex flex-col justify-center space-y-8">
+                        <div>
+                            <h1 className="text-6xl font-bold leading-tight mb-6">
+                                <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                                    Vítajte späť
+                                </span>
+                                <br />
+                                <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
+                                    v TAXA
+                                </span>
+                            </h1>
+                            <p className="text-xl text-text-light leading-relaxed">
+                                Prihláste sa a pokračujte v správe vašich daní a dokumentov.
+                            </p>
+                        </div>
+                        
+                        {/* Decorative elements */}
+                        <div className="flex space-x-4">
+                            <div className="w-20 h-1 bg-gradient-to-r from-accent to-primary rounded-full"></div>
+                            <div className="w-12 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></div>
+                            <div className="w-8 h-1 bg-accent rounded-full"></div>
+                        </div>
+                    </div>
+
+                    {/* Right Side - Form */}
+                    <div className="w-full max-w-xl mx-auto lg:mx-0">
+                        <div className="bg-bg-card rounded-3xl p-12 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
                     <h2 className="text-3xl font-bold text-primary mb-2">{t('auth.login.welcome')}</h2>
                     <p className="text-text-light mb-8">{t('auth.login.subtitle')}</p>
 
@@ -147,8 +180,13 @@ function LoginForm() {
                             {t('auth.login.register_link')}
                         </Link>
                     </p>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            {/* Footer */}
+            <Footer />
         </div>
     );
 }

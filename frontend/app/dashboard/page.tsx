@@ -3,11 +3,10 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Upload, FileText, MessageSquare, LogOut, User, Globe } from 'lucide-react';
+import { Upload, FileText, MessageSquare, LogOut, User, Home, Settings, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import Footer from '@/components/Footer';
 import { API_BASE_URL } from '@/lib/api';
 
 export default function DashboardPage() {
@@ -58,9 +57,38 @@ export default function DashboardPage() {
             <nav className="border-b border-text-light/10 bg-bg-card shadow-[0_4px_8px_#A3B1C6]">
                 <div className="container mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
-                        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-                            <Image src="/TAXA.png" alt="TAXA Logo" width={40} height={40} className="object-contain" />
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                            <Image src="/moneybag.png" alt="TAXA Logo" width={40} height={40} className="object-contain" priority />
+                            <span className="text-2xl font-bold text-primary">TAXA</span>
                         </Link>
+                        
+                        {/* Navigation Menu */}
+                        <div className="flex items-center space-x-2">
+                            <Link
+                                href="/dashboard"
+                                className="flex items-center space-x-2 px-4 py-2 rounded-xl text-text-dark hover:text-accent hover:bg-bg-main/50 transition-all"
+                            >
+                                <Home className="w-5 h-5" />
+                                <span className="font-medium">{t('dashboard.nav.dashboard')}</span>
+                            </Link>
+                            <Link
+                                href="/dashboard/upload"
+                                className="flex items-center space-x-2 px-4 py-2 rounded-xl text-text-dark hover:text-accent hover:bg-bg-main/50 transition-all"
+                            >
+                                <Upload className="w-5 h-5" />
+                                <span className="font-medium">{t('dashboard.nav.upload')}</span>
+                            </Link>
+                            <Link
+                                href="/dashboard/chat"
+                                className="flex items-center space-x-2 px-4 py-2 rounded-xl text-text-dark hover:text-accent hover:bg-bg-main/50 transition-all"
+                            >
+                                <MessageSquare className="w-5 h-5" />
+                                <span className="font-medium">{t('dashboard.nav.chat')}</span>
+                            </Link>
+                        </div>
+
+                        {/* Right Side */}
                         <div className="flex items-center space-x-4">
                             <LanguageSwitcher />
                             <div className="flex items-center space-x-3 px-4 py-2 bg-bg-card rounded-xl shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
@@ -70,6 +98,7 @@ export default function DashboardPage() {
                             <button
                                 onClick={handleLogout}
                                 className="p-2 text-text-light hover:text-error transition-colors rounded-lg hover:bg-error/10"
+                                title={t('dashboard.logout')}
                             >
                                 <LogOut className="w-5 h-5" />
                             </button>
@@ -170,9 +199,6 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </div>
-
-            {/* Footer */}
-            <Footer />
         </div>
     );
 }

@@ -46,8 +46,9 @@ export default function PrivacyBanner() {
 
                     {/* Icon */}
                     <div className="flex items-center justify-center mb-6">
-                        <div className="w-20 h-20 bg-bg-card rounded-xl flex items-center justify-center shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]">
-                            <Image src="/TAXA.png" alt="TAXA Logo" width={60} height={60} className="object-contain" />
+                        <div className="bg-bg-card rounded-xl p-4 flex items-center space-x-3 justify-center shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]">
+                            <Image src="/moneybag.png" alt="TAXA Logo" width={60} height={60} className="object-contain" priority />
+                            <span className="text-4xl font-bold text-primary">TAXA</span>
                         </div>
                     </div>
 
