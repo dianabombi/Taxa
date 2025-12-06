@@ -1,0 +1,23 @@
+{
+  "name": "TAXA Platform",
+  "short_name": "TAXA",
+  "description": "AI-powered tax and accounting platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E8EDF5",
+  "theme_color": "#4A5C7A",
+  "icons": [
+    {
+      "src": "/moneybag.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/moneybag.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
