@@ -1,0 +1,133 @@
+{
+    "menu": {
+        "dashboard": "Dashboard",
+        "documents": "Documents",
+        "ai_consultant": "AI Consultant",
+        "settings": "Settings",
+        "logout": "Logout"
+    },
+    "auth": {
+        "login": {
+            "title": "Login",
+            "welcome": "Welcome back!",
+            "subtitle": "Sign in to your account",
+            "email": "Email",
+            "password": "Password",
+            "button": "Sign In",
+            "button_loading": "Signing in...",
+            "no_account": "Don't have an account?",
+            "register_here": "Register here",
+            "register_link": "Sign up",
+            "success_registered": "Registration successful! You can now sign in.",
+            "error_invalid": "Invalid email or password",
+            "error_connection": "Server connection error",
+            "placeholder_email": "your@email.com",
+            "placeholder_password": "••••••••"
+        },
+        "register": {
+            "title": "Register",
+            "create_account": "Create Account",
+            "subtitle": "Start using TAXA for free",
+            "name": "Full Name",
+            "email": "Email",
+            "password": "Password",
+            "confirm_password": "Confirm Password",
+            "button": "Create Account",
+            "button_loading": "Creating...",
+            "have_account": "Already have an account?",
+            "login_link": "Sign in",
+            "error_password_mismatch": "Passwords do not match",
+            "error_registration": "Registration error",
+            "error_connection": "Server connection error",
+            "placeholder_name": "Your name",
+            "placeholder_email": "your@email.com",
+            "placeholder_password": "••••••••"
+        }
+    },
+    "dashboard": {
+        "welcome": "Welcome back, {{name}}! 👋",
+        "subtitle": "What would you like to do today?",
+        "no_documents": "You haven't uploaded any documents yet.",
+        "upload_now": "Upload now",
+        "upload_card": {
+            "title": "Upload Document",
+            "description": "Upload invoices, contracts or other tax documents for automatic processing"
+        },
+        "declaration_card": {
+            "title": "Create Tax Return",
+            "description": "Automatically generate a tax return based on your documents"
+        },
+        "chat_card": {
+            "title": "AI Consultant",
+            "description": "Ask the AI assistant tax questions and get instant answers"
+        },
+        "documents_card": {
+            "title": "My Documents",
+            "count": "{{count}} uploaded documents",
+            "no_documents": "No documents yet"
+        },
+        "stats": {
+            "documents_month": "Documents this month",
+            "ai_consultations": "AI consultations",
+            "tax_declarations": "Tax returns"
+        },
+        "back_to_dashboard": "Back to dashboard"
+    },
+    "upload": {
+        "title": "Upload Documents",
+        "description": "Upload invoices, contracts or other tax documents",
+        "drag_drop": "Drag files here",
+        "or": "or",
+        "button": "Select Files",
+        "uploading": "Uploading...",
+        "upload_button": "Upload Documents",
+        "success": "File uploaded successfully!",
+        "selected_files": "Selected files ({{count}})",
+        "file_types": "PDF, DOC, DOCX, JPG, PNG (max 10MB)"
+    },
+    "ai": {
+        "title": "AI Tax Consultant",
+        "placeholder": "Type your question...",
+        "send": "Send",
+        "thinking": "Thinking...",
+        "error": "An error occurred while communicating with AI.",
+        "welcome": "Hello! I'm your AI tax consultant. How can I help you?",
+        "error_retry": "Sorry, an error occurred. Please try again.",
+        "error_connection": "Sorry, I can't connect to the server.",
+        "suggestions": {
+            "1": "How to file a tax return?",
+            "2": "What are tax deductions?",
+            "3": "Tax filing deadlines"
+        }
+    },
+    "footer": {
+        "rights": "© 2025 TAXA Platform. All rights reserved."
+    },
+    "landing": {
+        "title": "Tax platform",
+        "subtitle": "of the new generation",
+        "description": "AI assistant for tax consultations, automatic document processing and tax return creation in minutes",
+        "cta": {
+            "start": "Start for free",
+            "login": "Already have an account?"
+        },
+        "feature1": {
+            "title": "AI Consultant",
+            "desc": "Get instant answers to tax questions from an AI assistant trained on tax law"
+        },
+        "feature2": {
+            "title": "Document Processing",
+            "desc": "Upload documents and automatically get analysis, data extraction and tax accounting recommendations"
+        },
+        "feature3": {
+            "title": "Tax Returns",
+            "desc": "Create tax returns automatically based on your documents with guaranteed compliance"
+        }
+    },
+    "common": {
+        "back": "Back",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success"
+    }
+}

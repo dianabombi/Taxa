@@ -1,0 +1,133 @@
+{
+    "menu": {
+        "dashboard": "Prehľad",
+        "documents": "Dokumenty",
+        "ai_consultant": "AI Konzultant",
+        "settings": "Nastavenia",
+        "logout": "Odhlásiť sa"
+    },
+    "auth": {
+        "login": {
+            "title": "Prihlásenie",
+            "welcome": "Vitajte späť!",
+            "subtitle": "Prihláste sa do svojho účtu",
+            "email": "E-mail",
+            "password": "Heslo",
+            "button": "Prihlásiť sa",
+            "button_loading": "Prihlasovanie...",
+            "no_account": "Nemáte účet?",
+            "register_here": "Zaregistrujte sa tu",
+            "register_link": "Zaregistrovať sa",
+            "success_registered": "Registrácia úspešná! Teraz sa môžete prihlásiť.",
+            "error_invalid": "Nesprávny email alebo heslo",
+            "error_connection": "Chyba pripojenia k serveru",
+            "placeholder_email": "your@email.com",
+            "placeholder_password": "••••••••"
+        },
+        "register": {
+            "title": "Registrácia",
+            "create_account": "Vytvoriť účet",
+            "subtitle": "Začnite používať TAXA zadarmo",
+            "name": "Meno a priezvisko",
+            "email": "E-mail",
+            "password": "Heslo",
+            "confirm_password": "Potvrďte heslo",
+            "button": "Vytvoriť účet",
+            "button_loading": "Registrácia...",
+            "have_account": "Už máte účet?",
+            "login_link": "Prihlásiť sa",
+            "error_password_mismatch": "Heslá sa nezhodujú",
+            "error_registration": "Chyba registrácie",
+            "error_connection": "Chyba pripojenia k serveru",
+            "placeholder_name": "Vaše meno",
+            "placeholder_email": "your@email.com",
+            "placeholder_password": "••••••••"
+        }
+    },
+    "dashboard": {
+        "welcome": "Vitajte späť, {{name}}! 👋",
+        "subtitle": "Čo by ste chceli dnes urobiť?",
+        "no_documents": "Zatiaľ ste nenahrali žiadne dokumenty.",
+        "upload_now": "Nahrať teraz",
+        "upload_card": {
+            "title": "Nahrať dokument",
+            "description": "Nahrajte faktúry, zmluvy alebo iné daňové dokumenty na automatické spracovanie"
+        },
+        "declaration_card": {
+            "title": "Vytvoriť daňové priznanie",
+            "description": "Automaticky vygenerujte daňové priznanie na základe vašich dokumentov"
+        },
+        "chat_card": {
+            "title": "AI Konzultant",
+            "description": "Opýtajte sa AI asistenta na daňové otázky a získajte okamžité odpovede"
+        },
+        "documents_card": {
+            "title": "Moje dokumenty",
+            "count": "{{count}} nahraných dokumentov",
+            "no_documents": "Zatiaľ žiadne dokumenty"
+        },
+        "stats": {
+            "documents_month": "Dokumenty tento mesiac",
+            "ai_consultations": "AI konzultácie",
+            "tax_declarations": "Daňové priznania"
+        },
+        "back_to_dashboard": "Späť na dashboard"
+    },
+    "upload": {
+        "title": "Nahrať dokumenty",
+        "description": "Nahrajte faktúry, zmluvy alebo iné daňové dokumenty",
+        "drag_drop": "Presuňte súbory sem",
+        "or": "alebo",
+        "button": "Vybrať súbory",
+        "uploading": "Nahrávanie...",
+        "upload_button": "Nahrať dokumenty",
+        "success": "Súbor úspešne nahraný!",
+        "selected_files": "Vybrané súbory ({{count}})",
+        "file_types": "PDF, DOC, DOCX, JPG, PNG (max 10MB)"
+    },
+    "ai": {
+        "title": "AI Daňový konzultant",
+        "placeholder": "Napíšte svoju otázku...",
+        "send": "Odoslať",
+        "thinking": "Premýšľam...",
+        "error": "Nastala chyba pri komunikácii s AI.",
+        "welcome": "Dobrý deň! Som váš AI daňový konzultant. Ako vám môžem pomôcť?",
+        "error_retry": "Prepáčte, vyskytla sa chyba. Skúste to prosím znova.",
+        "error_connection": "Prepáčte, nemôžem sa pripojiť k serveru.",
+        "suggestions": {
+            "1": "Ako podať daňové priznanie?",
+            "2": "Aké sú daňové odpočty?",
+            "3": "Termíny podania daní"
+        }
+    },
+    "footer": {
+        "rights": "© 2025 TAXA Platform. Všetky práva vyhradené."
+    },
+    "landing": {
+        "title": "Daňová platforma",
+        "subtitle": "novej generácie",
+        "description": "AI-asistent pre daňové konzultácie, automatické spracovanie dokumentov a vytváranie daňových priznaní za pár minút",
+        "cta": {
+            "start": "Začať zadarmo",
+            "login": "Už máte účet?"
+        },
+        "feature1": {
+            "title": "AI Konzultant",
+            "desc": "Získajte okamžité odpovede na daňové otázky od AI asistenta vyškoleného na slovenskom daňovom zákone"
+        },
+        "feature2": {
+            "title": "Spracovanie dokumentov",
+            "desc": "Nahrajte dokumenty a automaticky získajte analýzu, extrakciu dát a odporúčania k daňovej evidencii"
+        },
+        "feature3": {
+            "title": "Daňové priznania",
+            "desc": "Vytvárajte daňové priznania automaticky na základe vašich dokumentov so zárukou súladu so zákonom"
+        }
+    },
+    "common": {
+        "back": "Späť",
+        "loading": "Načítavam...",
+        "error": "Chyba",
+        "success": "Úspech"
+    }
+}
