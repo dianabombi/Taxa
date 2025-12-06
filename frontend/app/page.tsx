@@ -17,26 +17,28 @@ export default function LandingPage() {
             <PrivacyBanner />
             
             {/* Navigation */}
-            <nav className="container mx-auto px-6 py-6">
-                <div className="flex items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                        <Image src="/moneybag.png" alt="TAXA Logo" width={50} height={50} className="object-contain" priority />
-                        <span className="text-3xl font-bold text-primary">TAXA</span>
-                    </Link>
-                    <div className="flex items-center space-x-4">
-                        <LanguageSwitcher />
-                        <Link
-                            href="/login"
-                            className="px-4 py-2 text-text-dark hover:text-accent transition-colors"
-                        >
-                            {t('auth.login.button')}
+            <nav className="sticky top-0 z-50 bg-bg-card/95 backdrop-blur-md border-b border-text-light/10 shadow-[0_4px_12px_rgba(163,177,198,0.3)]">
+                <div className="container mx-auto px-6 py-4">
+                    <div className="flex items-center justify-between">
+                        <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                            <Image src="/moneybag.png" alt="TAXA Logo" width={50} height={50} className="object-contain" priority />
+                            <span className="text-3xl font-bold text-primary">TAXA</span>
                         </Link>
-                        <Link
-                            href="/register"
-                            className="px-6 py-2 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all"
-                        >
-                            {t('auth.register.title')}
-                        </Link>
+                        <div className="flex items-center space-x-4">
+                            <LanguageSwitcher />
+                            <Link
+                                href="/login"
+                                className="px-4 py-2 text-text-dark hover:text-accent transition-colors"
+                            >
+                                {t('auth.login.button')}
+                            </Link>
+                            <Link
+                                href="/register"
+                                className="px-6 py-2 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all"
+                            >
+                                {t('auth.register.title')}
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </nav>
