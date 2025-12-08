@@ -9,13 +9,14 @@ import Footer from '@/components/Footer';
 export default function TermsPage() {
     return (
         <div className="min-h-screen bg-bg-main">
+            {/* Logo - Fixed Position */}
+            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={100} height={100} className="object-contain rounded-xl" priority />
+            </Link>
+            
             {/* Navigation */}
-            <nav className="container mx-auto px-6 py-6">
-                <div className="flex items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                        <Image src="/moneybag.png" alt="TAXA Logo" width={50} height={50} className="object-contain" priority />
-                        <span className="text-3xl font-bold text-primary">TAXA</span>
-                    </Link>
+            <nav className="container mx-auto px-6 py-4">
+                <div className="flex items-center justify-end">
                     <LanguageSwitcher />
                 </div>
             </nav>
@@ -53,7 +54,7 @@ export default function TermsPage() {
                             <h2 className="text-2xl font-bold text-primary mb-4">2. Vymedzenie pojmov</h2>
                             <div className="bg-bg-main rounded-xl p-4 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF] space-y-2">
                                 <p className="text-text-dark"><strong>Platforma:</strong> Webová aplikácia TAXA dostupná na taxa.sk</p>
-                                <p className="text-text-dark"><strong>Služby:</strong> Spracovanie daňových priznaní, AI konzultácie, správa dokumentov</p>
+                                <p className="text-text-dark"><strong>Služby:</strong> Automatická evidencia príjmov a výdavkov, AI pomoc pre každodenné účtovníctvo, generovanie daňových priznaní</p>
                                 <p className="text-text-dark"><strong>Účet:</strong> Používateľský účet vytvorený registráciou</p>
                             </div>
                         </section>
@@ -74,16 +75,16 @@ export default function TermsPage() {
                             <p className="text-text-dark leading-relaxed mb-4">Platforma poskytuje nasledujúce služby:</p>
                             <div className="space-y-3">
                                 <div className="bg-bg-main rounded-xl p-4 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
-                                    <h3 className="font-semibold text-text-dark mb-2">Automatické spracovanie dokumentov</h3>
-                                    <p className="text-text-light text-sm">Nahranie a analýza faktúr, zmlúv a iných daňových dokumentov pomocou OCR technológie</p>
+                                    <h3 className="font-semibold text-text-dark mb-2">Automatická evidencia príjmov a výdavkov</h3>
+                                    <p className="text-text-light text-sm">Nahrajte faktúru alebo doklad a TAXA automaticky rozpozná či ide o príjem alebo výdavok a zaradí ho do správnej kategórie</p>
                                 </div>
                                 <div className="bg-bg-main rounded-xl p-4 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
-                                    <h3 className="font-semibold text-text-dark mb-2">AI daňový konzultant</h3>
-                                    <p className="text-text-light text-sm">24/7 prístup k AI asistentovi pre daňové otázky týkajúce sa slovenského daňového systému</p>
+                                    <h3 className="font-semibold text-text-dark mb-2">AI pomocník pre každodenné účtovníctvo</h3>
+                                    <p className="text-text-light text-sm">Neviete ako niečo zaúčtovať? Opýtajte sa AI vyškoleného na slovenskom daňovom systéme a získajte okamžitú odpoveď</p>
                                 </div>
                                 <div className="bg-bg-main rounded-xl p-4 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
-                                    <h3 className="font-semibold text-text-dark mb-2">Generovanie daňových priznaní</h3>
-                                    <p className="text-text-light text-sm">Automatické vytvorenie daňového priznania na základe nahratých dokumentov</p>
+                                    <h3 className="font-semibold text-text-dark mb-2">Daňové priznanie na jeden klik</h3>
+                                    <p className="text-text-light text-sm">Všetky príjmy a výdavky máte pripravené. Stlačte tlačidlo a TAXA vygeneruje vaše kompletné daňové priznanie</p>
                                 </div>
                             </div>
                         </section>

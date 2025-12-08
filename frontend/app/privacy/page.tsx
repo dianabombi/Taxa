@@ -9,13 +9,14 @@ import Footer from '@/components/Footer';
 export default function PrivacyPolicyPage() {
     return (
         <div className="min-h-screen bg-bg-main">
+            {/* Logo - Fixed Position */}
+            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={100} height={100} className="object-contain rounded-xl" priority />
+            </Link>
+            
             {/* Navigation */}
-            <nav className="container mx-auto px-6 py-6">
-                <div className="flex items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                        <Image src="/moneybag.png" alt="TAXA Logo" width={50} height={50} className="object-contain" priority />
-                        <span className="text-3xl font-bold text-primary">TAXA</span>
-                    </Link>
+            <nav className="container mx-auto px-6 py-4">
+                <div className="flex items-center justify-end">
                     <LanguageSwitcher />
                 </div>
             </nav>

@@ -46,88 +46,104 @@
     },
     "dashboard": {
         "welcome": "Vitajte späť, {{name}}! 👋",
-        "subtitle": "Čo by ste chceli dnes urobiť?",
-        "no_documents": "Zatiaľ ste nenahrali žiadne dokumenty.",
-        "upload_now": "Nahrať teraz",
+        "subtitle": "Vaše príjmy a výdavky prehľadne na jednom mieste",
+        "no_documents": "Zatiaľ nemáte evidované žiadne príjmy ani výdavky.",
+        "upload_now": "Pridať prvý príjem/výdavok",
         "logout": "Odhlásiť sa",
         "nav": {
             "dashboard": "Prehľad",
-            "upload": "Nahrať",
-            "chat": "AI Konzultant"
+            "upload": "Pridať príjem/výdavok",
+            "chat": "AI Pomoc"
         },
         "upload_card": {
-            "title": "Nahrať dokument",
-            "description": "Nahrajte faktúry, zmluvy alebo iné daňové dokumenty na automatické spracovanie"
+            "title": "Pridať príjem alebo výdavok",
+            "description": "Nahrajte faktúru, pokladničný doklad alebo zadajte ručne – TAXA automaticky zaradí do správnej kategórie"
         },
         "declaration_card": {
-            "title": "Vytvoriť daňové priznanie",
-            "description": "Automaticky vygenerujte daňové priznanie na základe vašich dokumentov"
+            "title": "Daňové priznanie na jeden klik",
+            "description": "Všetky príjmy a výdavky máte pripravené. Stlačte tlačidlo a TAXA vygeneruje vaše daňové priznanie"
         },
         "chat_card": {
-            "title": "AI Konzultant",
-            "description": "Opýtajte sa AI asistenta na daňové otázky a získajte okamžité odpovede"
+            "title": "Opýtajte sa AI",
+            "description": "Neviete ako niečo zaúčtovať? Potrebujete poradiť s termínom? AI vám odpovie okamžite"
         },
         "documents_card": {
-            "title": "Moje dokumenty",
-            "count": "{{count}} nahraných dokumentov",
-            "no_documents": "Zatiaľ žiadne dokumenty"
+            "title": "Evidovaných príjmov/výdavkov",
+            "count": "{{count}} položiek",
+            "no_documents": "Zatiaľ žiadna evidencia"
         },
         "stats": {
-            "documents_month": "Dokumenty tento mesiac",
+            "documents_month": "Príjmy/výdavky tento mesiac",
             "ai_consultations": "AI konzultácie",
             "tax_declarations": "Daňové priznania"
         },
-        "back_to_dashboard": "Späť na dashboard"
+        "back_to_dashboard": "Späť na prehľad"
     },
     "upload": {
-        "title": "Nahrať dokumenty",
-        "description": "Nahrajte faktúry, zmluvy alebo iné daňové dokumenty",
+        "title": "Pridať príjem alebo výdavok",
+        "description": "Nahrajte faktúru, pokladničný doklad alebo iný dokument – TAXA automaticky rozpozná či ide o príjem alebo výdavok",
         "drag_drop": "Presuňte súbory sem",
         "or": "alebo",
         "button": "Vybrať súbory",
-        "uploading": "Nahrávanie...",
-        "upload_button": "Nahrať dokumenty",
-        "success": "Súbor úspešne nahraný!",
+        "uploading": "Nahrávanie a spracovanie...",
+        "upload_button": "Pridať do evidencie",
+        "success": "Príjem/výdavok úspešne pridaný do evidencie!",
         "selected_files": "Vybrané súbory ({{count}})",
-        "file_types": "PDF, DOC, DOCX, JPG, PNG (max 10MB)"
+        "file_types": "PDF, JPG, PNG – faktúry, doklady (max 10MB)"
     },
     "ai": {
-        "title": "AI Daňový konzultant",
-        "placeholder": "Napíšte svoju otázku...",
-        "send": "Odoslať",
-        "thinking": "Premýšľam...",
+        "title": "AI Pomocník pre každodenné účtovníctvo",
+        "placeholder": "Napríklad: Môžem si odpočítať pohonné hmoty?",
+        "send": "Opýtať sa",
+        "thinking": "Hľadám odpoveď...",
         "error": "Nastala chyba pri komunikácii s AI.",
-        "welcome": "Dobrý deň! Som váš AI daňový konzultant. Ako vám môžem pomôcť?",
+        "welcome": "Dobrý deň! Som tu, aby som vám pomohol s každodenným účtovníctvom. Opýtajte sa ma na čokoľvek o príjmoch, výdavkoch, daňách alebo termínoch.",
         "error_retry": "Prepáčte, vyskytla sa chyba. Skúste to prosím znova.",
         "error_connection": "Prepáčte, nemôžem sa pripojiť k serveru.",
         "suggestions": {
-            "1": "Ako podať daňové priznanie?",
-            "2": "Aké sú daňové odpočty?",
-            "3": "Termíny podania daní"
+            "1": "Ako evidovať príjmy z faktúr?",
+            "2": "Čo môžem dať do výdavkov?",
+            "3": "Kedy musím podať daňové priznanie?"
         }
     },
     "footer": {
-        "rights": "© 2025 TAXA Platform. Všetky práva vyhradené."
+        "company_description": "Jednoduchý digitálny sprievodca pre slovenských živnostníkov. Evidencia príjmov a výdavkov bez stresu.",
+        "quick_links": "Rýchle odkazy",
+        "dashboard": "Prehľad",
+        "upload_documents": "Nahrať dokumenty",
+        "ai_consultant": "AI Konzultant",
+        "tax_declaration": "Daňové priznanie",
+        "legal": "Právne informácie",
+        "privacy_policy": "Ochrana osobných údajov",
+        "terms_of_service": "Obchodné podmienky",
+        "cookie_policy": "Cookies",
+        "gdpr": "GDPR",
+        "contact": "Kontakt",
+        "location": "Bratislava, Slovensko",
+        "rights": "Všetky práva vyhradené.",
+        "about_us": "O nás",
+        "support": "Podpora",
+        "blog": "Blog"
     },
     "landing": {
-        "title": "Daňová platforma",
-        "subtitle": "novej generácie",
-        "description": "AI-asistent pre daňové konzultácie, automatické spracovanie dokumentov a vytváranie daňových priznaní za pár minút",
+        "title": "Jednoduchý digitálny sprievodca",
+        "subtitle": "pre slovenských živnostníkov",
+        "description": "Zbavte sa stresu z papierov, výpočtov a termínov. Automatizujte evidenciu príjmov a výdavkov. Vytvorte daňové priznanie jedným klikom.",
         "cta": {
             "start": "Začať zadarmo",
             "login": "Už máte účet?"
         },
         "feature1": {
-            "title": "AI Konzultant",
-            "desc": "Získajte okamžité odpovede na daňové otázky od AI asistenta vyškoleného na slovenskom daňovom zákone"
+            "title": "Automatická evidencia príjmov a výdavkov",
+            "desc": "Nahrajte faktúru a TAXA automaticky zaradí príjem alebo výdavok do správnej kategórie. Žiadne ručné výpočty."
         },
         "feature2": {
-            "title": "Spracovanie dokumentov",
-            "desc": "Nahrajte dokumenty a automaticky získajte analýzu, extrakciu dát a odporúčania k daňovej evidencii"
+            "title": "AI asistent pre každodenné účtovníctvo",
+            "desc": "Pýtajte sa na čokoľvek o daňách, odvodoch a termínoch. AI vyškolený na slovenskom daňovom systéme vám odpovie okamžite."
         },
         "feature3": {
-            "title": "Daňové priznania",
-            "desc": "Vytvárajte daňové priznania automaticky na základe vašich dokumentov so zárukou súladu so zákonom"
+            "title": "Daňové priznanie na jeden klik",
+            "desc": "Všetky príjmy a výdavky máte automaticky pripravené. Jedno kliknutie a vaše daňové priznanie je hotové."
         }
     },
     "common": {

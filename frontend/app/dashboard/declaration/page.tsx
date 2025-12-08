@@ -52,16 +52,15 @@ export default function DeclarationPage() {
 
     return (
         <div className="min-h-screen bg-bg-main">
+            {/* Logo - Fixed Position */}
+            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={90} height={90} className="object-contain rounded-xl" priority />
+            </Link>
+            
             {/* Navigation */}
             <nav className="border-b border-text-light/10 bg-bg-card shadow-[0_4px_8px_#A3B1C6]">
                 <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        {/* Logo */}
-                        <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                            <Image src="/moneybag.png" alt="TAXA Logo" width={40} height={40} className="object-contain" priority />
-                            <span className="text-2xl font-bold text-primary">TAXA</span>
-                        </Link>
-                        
+                    <div className="flex items-center justify-end">
                         {/* Navigation Menu */}
                         <div className="flex items-center space-x-2">
                             <Link

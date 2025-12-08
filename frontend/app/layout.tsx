@@ -3,28 +3,28 @@ import "./globals.css";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
 export const metadata: Metadata = {
-    title: "TAXA Platform",
-    description: "Accounting Platform",
+    title: "TAXA - Jednoduchý digitálny sprievodca pre slovenských živnostníkov",
+    description: "Automatizujte evidenciu príjmov a výdavkov. Vytvorte daňové priznanie jedným klikom. Žiadny stres z papierov a termínov.",
     icons: {
         icon: [
-            { url: '/moneybag.png' },
-            { url: '/moneybag.png', sizes: '32x32', type: 'image/png' },
-            { url: '/moneybag.png', sizes: '16x16', type: 'image/png' },
+            { url: '/taxa logo.jpg' },
+            { url: '/taxa logo.jpg', sizes: '32x32', type: 'image/jpeg' },
+            { url: '/taxa logo.jpg', sizes: '16x16', type: 'image/jpeg' },
         ],
-        shortcut: '/moneybag.png',
-        apple: '/moneybag.png',
+        shortcut: '/taxa logo.jpg',
+        apple: '/taxa logo.jpg',
     },
     manifest: '/site.webmanifest',
     openGraph: {
-        title: 'TAXA Platform',
-        description: 'AI-powered tax and accounting platform',
+        title: 'TAXA - Digitálny sprievodca pre živnostníkov',
+        description: 'Automatická evidencia príjmov a výdavkov. Daňové priznanie na jeden klik. Pre slovenských živnostníkov.',
         url: 'https://taxa-platform.vercel.app',
         siteName: 'TAXA',
         images: [
             {
-                url: '/moneybag.png',
-                width: 512,
-                height: 512,
+                url: '/taxa logo.jpg',
+                width: 800,
+                height: 800,
                 alt: 'TAXA Logo',
             },
         ],
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary',
-        title: 'TAXA Platform',
-        description: 'AI-powered tax and accounting platform',
-        images: ['/moneybag.png'],
+        title: 'TAXA - Digitálny sprievodca pre živnostníkov',
+        description: 'Automatická evidencia príjmov a výdavkov. Daňové priznanie na jeden klik.',
+        images: ['/taxa logo.jpg'],
     },
 };
 

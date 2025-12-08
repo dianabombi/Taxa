@@ -16,11 +16,11 @@ export default function Footer() {
                     {/* Company Info */}
                     <div>
                         <Link href="/" className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity w-fit">
-                            <Image src="/moneybag.png" alt="TAXA Logo" width={35} height={35} className="object-contain" priority />
+                            <Image src="/taxa logo.jpg" alt="TAXA Logo" width={35} height={35} className="object-contain" priority />
                             <span className="text-xl font-bold text-primary">TAXA</span>
                         </Link>
                         <p className="text-text-light text-sm leading-relaxed mb-4">
-                            Professional tax management platform for self-employed individuals and businesses.
+                            {t('footer.company_description')}
                         </p>
                         {/* Social Media */}
                         <div className="flex space-x-3">
@@ -61,26 +61,26 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="text-lg font-bold text-primary mb-4">Quick Links</h3>
+                        <h3 className="text-lg font-bold text-primary mb-4">{t('footer.quick_links')}</h3>
                         <ul className="space-y-2">
                             <li>
                                 <Link href="/dashboard" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    Dashboard
+                                    {t('footer.dashboard')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/dashboard/upload" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    Upload Documents
+                                    {t('footer.upload_documents')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/dashboard/chat" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    AI Consultant
+                                    {t('footer.ai_consultant')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/dashboard/declaration" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    Tax Declaration
+                                    {t('footer.tax_declaration')}
                                 </Link>
                             </li>
                         </ul>
@@ -88,26 +88,26 @@ export default function Footer() {
 
                     {/* Legal */}
                     <div>
-                        <h3 className="text-lg font-bold text-primary mb-4">Legal</h3>
+                        <h3 className="text-lg font-bold text-primary mb-4">{t('footer.legal')}</h3>
                         <ul className="space-y-2">
                             <li>
                                 <Link href="/privacy" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    Privacy Policy
+                                    {t('footer.privacy_policy')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/terms" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    Terms of Service
+                                    {t('footer.terms_of_service')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/cookies" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    Cookie Policy
+                                    {t('footer.cookie_policy')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/gdpr" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    GDPR
+                                    {t('footer.gdpr')}
                                 </Link>
                             </li>
                         </ul>
@@ -115,7 +115,7 @@ export default function Footer() {
 
                     {/* Contact */}
                     <div>
-                        <h3 className="text-lg font-bold text-primary mb-4">Contact</h3>
+                        <h3 className="text-lg font-bold text-primary mb-4">{t('footer.contact')}</h3>
                         <ul className="space-y-3">
                             <li className="flex items-start space-x-2">
                                 <Mail className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
@@ -132,7 +132,7 @@ export default function Footer() {
                             <li className="flex items-start space-x-2">
                                 <MapPin className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                                 <span className="text-text-light text-sm">
-                                    Bratislava, Slovakia
+                                    {t('footer.location')}
                                 </span>
                             </li>
                         </ul>
@@ -143,17 +143,17 @@ export default function Footer() {
                 <div className="pt-8 border-t border-text-light/10">
                     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                         <p className="text-text-light text-sm">
-                            &copy; {currentYear} TAXA. All rights reserved.
+                            &copy; {currentYear} TAXA. {t('footer.rights')}
                         </p>
                         <div className="flex items-center space-x-6">
                             <Link href="/about" className="text-text-light hover:text-accent transition-colors text-sm">
-                                About Us
+                                {t('footer.about_us')}
                             </Link>
                             <Link href="/support" className="text-text-light hover:text-accent transition-colors text-sm">
-                                Support
+                                {t('footer.support')}
                             </Link>
                             <Link href="/blog" className="text-text-light hover:text-accent transition-colors text-sm">
-                                Blog
+                                {t('footer.blog')}
                             </Link>
                         </div>
                     </div>

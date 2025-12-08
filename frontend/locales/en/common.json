@@ -107,7 +107,23 @@
         }
     },
     "footer": {
-        "rights": "© 2025 TAXA Platform. All rights reserved."
+        "company_description": "Simple digital guide for Slovak entrepreneurs. Income and expense tracking without stress.",
+        "quick_links": "Quick Links",
+        "dashboard": "Dashboard",
+        "upload_documents": "Upload Documents",
+        "ai_consultant": "AI Consultant",
+        "tax_declaration": "Tax Declaration",
+        "legal": "Legal",
+        "privacy_policy": "Privacy Policy",
+        "terms_of_service": "Terms of Service",
+        "cookie_policy": "Cookie Policy",
+        "gdpr": "GDPR",
+        "contact": "Contact",
+        "location": "Bratislava, Slovakia",
+        "rights": "All rights reserved.",
+        "about_us": "About Us",
+        "support": "Support",
+        "blog": "Blog"
     },
     "landing": {
         "title": "Tax platform",

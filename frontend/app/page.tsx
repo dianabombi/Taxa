@@ -16,14 +16,15 @@ export default function LandingPage() {
             {/* Privacy Banner */}
             <PrivacyBanner />
             
+            {/* Logo - Fixed Position */}
+            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={80} height={80} className="sm:w-[100px] sm:h-[100px] object-contain rounded-xl" priority />
+            </Link>
+            
             {/* Navigation */}
             <nav className="sticky top-0 z-50 bg-bg-card/95 backdrop-blur-md border-b border-text-light/10 shadow-[0_4px_12px_rgba(163,177,198,0.3)]">
-                <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
-                    <div className="flex items-center justify-between">
-                        <Link href="/" className="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity">
-                            <Image src="/moneybag.png" alt="TAXA Logo" width={40} height={40} className="sm:w-[50px] sm:h-[50px] object-contain" priority />
-                            <span className="text-2xl sm:text-3xl font-bold text-primary">TAXA</span>
-                        </Link>
+                <div className="container mx-auto px-4 sm:px-6 py-4">
+                    <div className="flex items-center justify-end">
                         <div className="flex items-center space-x-2 sm:space-x-4">
                             <LanguageSwitcher />
                             <Link
@@ -78,15 +79,15 @@ export default function LandingPage() {
                     <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-6 mb-8 sm:mb-12 text-xs sm:text-sm text-text-light">
                         <div className="flex items-center space-x-2">
                             <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span>Automatické spracovanie</span>
+                            <span>Evidencia príjmov/výdavkov</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span>AI asistent 24/7</span>
+                            <span>Žiadne manuálne výpočty</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span>Bezpečné úložisko</span>
+                            <span>Daňové priznanie na 1 klik</span>
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">

@@ -64,18 +64,15 @@ export default function RegisterPage() {
 
     return (
         <div className="min-h-screen bg-bg-main">
+            {/* Logo - Fixed Position */}
+            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={100} height={100} className="object-contain rounded-xl" priority />
+            </Link>
+            
             {/* Top Navigation */}
-            <nav className="container mx-auto px-6 py-6">
-                <div className="grid lg:grid-cols-2 gap-12">
-                    <div>
-                        <Link href="/" className="flex items-center space-x-3">
-                            <Image src="/moneybag.png" alt="TAXA Logo" width={50} height={50} className="object-contain" priority />
-                            <span className="text-3xl font-bold text-primary">TAXA</span>
-                        </Link>
-                    </div>
-                    <div className="w-full max-w-xl mx-auto lg:mx-0 flex justify-end items-center">
-                        <LanguageSwitcher />
-                    </div>
+            <nav className="container mx-auto px-6 py-4">
+                <div className="flex justify-end items-center">
+                    <LanguageSwitcher />
                 </div>
             </nav>
 
@@ -87,15 +84,15 @@ export default function RegisterPage() {
                         <div>
                             <h1 className="text-6xl font-bold leading-tight mb-6">
                                 <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                                    Daňové priznanie
+                                    Bez stresu
                                 </span>
                                 <br />
                                 <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-                                    na jeden klik
+                                    z papierov a termínov
                                 </span>
                             </h1>
                             <p className="text-xl text-text-light leading-relaxed">
-                                Účtovníctvo ľahko a jednoducho. Profesionálna platforma pre správu daní a dokumentov.
+                                Digitálny sprievodca pre slovenských živnostníkov. Evidencia príjmov a výdavkov automaticky, daňové priznanie na jeden klik.
                             </p>
                         </div>
                         

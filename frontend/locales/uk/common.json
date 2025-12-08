@@ -101,7 +101,23 @@
         }
     },
     "footer": {
-        "rights": "© 2025 TAXA Platform. Усі права захищені."
+        "company_description": "Простий цифровий гід для словацьких підприємців. Облік доходів та витрат без стресу.",
+        "quick_links": "Швидкі посилання",
+        "dashboard": "Панель управління",
+        "upload_documents": "Завантажити документи",
+        "ai_consultant": "AI Консультант",
+        "tax_declaration": "Податкова декларація",
+        "legal": "Правова інформація",
+        "privacy_policy": "Політика конфіденційності",
+        "terms_of_service": "Умови використання",
+        "cookie_policy": "Політика cookies",
+        "gdpr": "GDPR",
+        "contact": "Контакти",
+        "location": "Братислава, Словаччина",
+        "rights": "Усі права захищені.",
+        "about_us": "Про нас",
+        "support": "Підтримка",
+        "blog": "Блог"
     },
     "landing": {
         "title": "Податкова платформа",
