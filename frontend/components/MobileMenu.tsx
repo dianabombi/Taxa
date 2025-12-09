@@ -62,11 +62,14 @@ export default function MobileMenu({ user, onLogout, currentPath }: MobileMenuPr
         { href: '/dashboard/documents', icon: FileText, label: 'Dokumenty' },
     ] : [];
 
-    const quickLinks = [
+    const quickLinks = user ? [
         { href: '/dashboard', icon: Home, label: t('footer.dashboard') },
         { href: '/dashboard/upload', icon: Upload, label: t('footer.upload_documents') },
         { href: '/dashboard/chat', icon: MessageSquare, label: t('footer.ai_consultant') },
         { href: '/dashboard/declaration', icon: FileText, label: t('footer.tax_declaration') },
+    ] : [
+        { href: '/dashboard', icon: Home, label: t('footer.dashboard') },
+        { href: '/dashboard/chat', icon: MessageSquare, label: t('footer.ai_consultant') },
     ];
 
     return (

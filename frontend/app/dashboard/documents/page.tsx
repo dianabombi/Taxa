@@ -135,7 +135,7 @@ export default function DocumentsPage() {
                         </div>
 
                         {/* Mobile Language Switcher */}
-                        <div className="lg:hidden mr-14">
+                        <div className="lg:hidden mr-16">
                             <LanguageSwitcher />
                         </div>
                     </div>
