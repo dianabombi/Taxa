@@ -45,7 +45,13 @@ function LoginForm() {
                 const data = await response.json();
                 localStorage.setItem('token', data.access_token);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                router.push('/dashboard');
+                
+                // Redirect to onboarding if not completed
+                if (data.user.onboarding_completed < 3) {
+                    router.push('/onboarding');
+                } else {
+                    router.push('/dashboard');
+                }
             } else {
                 const data = await response.json();
                 // Handle Pydantic validation errors (array format)

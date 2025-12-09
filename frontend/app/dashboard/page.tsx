@@ -24,7 +24,15 @@ export default function DashboardPage() {
             return;
         }
 
-        setUser(JSON.parse(userData));
+        const parsedUser = JSON.parse(userData);
+        
+        // Redirect to onboarding if not completed
+        if (parsedUser.onboarding_completed < 3) {
+            router.push('/onboarding');
+            return;
+        }
+
+        setUser(parsedUser);
         loadDocuments();
     }, []);
 
@@ -172,7 +180,7 @@ export default function DashboardPage() {
                             {documents.slice(0, 3).map((doc, idx) => (
                                 <div key={idx} className="flex items-center space-x-2 text-sm text-text-light">
                                     <FileText className="w-4 h-4" />
-                                    <span className="truncate">{doc.name}</span>
+                                    <span className="truncate">{doc.filename}</span>
                                 </div>
                             ))}
                             {documents.length === 0 && (

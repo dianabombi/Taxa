@@ -45,7 +45,10 @@ export default function RegisterPage() {
             });
 
             if (response.ok) {
-                router.push('/login?registered=true');
+                const data = await response.json();
+                localStorage.setItem('token', data.access_token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                router.push('/onboarding');
             } else {
                 const data = await response.json();
                 // Handle Pydantic validation errors (array format)

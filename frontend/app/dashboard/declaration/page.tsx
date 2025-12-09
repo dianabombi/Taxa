@@ -29,7 +29,16 @@ export default function DeclarationPage() {
             router.push('/login');
             return;
         }
-        setUser(JSON.parse(userData));
+        
+        const parsedUser = JSON.parse(userData);
+        
+        // Redirect to onboarding if not completed
+        if (parsedUser.onboarding_completed < 3) {
+            router.push('/onboarding');
+            return;
+        }
+        
+        setUser(parsedUser);
     }, []);
 
     const handleLogout = () => {

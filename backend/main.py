@@ -41,6 +41,12 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
+    # Onboarding fields
+    phone = Column(String, nullable=True)
+    business_type = Column(String, nullable=True)  # 'flat_rate' or 'actual_expenses'
+    expense_type = Column(String, nullable=True)  # 'pausalne_vydavky' or 'skutocne_vydavky'
+    vat_status = Column(String, nullable=True)  # 'non_payer' or 'payer'
+    onboarding_completed = Column(Integer, default=0)  # 0, 1, 2, 3 (step completed)
     documents = relationship("Document", back_populates="owner")
     messages = relationship("ChatMessage", back_populates="user")
 
@@ -87,6 +93,11 @@ class UserResponse(BaseModel):
     id: int
     name: str
     email: str
+    phone: Optional[str] = None
+    business_type: Optional[str] = None
+    expense_type: Optional[str] = None
+    vat_status: Optional[str] = None
+    onboarding_completed: int = 0
     created_at: datetime
 
 class Token(BaseModel):
@@ -107,6 +118,13 @@ class DocumentResponse(BaseModel):
     extracted_data: Optional[dict]
     confidence: Optional[int]
     uploaded_at: datetime
+
+class OnboardingUpdate(BaseModel):
+    phone: Optional[str] = None
+    business_type: Optional[str] = None
+    expense_type: Optional[str] = None
+    vat_status: Optional[str] = None
+    onboarding_completed: Optional[int] = None
 
 # FastAPI app
 app = FastAPI(title="TAXA API", version="0.1.0")
@@ -197,6 +215,11 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
         id=new_user.id,
         name=new_user.name,
         email=new_user.email,
+        phone=new_user.phone,
+        business_type=new_user.business_type,
+        expense_type=new_user.expense_type,
+        vat_status=new_user.vat_status,
+        onboarding_completed=new_user.onboarding_completed,
         created_at=new_user.created_at
     )
     
@@ -217,10 +240,49 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         id=user.id,
         name=user.name,
         email=user.email,
+        phone=user.phone,
+        business_type=user.business_type,
+        expense_type=user.expense_type,
+        vat_status=user.vat_status,
+        onboarding_completed=user.onboarding_completed,
         created_at=user.created_at
     )
     
     return {"access_token": access_token, "token_type": "bearer", "user": user_response}
+
+# Onboarding endpoint
+@app.patch("/api/auth/onboarding", response_model=UserResponse)
+def update_onboarding(
+    onboarding_data: OnboardingUpdate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    # Update user fields
+    if onboarding_data.phone is not None:
+        current_user.phone = onboarding_data.phone
+    if onboarding_data.business_type is not None:
+        current_user.business_type = onboarding_data.business_type
+    if onboarding_data.expense_type is not None:
+        current_user.expense_type = onboarding_data.expense_type
+    if onboarding_data.vat_status is not None:
+        current_user.vat_status = onboarding_data.vat_status
+    if onboarding_data.onboarding_completed is not None:
+        current_user.onboarding_completed = onboarding_data.onboarding_completed
+    
+    db.commit()
+    db.refresh(current_user)
+    
+    return UserResponse(
+        id=current_user.id,
+        name=current_user.name,
+        email=current_user.email,
+        phone=current_user.phone,
+        business_type=current_user.business_type,
+        expense_type=current_user.expense_type,
+        vat_status=current_user.vat_status,
+        onboarding_completed=current_user.onboarding_completed,
+        created_at=current_user.created_at
+    )
 
 # Documents endpoints
 @app.get("/api/documents", response_model=List[DocumentResponse])
