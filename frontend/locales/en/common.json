@@ -197,5 +197,15 @@
         "error_update": "Error updating profile",
         "error_connection": "Server connection error",
         "error_upload": "Error uploading files"
+    },
+    "cookies": {
+        "message": "We use cookies to improve your experience.",
+        "message_short": "We use cookies.",
+        "privacy_policy": "Privacy Policy",
+        "cookie_policy": "Cookie Policy",
+        "privacy": "Privacy",
+        "cookies": "Cookies",
+        "accept": "Accept",
+        "accept_cookies": "Accept Cookies"
     }
 }

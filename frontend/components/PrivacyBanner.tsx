@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Cookie, X } from 'lucide-react';
+import { useLanguage } from '@/lib/LanguageContext';
 
 export default function PrivacyBanner() {
+    const { t } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -36,13 +38,13 @@ export default function PrivacyBanner() {
                     <div className="flex items-center gap-4 flex-1 min-w-0">
                         <Cookie className="w-6 h-6 text-accent flex-shrink-0" />
                         <p className="text-text-dark text-sm">
-                            We use cookies to improve your experience.{' '}
+                            {t('cookies.message')}{' '}
                             <Link href="/privacy" className="text-accent hover:underline font-medium">
-                                Privacy Policy
+                                {t('cookies.privacy_policy')}
                             </Link>
                             {' '}|{' '}
                             <Link href="/cookies" className="text-accent hover:underline font-medium">
-                                Cookie Policy
+                                {t('cookies.cookie_policy')}
                             </Link>
                         </p>
                     </div>
@@ -53,7 +55,7 @@ export default function PrivacyBanner() {
                             onClick={handleAccept}
                             className="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-all font-medium text-sm"
                         >
-                            Accept
+                            {t('cookies.accept')}
                         </button>
                         <button
                             onClick={handleDecline}
@@ -71,13 +73,13 @@ export default function PrivacyBanner() {
                     <div className="flex items-start gap-3">
                         <Cookie className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                         <p className="text-text-dark text-xs flex-1">
-                            We use cookies.{' '}
+                            {t('cookies.message_short')}{' '}
                             <Link href="/privacy" className="text-accent underline font-medium">
-                                Privacy
+                                {t('cookies.privacy')}
                             </Link>
                             {' '}|{' '}
                             <Link href="/cookies" className="text-accent underline font-medium">
-                                Cookies
+                                {t('cookies.cookies')}
                             </Link>
                         </p>
                         <button
@@ -94,7 +96,7 @@ export default function PrivacyBanner() {
                         onClick={handleAccept}
                         className="w-full px-4 py-2.5 bg-accent text-white rounded-lg hover:bg-accent/90 transition-all font-medium text-sm"
                     >
-                        Accept Cookies
+                        {t('cookies.accept_cookies')}
                     </button>
                 </div>
             </div>

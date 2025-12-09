@@ -197,5 +197,15 @@
         "error_update": "Chyba pri aktualizácii profilu",
         "error_connection": "Chyba pripojenia k serveru",
         "error_upload": "Chyba pri nahrávaní súborov"
+    },
+    "cookies": {
+        "message": "Používame cookies na zlepšenie vášho zážitku.",
+        "message_short": "Používame cookies.",
+        "privacy_policy": "Ochrana osobných údajov",
+        "cookie_policy": "Pravidlá používania cookies",
+        "privacy": "Súkromie",
+        "cookies": "Cookies",
+        "accept": "Prijať",
+        "accept_cookies": "Prijať cookies"
     }
 }
