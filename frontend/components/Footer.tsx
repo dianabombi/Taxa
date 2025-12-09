@@ -12,7 +12,7 @@ export default function Footer() {
     return (
         <footer className="bg-bg-card border-t border-text-light/10 mt-auto">
             <div className="container mx-auto px-6 py-12">
-                <div className="grid md:grid-cols-4 gap-8 mb-8">
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
                     {/* Company Info */}
                     <div>
                         <Link href="/" className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity w-fit">
@@ -57,33 +57,6 @@ export default function Footer() {
                                 <Instagram className="w-5 h-5" />
                             </a>
                         </div>
-                    </div>
-
-                    {/* Quick Links */}
-                    <div>
-                        <h3 className="text-lg font-bold text-primary mb-4">{t('footer.quick_links')}</h3>
-                        <ul className="space-y-2">
-                            <li>
-                                <Link href="/dashboard" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    {t('footer.dashboard')}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/dashboard/upload" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    {t('footer.upload_documents')}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/dashboard/chat" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    {t('footer.ai_consultant')}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/dashboard/declaration" className="text-text-light hover:text-accent transition-colors text-sm">
-                                    {t('footer.tax_declaration')}
-                                </Link>
-                            </li>
-                        </ul>
                     </div>
 
                     {/* Legal */}

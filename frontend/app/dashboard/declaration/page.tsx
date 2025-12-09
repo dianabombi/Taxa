@@ -7,6 +7,7 @@ import { Home, Upload, MessageSquare, LogOut, User, FileText, Calendar, DollarSi
 import Link from 'next/link';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import MobileMenu from '@/components/MobileMenu';
 import { API_BASE_URL } from '@/lib/api';
 
 export default function DeclarationPage() {
@@ -62,16 +63,16 @@ export default function DeclarationPage() {
     return (
         <div className="min-h-screen bg-bg-main">
             {/* Logo - Fixed Position */}
-            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
-                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={90} height={90} className="object-contain rounded-xl" priority />
+            <Link href="/" className="fixed top-2 left-4 lg:left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={80} height={80} className="lg:w-[90px] lg:h-[90px] object-contain rounded-xl" priority />
             </Link>
             
             {/* Navigation */}
             <nav className="border-b border-text-light/10 bg-bg-card shadow-[0_4px_8px_#A3B1C6]">
-                <div className="container mx-auto px-6 py-4">
+                <div className="container mx-auto px-4 lg:px-6 py-4">
                     <div className="flex items-center justify-end">
-                        {/* Navigation Menu */}
-                        <div className="flex items-center space-x-2">
+                        {/* Navigation Menu - Hidden on mobile */}
+                        <div className="hidden lg:flex items-center space-x-2">
                             <Link
                                 href="/dashboard"
                                 className="flex items-center space-x-2 px-4 py-2 rounded-xl text-text-dark hover:text-accent hover:bg-bg-main/50 transition-all"
@@ -95,8 +96,8 @@ export default function DeclarationPage() {
                             </Link>
                         </div>
 
-                        {/* Right Side */}
-                        <div className="flex items-center space-x-4">
+                        {/* Right Side - Hidden on mobile */}
+                        <div className="hidden lg:flex items-center space-x-4">
                             <LanguageSwitcher />
                             <div className="flex items-center space-x-3 px-4 py-2 bg-bg-card rounded-xl shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
                                 <User className="w-5 h-5 text-accent" />
@@ -109,6 +110,11 @@ export default function DeclarationPage() {
                             >
                                 <LogOut className="w-5 h-5" />
                             </button>
+                        </div>
+
+                        {/* Mobile Language Switcher */}
+                        <div className="lg:hidden mr-14">
+                            <LanguageSwitcher />
                         </div>
                     </div>
                 </div>
@@ -315,6 +321,9 @@ export default function DeclarationPage() {
                     </form>
                 </div>
             </div>
+
+            {/* Mobile Menu */}
+            <MobileMenu user={user} onLogout={handleLogout} currentPath="/dashboard/declaration" />
         </div>
     );
 }

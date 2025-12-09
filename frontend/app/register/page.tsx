@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Mail, Lock, User, ArrowRight, Building, Search, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import MobileMenu from '@/components/MobileMenu';
 import Footer from '@/components/Footer';
 import { API_BASE_URL } from '@/lib/api';
 
@@ -370,6 +371,9 @@ export default function RegisterPage() {
             
             {/* Footer */}
             <Footer />
+
+            {/* Mobile Menu */}
+            <MobileMenu />
         </div>
     );
 }

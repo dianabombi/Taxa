@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import MobileMenu from '@/components/MobileMenu';
 import Footer from '@/components/Footer';
 import { API_BASE_URL } from '@/lib/api';
 
@@ -190,6 +191,9 @@ function LoginForm() {
             
             {/* Footer */}
             <Footer />
+
+            {/* Mobile Menu */}
+            <MobileMenu />
         </div>
     );
 }
