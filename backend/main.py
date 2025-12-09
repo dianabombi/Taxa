@@ -527,13 +527,13 @@ def get_ai_response(message: str, docs_count: int) -> str:
     
     # Tax-related keywords and responses
     if any(word in message_lower for word in ['dph', 'vat', 'daň z pridanej hodnoty']):
-        return """**DPH (Daň z pridanej hodnoty)**
+        return """DPH (Daň z pridanej hodnoty)
 
-Základné informace o DPH:
-- **Platiteľom DPH** sa stávate pri obratu nad 49 790 € ročne
-- **Základná sadzba DPH**: 20%
-- **Znížená sadzba**: 10% (potraviny, lieky, knihy)
-- **Mesačné hlásenia**: Do 25. dňa nasledujúceho mesiaca
+Základné informácie o DPH:
+• Platiteľom DPH sa stávate pri obratu nad 49 790 € ročne
+• Základná sadzba DPH: 20%
+• Znížená sadzba: 10% (potraviny, lieky, knihy)
+• Mesačné hlásenia: Do 25. dňa nasledujúceho mesiaca
 
 Ak ste neplatca DPH:
 ✓ Nemusíte podávať mesačné hlásenia
@@ -543,12 +543,12 @@ Ak ste neplatca DPH:
 Potrebujete viac informácií? Opýtajte sa konkrétnejšie!"""
     
     elif any(word in message_lower for word in ['daňové priznanie', 'daňove priznanie', 'priznanie']):
-        return f"""**Daňové priznanie pre SZČO**
+        return f"""Daňové priznanie pre SZČO
 
 Termíny a informácie:
-- **Podanie**: Do 31. marca nasledujúceho roka
-- **Predĺžený termín**: Do 30. júna (s daňovým poradcom)
-- **Základ dane**: Príjmy - výdavky
+• Podanie: Do 31. marca nasledujúceho roka
+• Predĺžený termín: Do 30. júna (s daňovým poradcom)
+• Základ dane: Príjmy - výdavky
 
 TAXA vám pomôže:
 ✓ Automaticky zhromaždí všetky príjmy a výdavky
@@ -558,11 +558,11 @@ TAXA vám pomôže:
 Momentálne máte evidovaných {docs_count} dokladov."""
     
     elif any(word in message_lower for word in ['paušál', 'pausal', 'paušálne', 'pausalne']):
-        return """**Paušálne výdavky pre SZČO**
+        return """Paušálne výdavky pre SZČO
 
 Percentá podľa typu činnosti:
-- **60%** - Remeselné a výrobné činnosti
-- **40%** - Ostatné živnosti (služby, obchod)
+• 60% - Remeselné a výrobné činnosti
+• 40% - Ostatné živnosti (služby, obchod)
 
 Výhody:
 ✓ Jednoduché účtovníctvo
@@ -576,15 +576,15 @@ Nevýhody:
 Paušálne výdavky = Príjmy × 60% (alebo 40%)"""
     
     elif any(word in message_lower for word in ['skutočné výdavky', 'skutocne vydavky', 'výdavky']):
-        return """**Skutočné výdavky**
+        return """Skutočné výdavky
 
 Musíte evidovať všetky výdavky s dokladmi:
-- Materiál a tovar
-- Prenájom priestorov
-- Pohonné hmoty (do 80%)
-- Telekomunikácie
-- Software a služby
-- Odvody (sociálne, zdravotné)
+• Materiál a tovar
+• Prenájom priestorov
+• Pohonné hmoty (do 80%)
+• Telekomunikácie
+• Software a služby
+• Odvody (sociálne, zdravotné)
 
 Čo môžete odpočítať:
 ✓ Všetky výdavky súvisiace s podnikaním
@@ -595,43 +595,43 @@ Musíte evidovať všetky výdavky s dokladmi:
 TAXA automaticky kategorizuje vaše výdavky!"""
     
     elif any(word in message_lower for word in ['odvody', 'sociálne', 'zdravotné']):
-        return """**Odvody SZČO na Slovensku**
+        return """Odvody SZČO na Slovensku
 
-**Sociálna poisťovňa:**
-- Minimálny základ: 540 € mesačne
-- Sadzba: 31,3% (chorob. 5,15%, starobné 19,25%, invalidné 6%, nezamestnanosť 0,5%, garančný 0,2%, úrazové 0,2%)
+SOCIÁLNA POISŤOVŇA:
+• Minimálny základ: 540 € mesačne
+• Sadzba: 31,3% (chorob. 5,15%, starobné 19,25%, invalidné 6%, nezamestnanosť 0,5%, garančný 0,2%, úrazové 0,2%)
 
-**Zdravotná poisťovňa:**
-- Minimálny základ: 540 € mesačne  
-- Sadzba: 14%
+ZDRAVOTNÁ POISŤOVŇA:
+• Minimálny základ: 540 € mesačne  
+• Sadzba: 14%
 
-**Mesačné minimálne odvody spolu:**
+Mesačné minimálne odvody spolu:
 Cca 245 € (sociálna + zdravotná)
 
-**Dôležité:**
-- Platí sa mesačne, vopred
-- Termín: Do 8. dňa nasledujúceho mesiaca
-- Pri vyššom príjme sa prepočítava ročne"""
+Dôležité:
+• Platí sa mesačne, vopred
+• Termín: Do 8. dňa nasledujúceho mesiaca
+• Pri vyššom príjme sa prepočítava ročne"""
     
     elif any(word in message_lower for word in ['termín', 'termin', 'kedy', 'deadline']):
-        return """**Dôležité termíny pre SZČO v roku 2024/2025**
+        return """Dôležité termíny pre SZČO v roku 2024/2025
 
-**Mesačne:**
-- **8. deň** - Odvody (sociálna + zdravotná poisťovňa)
-- **25. deň** - DPH hlásenie (pre platiteľov DPH)
+MESAČNE:
+• 8. deň - Odvody (sociálna + zdravotná poisťovňa)
+• 25. deň - DPH hlásenie (pre platiteľov DPH)
 
-**Ročne:**
-- **31. marec** - Daňové priznanie fyzických osôb
-- **30. jún** - Daňové priznanie (s daňovým poradcom)
-- **31. marec** - Zúčtovanie preddavkov na odvody
+ROČNE:
+• 31. marec - Daňové priznanie fyzických osôb
+• 30. jún - Daňové priznanie (s daňovým poradcom)
+• 31. marec - Zúčtovanie preddavkov na odvody
 
-**Štvrťročne (pre niektorých):**
-- Preddavky na daň z príjmov
+ŠTVRŤROČNE (pre niektorých):
+• Preddavky na daň z príjmov
 
 TAXA vám pripomenie všetky termíny!"""
     
     elif any(word in message_lower for word in ['faktúra', 'faktura', 'vystaviť']):
-        return """**Vystavenie faktúry - náležitosti**
+        return """Vystavenie faktúry - náležitosti
 
 Povinné údaje na faktúre:
 1. Označenie "FAKTÚRA" a číslo faktúry
@@ -649,19 +649,19 @@ Povinné údaje na faktúre:
 TAXA vám pomôže spracovať prijaté faktúry automaticky!"""
     
     elif any(word in message_lower for word in ['začať', 'zacat', 'živnosť', 'zivnost', 'založiť']):
-        return """**Ako začať podnikať na Slovensku**
+        return """Ako začať podnikať na Slovensku
 
-**Kroky k živnosti:**
-1. **Živnostenský úrad** - Ohlásenie živnosti (bezplatne online)
-2. **Daňový úrad** - Registrácia pre daň z príjmov (automaticky)
-3. **Sociálna poisťovňa** - Registrácia SZČO (do 8 dní)
-4. **Zdravotná poisťovňa** - Registrácia (do 8 dní)
+KROKY K ŽIVNOSTI:
+1. Živnostenský úrad - Ohlásenie živnosti (bezplatne online)
+2. Daňový úrad - Registrácia pre daň z príjmov (automaticky)
+3. Sociálna poisťovňa - Registrácia SZČO (do 8 dní)
+4. Zdravotná poisťovňa - Registrácia (do 8 dní)
 
-**Čo budete potrebovať:**
-- Občiansky preukaz
-- Výpis z registra trestov (nie starší ako 3 mesiace)
+Čo budete potrebovať:
+• Občiansky preukaz
+• Výpis z registra trestov (nie starší ako 3 mesiace)
 
-**Po založení:**
+Po založení:
 ✓ Zriadenie bankového účtu
 ✓ Nastavenie účtovného systému (TAXA!)
 ✓ Začať evidovať príjmy a výdavky
@@ -672,19 +672,19 @@ TAXA vám s tým všetkým pomôže!"""
         # Default helpful response
         return f"""Dobrý deň! Som váš AI daňový konzultant.
 
-**Momentálny stav:**
-- Evidované doklady: {docs_count}
+Momentálny stav:
+• Evidované doklady: {docs_count}
 
-**Môžem vám poradiť s:**
-- DPH a registráciou platiteľa
-- Daňovým priznaním
-- Paušálnymi vs. skutočnými výdavkami
-- Odvodmi (sociálnymi a zdravotnými)
-- Termínmi a lehotami
-- Vystavovaním faktúr
-- Začatím podnikania
+Môžem vám poradiť s:
+• DPH a registráciou platiteľa
+• Daňovým priznaním
+• Paušálnymi vs. skutočnými výdavkami
+• Odvodmi (sociálnymi a zdravotnými)
+• Termínmi a lehotami
+• Vystavovaním faktúr
+• Začatím podnikania
 
-**Príklady otázok:**
+Príklady otázok:
 "Kedy musím podať daňové priznanie?"
 "Koľko sú minimálne odvody?"
 "Aký je rozdiel medzi paušálnymi a skutočnými výdavkami?"

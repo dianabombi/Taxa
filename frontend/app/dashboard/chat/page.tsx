@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MobileMenu from '@/components/MobileMenu';
+import Footer from '@/components/Footer';
 import { API_BASE_URL } from '@/lib/api';
 
 interface Message {
@@ -250,6 +251,9 @@ export default function ChatPage() {
                     ))}
                 </div>
             </div>
+
+            {/* Footer */}
+            <Footer />
 
             {/* Mobile Menu */}
             <MobileMenu user={user} onLogout={handleLogout} currentPath="/dashboard/chat" />
