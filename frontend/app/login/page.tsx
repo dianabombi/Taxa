@@ -71,19 +71,19 @@ function LoginForm() {
     return (
         <div className="min-h-screen bg-bg-main">
             {/* Logo - Fixed Position */}
-            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
-                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={100} height={100} className="object-contain rounded-xl" priority />
+            <Link href="/" className="fixed top-2 left-4 lg:left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={80} height={80} className="lg:w-[100px] lg:h-[100px] object-contain rounded-xl" priority />
             </Link>
             
             {/* Top Navigation */}
-            <nav className="container mx-auto px-6 py-4">
+            <nav className="container mx-auto px-4 lg:px-6 py-4">
                 <div className="flex justify-end items-center">
                     <LanguageSwitcher />
                 </div>
             </nav>
 
             {/* Main Content - Two Columns */}
-            <div className="container mx-auto px-6 py-12">
+            <div className="container mx-auto px-4 lg:px-6 py-6 lg:py-12">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left Side - Tagline */}
                     <div className="hidden lg:flex flex-col justify-center space-y-8">
@@ -112,9 +112,9 @@ function LoginForm() {
 
                     {/* Right Side - Form */}
                     <div className="w-full max-w-xl mx-auto lg:mx-0">
-                        <div className="bg-bg-card rounded-3xl p-12 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
-                    <h2 className="text-3xl font-bold text-primary mb-2">{t('auth.login.welcome')}</h2>
-                    <p className="text-text-light mb-8">{t('auth.login.subtitle')}</p>
+                        <div className="bg-bg-card rounded-3xl p-6 md:p-8 lg:p-12 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
+                    <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">{t('auth.login.welcome')}</h2>
+                    <p className="text-text-light mb-6">{t('auth.login.subtitle')}</p>
 
                     {registered && (
                         <div className="bg-success/10 border border-success/30 text-success px-4 py-3 rounded-xl mb-6 shadow-inner">

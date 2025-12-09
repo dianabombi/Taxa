@@ -53,8 +53,6 @@ export default function ChatPage() {
         router.push('/');
     };
 
-    if (!user) return null;
-
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
@@ -62,6 +60,8 @@ export default function ChatPage() {
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
+    if (!user) return null;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

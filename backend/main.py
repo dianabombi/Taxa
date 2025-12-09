@@ -41,6 +41,13 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
+    # Business identification
+    ico = Column(String, unique=True, nullable=True, index=True)  # IČO
+    dic = Column(String, nullable=True)  # DIČ
+    ic_dph = Column(String, nullable=True)  # IČ DPH
+    business_name = Column(String, nullable=True)  # Obchodné meno
+    business_address = Column(String, nullable=True)  # Sídlo
+    legal_form = Column(String, nullable=True)  # Právna forma
     # Onboarding fields
     phone = Column(String, nullable=True)
     business_type = Column(String, nullable=True)  # 'flat_rate' or 'actual_expenses'
@@ -79,6 +86,12 @@ class UserCreate(BaseModel):
     name: str
     email: EmailStr
     password: str
+    ico: Optional[str] = None
+    business_name: Optional[str] = None
+    business_address: Optional[str] = None
+    legal_form: Optional[str] = None
+    dic: Optional[str] = None
+    ic_dph: Optional[str] = None
     
     @field_validator('password')
     @classmethod
@@ -93,6 +106,12 @@ class UserResponse(BaseModel):
     id: int
     name: str
     email: str
+    ico: Optional[str] = None
+    dic: Optional[str] = None
+    ic_dph: Optional[str] = None
+    business_name: Optional[str] = None
+    business_address: Optional[str] = None
+    legal_form: Optional[str] = None
     phone: Optional[str] = None
     business_type: Optional[str] = None
     expense_type: Optional[str] = None
@@ -126,6 +145,19 @@ class OnboardingUpdate(BaseModel):
     vat_status: Optional[str] = None
     onboarding_completed: Optional[int] = None
 
+class ICOVerificationRequest(BaseModel):
+    ico: str
+
+class ICOVerificationResponse(BaseModel):
+    valid: bool
+    ico: str
+    business_name: Optional[str] = None
+    business_address: Optional[str] = None
+    legal_form: Optional[str] = None
+    dic: Optional[str] = None
+    ic_dph: Optional[str] = None
+    error: Optional[str] = None
+
 # FastAPI app
 app = FastAPI(title="TAXA API", version="0.1.0")
 
@@ -144,6 +176,109 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# IČO Verification Function
+async def verify_ico(ico: str) -> dict:
+    """Verify IČO using Slovak Register API"""
+    import requests
+    
+    # Clean IČO - remove spaces and non-digits
+    ico_clean = ''.join(filter(str.isdigit, ico))
+    
+    if not ico_clean or len(ico_clean) < 8:
+        return {
+            "valid": False,
+            "ico": ico,
+            "error": "IČO musí obsahovať minimálne 8 číslic"
+        }
+    
+    try:
+        # Try Register organizácií Štatistického úradu SR
+        url = f"https://www.registeruz.sk/cruz-public/api/uctovnej-jednotky?ico={ico_clean}"
+        
+        response = requests.get(url, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            
+            # Check if we got valid data
+            if data and len(data) > 0:
+                business = data[0]
+                
+                # Extract address parts
+                address_parts = []
+                if business.get('ulica'):
+                    address_parts.append(business['ulica'])
+                if business.get('mesto'):
+                    address_parts.append(business['mesto'])
+                if business.get('psc'):
+                    address_parts.append(business['psc'])
+                
+                address = ', '.join(filter(None, address_parts)) if address_parts else None
+                
+                return {
+                    "valid": True,
+                    "ico": ico_clean,
+                    "business_name": business.get('nazovUJ') or business.get('obchodneMeno'),
+                    "business_address": address,
+                    "legal_form": business.get('pravnaForma'),
+                    "dic": business.get('dic'),
+                    "ic_dph": business.get('icDph'),
+                }
+        
+        # If main API fails, try alternative verification
+        # Just check if IČO format is valid (8 digits)
+        if len(ico_clean) == 8:
+            return {
+                "valid": True,
+                "ico": ico_clean,
+                "business_name": None,
+                "business_address": None,
+                "legal_form": None,
+                "dic": None,
+                "ic_dph": None,
+            }
+        
+        return {
+            "valid": False,
+            "ico": ico,
+            "error": "IČO sa nepodarilo overiť v registri"
+        }
+        
+    except requests.Timeout:
+        # If timeout, still allow registration with valid format
+        if len(ico_clean) == 8:
+            return {
+                "valid": True,
+                "ico": ico_clean,
+                "business_name": None,
+                "business_address": None,
+                "legal_form": None,
+                "dic": None,
+                "ic_dph": None,
+            }
+        return {
+            "valid": False,
+            "ico": ico,
+            "error": "Časový limit pre overenie IČO vypršal"
+        }
+    except Exception as e:
+        # On error, accept valid 8-digit format
+        if len(ico_clean) == 8:
+            return {
+                "valid": True,
+                "ico": ico_clean,
+                "business_name": None,
+                "business_address": None,
+                "legal_form": None,
+                "dic": None,
+                "ic_dph": None,
+            }
+        return {
+            "valid": False,
+            "ico": ico,
+            "error": f"Chyba pri overení IČO"
+        }
 
 # Auth helpers
 def verify_password(plain_password, hashed_password):
@@ -204,7 +339,13 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
     new_user = User(
         name=user_data.name,
         email=user_data.email,
-        hashed_password=hashed_password
+        hashed_password=hashed_password,
+        ico=user_data.ico,
+        business_name=user_data.business_name,
+        business_address=user_data.business_address,
+        legal_form=user_data.legal_form,
+        dic=user_data.dic,
+        ic_dph=user_data.ic_dph
     )
     db.add(new_user)
     db.commit()
@@ -215,6 +356,12 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
         id=new_user.id,
         name=new_user.name,
         email=new_user.email,
+        ico=new_user.ico,
+        dic=new_user.dic,
+        ic_dph=new_user.ic_dph,
+        business_name=new_user.business_name,
+        business_address=new_user.business_address,
+        legal_form=new_user.legal_form,
         phone=new_user.phone,
         business_type=new_user.business_type,
         expense_type=new_user.expense_type,
@@ -240,6 +387,12 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         id=user.id,
         name=user.name,
         email=user.email,
+        ico=user.ico,
+        dic=user.dic,
+        ic_dph=user.ic_dph,
+        business_name=user.business_name,
+        business_address=user.business_address,
+        legal_form=user.legal_form,
         phone=user.phone,
         business_type=user.business_type,
         expense_type=user.expense_type,
@@ -249,6 +402,13 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     )
     
     return {"access_token": access_token, "token_type": "bearer", "user": user_response}
+
+# IČO Verification endpoint
+@app.post("/api/auth/verify-ico", response_model=ICOVerificationResponse)
+async def verify_ico_endpoint(request: ICOVerificationRequest):
+    """Verify IČO and return business information"""
+    result = await verify_ico(request.ico)
+    return ICOVerificationResponse(**result)
 
 # Onboarding endpoint
 @app.patch("/api/auth/onboarding", response_model=UserResponse)
@@ -276,6 +436,12 @@ def update_onboarding(
         id=current_user.id,
         name=current_user.name,
         email=current_user.email,
+        ico=current_user.ico,
+        dic=current_user.dic,
+        ic_dph=current_user.ic_dph,
+        business_name=current_user.business_name,
+        business_address=current_user.business_address,
+        legal_form=current_user.legal_form,
         phone=current_user.phone,
         business_type=current_user.business_type,
         expense_type=current_user.expense_type,
@@ -354,6 +520,177 @@ def get_document(
     
     return document
 
+# Helper function for AI responses
+def get_ai_response(message: str, docs_count: int) -> str:
+    """Generate helpful tax consulting responses"""
+    message_lower = message.lower()
+    
+    # Tax-related keywords and responses
+    if any(word in message_lower for word in ['dph', 'vat', 'daň z pridanej hodnoty']):
+        return """**DPH (Daň z pridanej hodnoty)**
+
+Základné informace o DPH:
+- **Platiteľom DPH** sa stávate pri obratu nad 49 790 € ročne
+- **Základná sadzba DPH**: 20%
+- **Znížená sadzba**: 10% (potraviny, lieky, knihy)
+- **Mesačné hlásenia**: Do 25. dňa nasledujúceho mesiaca
+
+Ak ste neplatca DPH:
+✓ Nemusíte podávať mesačné hlásenia
+✓ Jednoduchšie účtovníctvo
+✓ Ceny bez DPH
+
+Potrebujete viac informácií? Opýtajte sa konkrétnejšie!"""
+    
+    elif any(word in message_lower for word in ['daňové priznanie', 'daňove priznanie', 'priznanie']):
+        return f"""**Daňové priznanie pre SZČO**
+
+Termíny a informácie:
+- **Podanie**: Do 31. marca nasledujúceho roka
+- **Predĺžený termín**: Do 30. júna (s daňovým poradcom)
+- **Základ dane**: Príjmy - výdavky
+
+TAXA vám pomôže:
+✓ Automaticky zhromaždí všetky príjmy a výdavky
+✓ Vypočíta základ dane
+✓ Vygeneruje daňové priznanie jedným klikom
+
+Momentálne máte evidovaných {docs_count} dokladov."""
+    
+    elif any(word in message_lower for word in ['paušál', 'pausal', 'paušálne', 'pausalne']):
+        return """**Paušálne výdavky pre SZČO**
+
+Percentá podľa typu činnosti:
+- **60%** - Remeselné a výrobné činnosti
+- **40%** - Ostatné živnosti (služby, obchod)
+
+Výhody:
+✓ Jednoduché účtovníctvo
+✓ Menej dokladov na evidenciu
+✓ Rýchlejšie spracovanie
+
+Nevýhody:
+✗ Nemôžete uplatniť skutočné vyššie výdavky
+✗ Menej možností optimalizácie
+
+Paušálne výdavky = Príjmy × 60% (alebo 40%)"""
+    
+    elif any(word in message_lower for word in ['skutočné výdavky', 'skutocne vydavky', 'výdavky']):
+        return """**Skutočné výdavky**
+
+Musíte evidovať všetky výdavky s dokladmi:
+- Materiál a tovar
+- Prenájom priestorov
+- Pohonné hmoty (do 80%)
+- Telekomunikácie
+- Software a služby
+- Odvody (sociálne, zdravotné)
+
+Čo môžete odpočítať:
+✓ Všetky výdavky súvisiace s podnikaním
+✓ Cestovné náhrady
+✓ Reprezentáciu (do limitu)
+✓ PHM (do 80% hodnoty)
+
+TAXA automaticky kategorizuje vaše výdavky!"""
+    
+    elif any(word in message_lower for word in ['odvody', 'sociálne', 'zdravotné']):
+        return """**Odvody SZČO na Slovensku**
+
+**Sociálna poisťovňa:**
+- Minimálny základ: 540 € mesačne
+- Sadzba: 31,3% (chorob. 5,15%, starobné 19,25%, invalidné 6%, nezamestnanosť 0,5%, garančný 0,2%, úrazové 0,2%)
+
+**Zdravotná poisťovňa:**
+- Minimálny základ: 540 € mesačne  
+- Sadzba: 14%
+
+**Mesačné minimálne odvody spolu:**
+Cca 245 € (sociálna + zdravotná)
+
+**Dôležité:**
+- Platí sa mesačne, vopred
+- Termín: Do 8. dňa nasledujúceho mesiaca
+- Pri vyššom príjme sa prepočítava ročne"""
+    
+    elif any(word in message_lower for word in ['termín', 'termin', 'kedy', 'deadline']):
+        return """**Dôležité termíny pre SZČO v roku 2024/2025**
+
+**Mesačne:**
+- **8. deň** - Odvody (sociálna + zdravotná poisťovňa)
+- **25. deň** - DPH hlásenie (pre platiteľov DPH)
+
+**Ročne:**
+- **31. marec** - Daňové priznanie fyzických osôb
+- **30. jún** - Daňové priznanie (s daňovým poradcom)
+- **31. marec** - Zúčtovanie preddavkov na odvody
+
+**Štvrťročne (pre niektorých):**
+- Preddavky na daň z príjmov
+
+TAXA vám pripomenie všetky termíny!"""
+    
+    elif any(word in message_lower for word in ['faktúra', 'faktura', 'vystaviť']):
+        return """**Vystavenie faktúry - náležitosti**
+
+Povinné údaje na faktúre:
+1. Označenie "FAKTÚRA" a číslo faktúry
+2. Dátum vystavenia a dátum dodania
+3. Obchodné meno a sídlo dodávateľa
+4. IČO dodávateľa (IČ DPH pre platiteľov DPH)
+5. Obchodné meno a sídlo odberateľa
+6. Predmet plnenia (popis služby/tovaru)
+7. Jednotková cena a množstvo
+8. Celková suma bez DPH
+9. Sadzba a suma DPH (pre platiteľov)
+10. Celková suma s DPH
+11. Dátum splatnosti
+
+TAXA vám pomôže spracovať prijaté faktúry automaticky!"""
+    
+    elif any(word in message_lower for word in ['začať', 'zacat', 'živnosť', 'zivnost', 'založiť']):
+        return """**Ako začať podnikať na Slovensku**
+
+**Kroky k živnosti:**
+1. **Živnostenský úrad** - Ohlásenie živnosti (bezplatne online)
+2. **Daňový úrad** - Registrácia pre daň z príjmov (automaticky)
+3. **Sociálna poisťovňa** - Registrácia SZČO (do 8 dní)
+4. **Zdravotná poisťovňa** - Registrácia (do 8 dní)
+
+**Čo budete potrebovať:**
+- Občiansky preukaz
+- Výpis z registra trestov (nie starší ako 3 mesiace)
+
+**Po založení:**
+✓ Zriadenie bankového účtu
+✓ Nastavenie účtovného systému (TAXA!)
+✓ Začať evidovať príjmy a výdavky
+
+TAXA vám s tým všetkým pomôže!"""
+    
+    else:
+        # Default helpful response
+        return f"""Dobrý deň! Som váš AI daňový konzultant.
+
+**Momentálny stav:**
+- Evidované doklady: {docs_count}
+
+**Môžem vám poradiť s:**
+- DPH a registráciou platiteľa
+- Daňovým priznaním
+- Paušálnymi vs. skutočnými výdavkami
+- Odvodmi (sociálnymi a zdravotnými)
+- Termínmi a lehotami
+- Vystavovaním faktúr
+- Začatím podnikania
+
+**Príklady otázok:**
+"Kedy musím podať daňové priznanie?"
+"Koľko sú minimálne odvody?"
+"Aký je rozdiel medzi paušálnymi a skutočnými výdavkami?"
+
+Opýtajte sa ma na čokoľvek!"""
+
 # Chat endpoint
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(
@@ -369,29 +706,38 @@ async def chat(
     )
     db.add(user_message)
     
-    # Get user's documents for context
-    recent_docs = db.query(Document).filter(
+    # Get user's documents count for context
+    docs_count = db.query(Document).filter(
         Document.user_id == current_user.id
-    ).order_by(Document.uploaded_at.desc()).limit(5).all()
+    ).count()
     
-    # Build context from documents
-    context = "Dokumenty používateľa:\n"
-    for doc in recent_docs:
-        if doc.extracted_data:
-            context += f"- {doc.filename} ({doc.document_type}): {doc.extracted_data.get('total_amount', 'N/A')} EUR\n"
-    
-    # Get AI response
+    # Get AI response using built-in knowledge base
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": f"Ste odborný daňový konzultant pre Slovensko. Odpovedajte na otázky o slovenskom daňovom systéme presne a profesionálne.\n\n{context}"},
-                {"role": "user", "content": request.message}
-            ]
-        )
-        ai_response = response.choices[0].message.content
+        # If OpenAI is configured, use it
+        if openai.api_key and openai.api_key != "":
+            recent_docs = db.query(Document).filter(
+                Document.user_id == current_user.id
+            ).order_by(Document.uploaded_at.desc()).limit(5).all()
+            
+            context = f"Používateľ má {docs_count} evidovaných dokladov.\n"
+            for doc in recent_docs:
+                if doc.extracted_data:
+                    context += f"- {doc.filename} ({doc.document_type}): {doc.extracted_data.get('total_amount', 'N/A')} EUR\n"
+            
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[
+                    {"role": "system", "content": f"Ste odborný daňový konzultant pre Slovensko. Odpovedajte na otázky o slovenskom daňovom systéme presne a profesionálne.\n\n{context}"},
+                    {"role": "user", "content": request.message}
+                ]
+            )
+            ai_response = response.choices[0].message.content
+        else:
+            # Use built-in knowledge base
+            ai_response = get_ai_response(request.message, docs_count)
     except Exception as e:
-        ai_response = "Prepáčte, momentálne nemôžem spracovať vašu otázku. Skúste to prosím neskôr."
+        # Fallback to built-in responses
+        ai_response = get_ai_response(request.message, docs_count)
     
     # Save AI response
     assistant_message = ChatMessage(

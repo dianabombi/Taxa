@@ -27,7 +27,7 @@
         "register": {
             "title": "Registrácia",
             "create_account": "Vytvoriť účet",
-            "subtitle": "Začnite používať TAXA zadarmo",
+            "subtitle": "",
             "name": "Meno a priezvisko",
             "email": "E-mail",
             "password": "Heslo",

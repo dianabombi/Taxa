@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight, Building, Search, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Footer from '@/components/Footer';
@@ -13,14 +13,69 @@ import { API_BASE_URL } from '@/lib/api';
 export default function RegisterPage() {
     const router = useRouter();
     const { t } = useLanguage();
+    const [registrationType, setRegistrationType] = useState<'email' | 'ico'>('email');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        ico: '',
+        business_name: '',
+        business_address: '',
+        legal_form: '',
+        dic: '',
+        ic_dph: ''
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [verifyingICO, setVerifyingICO] = useState(false);
+    const [icoVerified, setIcoVerified] = useState(false);
+
+    const handleVerifyICO = async () => {
+        if (!formData.ico || formData.ico.length < 8) {
+            setError('IČO musí obsahovať minimálne 8 číslic');
+            return;
+        }
+
+        setVerifyingICO(true);
+        setError('');
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/auth/verify-ico`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ico: formData.ico })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.valid) {
+                    setFormData({
+                        ...formData,
+                        business_name: data.business_name || '',
+                        business_address: data.business_address || '',
+                        legal_form: data.legal_form || '',
+                        dic: data.dic || '',
+                        ic_dph: data.ic_dph || '',
+                        name: data.business_name || formData.name
+                    });
+                    setIcoVerified(true);
+                    setError('');
+                } else {
+                    setError(data.error || 'IČO sa nepodarilo overiť');
+                    setIcoVerified(false);
+                }
+            } else {
+                setError('Chyba pri overovaní IČO');
+                setIcoVerified(false);
+            }
+        } catch (err) {
+            setError('Chyba pripojenia k serveru');
+            setIcoVerified(false);
+        } finally {
+            setVerifyingICO(false);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,14 +89,26 @@ export default function RegisterPage() {
         setLoading(true);
 
         try {
+            const registrationData: any = {
+                name: formData.name,
+                email: formData.email,
+                password: formData.password
+            };
+
+            // Add IČO data if registering with IČO
+            if (registrationType === 'ico' && formData.ico) {
+                registrationData.ico = formData.ico;
+                registrationData.business_name = formData.business_name;
+                registrationData.business_address = formData.business_address;
+                registrationData.legal_form = formData.legal_form;
+                registrationData.dic = formData.dic;
+                registrationData.ic_dph = formData.ic_dph;
+            }
+
             const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password
-                })
+                body: JSON.stringify(registrationData)
             });
 
             if (response.ok) {
@@ -68,19 +135,19 @@ export default function RegisterPage() {
     return (
         <div className="min-h-screen bg-bg-main">
             {/* Logo - Fixed Position */}
-            <Link href="/" className="fixed top-2 left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
-                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={100} height={100} className="object-contain rounded-xl" priority />
+            <Link href="/" className="fixed top-2 left-4 lg:left-12 z-[100] flex items-center hover:opacity-80 transition-opacity">
+                <Image src="/taxa logo.jpg" alt="TAXA Logo" width={80} height={80} className="lg:w-[100px] lg:h-[100px] object-contain rounded-xl" priority />
             </Link>
             
             {/* Top Navigation */}
-            <nav className="container mx-auto px-6 py-4">
+            <nav className="container mx-auto px-4 lg:px-6 py-4">
                 <div className="flex justify-end items-center">
                     <LanguageSwitcher />
                 </div>
             </nav>
 
             {/* Main Content - Two Columns */}
-            <div className="container mx-auto px-6 py-12">
+            <div className="container mx-auto px-4 lg:px-6 py-6 lg:py-12">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left Side - Tagline */}
                     <div className="hidden lg:flex flex-col justify-center space-y-8">
@@ -109,9 +176,9 @@ export default function RegisterPage() {
 
                     {/* Right Side - Form */}
                     <div className="w-full max-w-xl mx-auto lg:mx-0">
-                        <div className="bg-bg-card rounded-3xl p-12 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
-                    <h2 className="text-3xl font-bold text-primary mb-2">{t('auth.register.create_account')}</h2>
-                    <p className="text-text-light mb-8">{t('auth.register.subtitle')}</p>
+                        <div className="bg-bg-card rounded-3xl p-6 md:p-8 lg:p-12 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
+                    <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">{t('auth.register.create_account')}</h2>
+                    <p className="text-text-light mb-6">{t('auth.register.subtitle')}</p>
 
                     {error && (
                         <div className="bg-error/10 border border-error/30 text-error px-4 py-3 rounded-xl mb-6 shadow-inner">
@@ -119,7 +186,93 @@ export default function RegisterPage() {
                         </div>
                     )}
 
+                    {/* Registration Type Toggle */}
+                    <div className="flex gap-2 p-1 bg-bg-main rounded-xl mb-6">
+                        <button
+                            type="button"
+                            onClick={() => setRegistrationType('email')}
+                            className={`flex-1 py-3 rounded-lg font-medium transition-all ${
+                                registrationType === 'email'
+                                    ? 'bg-accent text-white shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]'
+                                    : 'text-text-light hover:text-text-dark'
+                            }`}
+                        >
+                            <Mail className="w-5 h-5 inline mr-2" />
+                            E-mail
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setRegistrationType('ico');
+                                setIcoVerified(false);
+                            }}
+                            className={`flex-1 py-3 rounded-lg font-medium transition-all ${
+                                registrationType === 'ico'
+                                    ? 'bg-accent text-white shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]'
+                                    : 'text-text-light hover:text-text-dark'
+                            }`}
+                        >
+                            <Building className="w-5 h-5 inline mr-2" />
+                            IČO
+                        </button>
+                    </div>
+
                     <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* IČO Registration */}
+                        {registrationType === 'ico' && (
+                            <div>
+                                <label className="block text-sm font-medium text-text-dark mb-2">
+                                    IČO *
+                                </label>
+                                <div className="flex gap-2">
+                                    <div className="relative flex-1">
+                                        <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-light" />
+                                        <input
+                                            type="text"
+                                            required
+                                            value={formData.ico}
+                                            onChange={(e) => {
+                                                setFormData({ ...formData, ico: e.target.value });
+                                                setIcoVerified(false);
+                                            }}
+                                            className="w-full pl-12 pr-4 py-3 bg-bg-card rounded-xl text-text-dark placeholder-text-light shadow-[inset_4px_4px_8px_#A3B1C6,inset_-4px_-4px_8px_#FFFFFF] focus:outline-none focus:shadow-[inset_6px_6px_12px_#A3B1C6,inset_-6px_-6px_12px_#FFFFFF] transition-shadow"
+                                            placeholder="12345678"
+                                            disabled={icoVerified}
+                                        />
+                                        {icoVerified && (
+                                            <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-success" />
+                                        )}
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={handleVerifyICO}
+                                        disabled={verifyingICO || icoVerified || !formData.ico}
+                                        className="px-4 py-3 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                                    >
+                                        {verifyingICO ? (
+                                            'Overujem...'
+                                        ) : icoVerified ? (
+                                            <CheckCircle className="w-5 h-5" />
+                                        ) : (
+                                            <>
+                                                <Search className="w-5 h-5 inline mr-1" />
+                                                Overiť
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                                {icoVerified && formData.business_name && (
+                                    <div className="mt-3 p-3 bg-success/10 border border-success/30 rounded-lg">
+                                        <p className="text-sm text-success font-medium">✓ IČO overené</p>
+                                        <p className="text-sm text-text-dark mt-1">{formData.business_name}</p>
+                                        {formData.business_address && (
+                                            <p className="text-xs text-text-light mt-1">{formData.business_address}</p>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
                         {/* Name */}
                         <div>
                             <label className="block text-sm font-medium text-text-dark mb-2">

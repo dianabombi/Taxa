@@ -168,26 +168,28 @@ export default function DashboardPage() {
                     </Link>
 
                     {/* Documents */}
-                    <div className="h-full min-h-[280px] bg-bg-card rounded-3xl p-8 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] flex flex-col">
-                        <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]">
-                            <FileText className="w-8 h-8 text-white" />
+                    <Link href="/dashboard/documents" className="h-full">
+                        <div className="h-full min-h-[280px] bg-bg-card rounded-3xl p-8 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] hover:shadow-[10px_10px_20px_#A3B1C6,-10px_-10px_20px_#FFFFFF] hover:scale-105 transition-all cursor-pointer group flex flex-col">
+                            <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]">
+                                <FileText className="w-8 h-8 text-white" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-primary mb-3">{t('dashboard.documents_card.title')}</h3>
+                            <p className="text-text-light mb-4">
+                                {t('dashboard.documents_card.count').replace('{{count}}', documents.length.toString())}
+                            </p>
+                            <div className="space-y-2 flex-1">
+                                {documents.slice(0, 3).map((doc, idx) => (
+                                    <div key={idx} className="flex items-center space-x-2 text-sm text-text-light">
+                                        <FileText className="w-4 h-4" />
+                                        <span className="truncate">{doc.filename}</span>
+                                    </div>
+                                ))}
+                                {documents.length === 0 && (
+                                    <p className="text-sm text-text-light">{t('dashboard.documents_card.no_documents')}</p>
+                                )}
+                            </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-primary mb-3">{t('dashboard.documents_card.title')}</h3>
-                        <p className="text-text-light mb-4">
-                            {t('dashboard.documents_card.count').replace('{{count}}', documents.length.toString())}
-                        </p>
-                        <div className="space-y-2 flex-1">
-                            {documents.slice(0, 3).map((doc, idx) => (
-                                <div key={idx} className="flex items-center space-x-2 text-sm text-text-light">
-                                    <FileText className="w-4 h-4" />
-                                    <span className="truncate">{doc.filename}</span>
-                                </div>
-                            ))}
-                            {documents.length === 0 && (
-                                <p className="text-sm text-text-light">{t('dashboard.documents_card.no_documents')}</p>
-                            )}
-                        </div>
-                    </div>
+                    </Link>
                 </div>
 
                 {/* Quick Stats */}
