@@ -7,9 +7,16 @@ import os
 from typing import Dict, Any, Optional
 from enum import Enum
 import requests
-import pytesseract
 from PIL import Image
 import io
+
+# Make pytesseract optional for Railway deployment
+try:
+    import pytesseract
+    TESSERACT_AVAILABLE = True
+except ImportError:
+    TESSERACT_AVAILABLE = False
+    pytesseract = None
 
 class OCRProvider(Enum):
     MINDEE = "mindee"
@@ -122,6 +129,9 @@ class OCRService:
         Process document with Tesseract OCR (open-source)
         Good for basic text extraction, requires additional ML for structured data
         """
+        if not TESSERACT_AVAILABLE:
+            raise ValueError("Tesseract is not available. Please use Mindee provider instead.")
+        
         try:
             image = Image.open(file_path)
             
@@ -217,13 +227,15 @@ class OCRService:
 # Helper function for document classification
 async def classify_document(file_path: str) -> str:
     """
-    Classify document type using simple heuristics or ML
-    Returns: invoice, receipt, tax_form, contract, other
+    Classify document type using basic OCR
+    Returns: 'invoice', 'receipt', 'contract', 'tax_form', 'other'
     """
-    # Simple classification based on file content
-    # In production, use ML model for better accuracy
     
     try:
+        # If tesseract not available, return 'other' as fallback
+        if not TESSERACT_AVAILABLE:
+            return 'other'
+        
         image = Image.open(file_path)
         text = pytesseract.image_to_string(image, lang='slk+eng').lower()
         
