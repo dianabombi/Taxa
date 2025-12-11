@@ -12,6 +12,8 @@ from jose import JWTError, jwt
 from pydantic import BaseModel, EmailStr, field_validator
 import openai
 from services.ocr_service import OCRService, OCRProvider, classify_document
+from services.tax_calculator import SlovakTaxCalculator
+from decimal import Decimal
 
 # Database setup
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./taxa.db")
@@ -753,3 +755,200 @@ async def chat(
     db.commit()
     
     return {"response": ai_response}
+
+# Tax Return Models
+class TaxReturnRequest(BaseModel):
+    year: int
+    use_flat_rate: bool = True
+    profession_type: str = "standard"  # "standard" or "craft"
+    children_count: int = 0
+    additional_non_taxable: Optional[float] = None
+    paid_advances: Optional[float] = None
+    
+class TaxReturnResponse(BaseModel):
+    calculation: dict
+    documents_used: List[dict]
+    form_data: dict
+
+# Tax Return Endpoints
+@app.post("/api/tax-return/calculate", response_model=TaxReturnResponse)
+async def calculate_tax_return(
+    request: TaxReturnRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Calculate complete tax return for the specified year
+    Aggregates all documents and performs Slovak tax calculations
+    """
+    calculator = SlovakTaxCalculator(year=request.year)
+    
+    # Get all documents for the year
+    documents = db.query(Document).filter(
+        Document.user_id == current_user.id,
+        Document.created_at >= datetime(request.year, 1, 1),
+        Document.created_at < datetime(request.year + 1, 1, 1)
+    ).all()
+    
+    # Aggregate income and expenses from documents
+    total_income = Decimal("0")
+    total_expenses = Decimal("0")
+    
+    documents_data = []
+    for doc in documents:
+        doc_data = {
+            "id": doc.id,
+            "filename": doc.filename,
+            "upload_date": doc.created_at.isoformat(),
+            "document_type": doc.document_type,
+        }
+        
+        # Parse extracted data if available
+        if doc.extracted_data:
+            try:
+                data = doc.extracted_data if isinstance(doc.extracted_data, dict) else {}
+                
+                # Extract amounts from OCR data
+                if doc.document_type == "invoice":
+                    amount = Decimal(str(data.get("total_amount", 0) or 0))
+                    total_income += amount
+                    doc_data["amount"] = float(amount)
+                    doc_data["category"] = "income"
+                    
+                elif doc.document_type == "receipt":
+                    amount = Decimal(str(data.get("total_amount", 0) or 0))
+                    total_expenses += amount
+                    doc_data["amount"] = float(amount)
+                    doc_data["category"] = "expense"
+                    
+            except (ValueError, TypeError):
+                pass
+        
+        documents_data.append(doc_data)
+    
+    # Perform tax calculation
+    calculation = calculator.calculate_complete_tax_return(
+        income=total_income,
+        expenses=None if request.use_flat_rate else total_expenses,
+        use_flat_rate=request.use_flat_rate,
+        profession_type=request.profession_type,
+        children_count=request.children_count,
+        additional_non_taxable=Decimal(str(request.additional_non_taxable)) if request.additional_non_taxable else None,
+        paid_advances=Decimal(str(request.paid_advances)) if request.paid_advances else None
+    )
+    
+    # Convert Decimal to float for JSON serialization
+    def decimal_to_float(obj):
+        if isinstance(obj, dict):
+            return {k: decimal_to_float(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [decimal_to_float(item) for item in obj]
+        elif isinstance(obj, Decimal):
+            return float(obj)
+        return obj
+    
+    calculation = decimal_to_float(calculation)
+    
+    # Prepare form data for DPFO Type B
+    form_data = {
+        "taxpayer": {
+            "name": current_user.name,
+            "email": current_user.email,
+            "ico": current_user.ico,
+            "dic": current_user.dic,
+            "ic_dph": current_user.ic_dph,
+            "business_name": current_user.business_name,
+            "address": current_user.business_address
+        },
+        "year": request.year,
+        "income_section": {
+            "line_6": calculation["income"]["gross_income"],  # Príjmy
+            "line_12": calculation["income"]["expenses"],  # Výdavky
+            "line_13": calculation["income"]["tax_base"],  # Základ dane
+        },
+        "deductions_section": {
+            "line_42": calculation["insurance"]["total_yearly"],  # Poistné
+            "line_44": 5174.70,  # Nezdaniteľná časť základu dane
+        },
+        "tax_section": {
+            "line_47": calculation["tax"]["taxable_income"],  # Základ dane po odpočítaní
+            "line_51": calculation["tax"]["tax_before_bonus"],  # Daň
+            "line_62": calculation["tax"]["tax_bonus"],  # Daňový bonus
+            "line_65": calculation["tax"]["final_tax"],  # Daň na zaplatenie
+        },
+        "payment_section": {
+            "line_70": calculation["payment"]["paid_advances"],  # Preddavky
+            "line_72": calculation["payment"]["to_pay"],  # Nedoplatok
+            "line_73": calculation["payment"]["to_refund"],  # Preplatok
+        }
+    }
+    
+    return {
+        "calculation": calculation,
+        "documents_used": documents_data,
+        "form_data": form_data
+    }
+
+@app.get("/api/tax-return/documents/{year}")
+async def get_tax_documents(
+    year: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Get all documents for a specific tax year
+    """
+    documents = db.query(Document).filter(
+        Document.user_id == current_user.id,
+        Document.created_at >= datetime(year, 1, 1),
+        Document.created_at < datetime(year + 1, 1, 1)
+    ).all()
+    
+    return {
+        "year": year,
+        "total_documents": len(documents),
+        "documents": [
+            {
+                "id": doc.id,
+                "filename": doc.filename,
+                "type": doc.document_type,
+                "upload_date": doc.created_at.isoformat(),
+                "extracted_data": doc.extracted_data
+            }
+            for doc in documents
+        ]
+    }
+
+@app.post("/api/tax-return/generate-pdf/{year}")
+async def generate_tax_return_pdf(
+    year: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Generate PDF of DPFO Type B form
+    This will be implemented with reportlab or similar PDF generation library
+    """
+    # TODO: Implement PDF generation with official DPFO Type B template
+    # For now, return instructions
+    return {
+        "message": "PDF generation coming soon",
+        "instructions": "You can download the form template from financnasprava.sk and fill it manually with the calculated values",
+        "form_url": "https://www.financnasprava.sk/sk/elektronicke-sluzby/verejne-sluzby/elektronicke-formular"
+    }
+
+@app.post("/api/tax-return/export-xml/{year}")
+async def export_tax_return_xml(
+    year: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Export tax return in XML format for electronic submission
+    Format compatible with Slovak Financial Administration
+    """
+    # TODO: Implement XML generation according to Slovak FA specifications
+    return {
+        "message": "XML export coming soon",
+        "instructions": "XML format will be compatible with www.slovensko.sk portal for electronic submission"
+    }
