@@ -14,6 +14,7 @@ import openai
 from services.ocr_service import OCRService, OCRProvider, classify_document
 from services.tax_calculator import SlovakTaxCalculator
 from services.encryption_service import EncryptionService, DataAnonymizationService, SecurityAuditLogger
+from services.ico_verification import ICOVerificationService
 from decimal import Decimal
 
 # Database setup
@@ -952,6 +953,58 @@ async def export_tax_return_xml(
     return {
         "message": "XML export coming soon",
         "instructions": "XML format will be compatible with www.slovensko.sk portal for electronic submission"
+    }
+
+# ============================================================================
+# ICO VERIFICATION ENDPOINTS
+# ============================================================================
+
+@app.get("/api/ico/verify/{ico}")
+async def verify_ico(ico: str):
+    """
+    Verify ICO (Identifikačné číslo organizácie) against Slovak registries
+    Returns company information if valid
+    Public endpoint - no authentication required
+    """
+    service = ICOVerificationService()
+    result = await service.verify_ico(ico)
+    
+    return result
+
+@app.get("/api/ico/details/{ico}")
+async def get_ico_details(ico: str):
+    """
+    Get complete company details for auto-filling registration form
+    Public endpoint - no authentication required
+    """
+    service = ICOVerificationService()
+    details = await service.get_company_details(ico)
+    
+    if not details:
+        return {
+            "error": "ICO not found or invalid",
+            "ico": ico
+        }
+    
+    return details
+
+@app.post("/api/ico/validate")
+async def validate_ico_format(data: dict):
+    """
+    Validate ICO format without calling external APIs
+    Fast format check
+    """
+    ico = data.get("ico", "")
+    service = ICOVerificationService()
+    
+    is_valid = service.validate_ico_format(ico)
+    normalized = service.normalize_ico(ico) if is_valid else None
+    
+    return {
+        "valid": is_valid,
+        "ico": ico,
+        "normalized": normalized,
+        "message": "Valid ICO format" if is_valid else "Invalid ICO format. ICO must be 8 digits."
     }
 
 # ============================================================================

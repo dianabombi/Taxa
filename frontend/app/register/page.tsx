@@ -42,36 +42,36 @@ export default function RegisterPage() {
         setError('');
 
         try {
-            const response = await fetch(`${API_BASE_URL}/api/auth/verify-ico`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ico: formData.ico })
-            });
+            // Call ICO verification endpoint
+            const response = await fetch(`${API_BASE_URL}/api/ico/details/${formData.ico}`);
 
             if (response.ok) {
                 const data = await response.json();
-                if (data.valid) {
+                
+                // Check if ICO was found
+                if (data.error) {
+                    setError(data.error || 'IČO sa nepodarilo overiť v registroch SR');
+                    setIcoVerified(false);
+                } else {
+                    // Auto-fill form with verified data
                     setFormData({
                         ...formData,
-                        business_name: data.business_name || '',
+                        business_name: data.company_name || '',
                         business_address: data.business_address || '',
                         legal_form: data.legal_form || '',
                         dic: data.dic || '',
                         ic_dph: data.ic_dph || '',
-                        name: data.business_name || formData.name
+                        name: data.company_name || formData.name
                     });
                     setIcoVerified(true);
                     setError('');
-                } else {
-                    setError(data.error || 'IČO sa nepodarilo overiť');
-                    setIcoVerified(false);
                 }
             } else {
-                setError('Chyba pri overovaní IČO');
+                setError('Chyba pri overovaní IČO. Skúste znova.');
                 setIcoVerified(false);
             }
         } catch (err) {
-            setError('Chyba pripojenia k serveru');
+            setError('Chyba pripojenia k serveru. Skontrolujte internetové pripojenie.');
             setIcoVerified(false);
         } finally {
             setVerifyingICO(false);
