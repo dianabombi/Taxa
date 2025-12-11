@@ -6,6 +6,10 @@ Verifies Slovak business registration numbers against official government regist
 import requests
 from typing import Optional, Dict
 import re
+import asyncio
+from functools import lru_cache
+import hashlib
+import time
 
 
 class ICOVerificationService:
@@ -14,6 +18,11 @@ class ICOVerificationService:
     Primary: Register organizácií Štatistického úradu SR (registeruz.sk)
     Fallback: Web scraping from zrsr.sk
     Optional: FinStat API (requires API key)
+    
+    Features:
+    - Fast API calls with 3-second timeout
+    - In-memory caching (1-hour TTL)
+    - Async execution for speed
     """
     
     # Official Register organizácií API
@@ -25,8 +34,13 @@ class ICOVerificationService:
     # FinStat API (commercial)
     FINSTAT_API = "https://finstat.sk/api/detail"
     
+    # Cache for verified ICOs (in-memory, 1-hour TTL)
+    _cache = {}
+    _cache_ttl = 3600  # 1 hour in seconds
+    
     def __init__(self, finstat_api_key: Optional[str] = None):
         self.finstat_api_key = finstat_api_key
+        self.timeout = 3  # 3 seconds timeout for API calls
         
     def validate_ico_format(self, ico: str) -> bool:
         """
@@ -51,12 +65,38 @@ class ICOVerificationService:
         ico_clean = re.sub(r'\D', '', ico)
         return ico_clean.zfill(8)
     
+    def _get_cache_key(self, ico: str) -> str:
+        """Generate cache key for ICO"""
+        return f"ico_{ico}"
+    
+    def _get_from_cache(self, ico: str) -> Optional[Dict]:
+        """Get cached ICO data if not expired"""
+        cache_key = self._get_cache_key(ico)
+        
+        if cache_key in self._cache:
+            cached_data, timestamp = self._cache[cache_key]
+            
+            # Check if cache is still valid (1 hour TTL)
+            if time.time() - timestamp < self._cache_ttl:
+                return cached_data
+            else:
+                # Remove expired cache
+                del self._cache[cache_key]
+        
+        return None
+    
+    def _save_to_cache(self, ico: str, data: Dict):
+        """Save ICO data to cache"""
+        cache_key = self._get_cache_key(ico)
+        self._cache[cache_key] = (data, time.time())
+    
     async def verify_ico_registeruz(self, ico: str) -> Optional[Dict]:
         """
         Verify ICO using official Register organizácií Štatistického úradu SR API
         
         This is the primary and most reliable method
         Free to use, official government data
+        Includes caching for faster repeated lookups
         
         Args:
             ico: 8-digit ICO number
@@ -69,17 +109,22 @@ class ICOVerificationService:
         
         ico_normalized = self.normalize_ico(ico)
         
+        # Check cache first
+        cached_result = self._get_from_cache(ico_normalized)
+        if cached_result:
+            return cached_result
+        
         try:
-            # Call official API
+            # Call official API with short timeout
             url = f"{self.REGISTER_UZ_API}/{ico_normalized}"
-            response = requests.get(url, timeout=10)
+            response = requests.get(url, timeout=self.timeout)
             
             if response.status_code == 200:
                 data = response.json()
                 
                 # Parse response
                 if data and isinstance(data, dict):
-                    return {
+                    result = {
                         "ico": ico_normalized,
                         "valid": True,
                         "source": "registeruz.sk",
@@ -92,9 +137,17 @@ class ICOVerificationService:
                         "registered": data.get("datumZapisu"),
                         "raw_data": data
                     }
+                    
+                    # Cache successful result
+                    self._save_to_cache(ico_normalized, result)
+                    
+                    return result
             
             return None
             
+        except requests.exceptions.Timeout:
+            print(f"RegisterUZ API timeout for ICO {ico_normalized}")
+            return None
         except requests.exceptions.RequestException as e:
             print(f"RegisterUZ API error: {e}")
             return None
@@ -145,7 +198,7 @@ class ICOVerificationService:
             }
             
             url = f"{self.FINSTAT_API}?ico={ico_normalized}"
-            response = requests.get(url, headers=headers, timeout=10)
+            response = requests.get(url, headers=headers, timeout=self.timeout)
             
             if response.status_code == 200:
                 data = response.json()
