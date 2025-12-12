@@ -15,6 +15,7 @@ from services.ocr_service import OCRService, OCRProvider, classify_document
 from services.tax_calculator import SlovakTaxCalculator
 from services.encryption_service import EncryptionService, DataAnonymizationService, SecurityAuditLogger
 from services.ico_verification import ICOVerificationService
+from knowledge.slovak_tax_kb import SlovakTaxKnowledgeBase, get_ai_context
 from decimal import Decimal
 
 # Database setup
@@ -528,9 +529,61 @@ def get_document(
     
     return document
 
-# Helper function for AI responses
+# Helper function for AI responses with Slovak Tax Knowledge Base
 def get_ai_response(message: str, docs_count: int) -> str:
-    """Generate helpful tax consulting responses"""
+    """
+    Generate intelligent tax consulting responses using Slovak Tax Knowledge Base
+    Falls back to OpenAI if available, otherwise uses knowledge base directly
+    """
+    message_lower = message.lower()
+    
+    # Initialize knowledge base
+    kb = SlovakTaxKnowledgeBase()
+    
+    # Get relevant context from knowledge base
+    kb_context = kb.get_context_for_ai(message)
+    
+    # Try to use OpenAI for intelligent responses if API key is available
+    if OPENAI_API_KEY:
+        try:
+            system_prompt = f"""Si odborný daňový poradca špecializujúci sa na slovenské daňové zákony.
+Poskytuj presné, jasné a užitočné odpovede v slovenčine.
+
+KONTEXT ZO SLOVENSKEJ DAŇOVEJ LEGISLATÍVY:
+{kb_context}
+
+PRAVIDLÁ:
+- Odpovedaj v slovenčine
+- Buď konkrétny a presný
+- Používaj aktuálne údaje pre rok 2024
+- Pri sumách používaj €
+- Poskytuj príklady kde je to vhodné
+- Odkazuj na konkrétne zákony a paragrafy kde je to možné"""
+
+            client = openai.OpenAI(api_key=OPENAI_API_KEY)
+            response = client.chat.completions.create(
+                model="gpt-4",
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": message}
+                ],
+                max_tokens=800,
+                temperature=0.7
+            )
+            
+            ai_response = response.choices[0].message.content
+            
+            # Add document count context if relevant
+            if docs_count > 0 and any(word in message_lower for word in ['dokument', 'doklad', 'faktúr', 'príjem', 'výdavk']):
+                ai_response += f"\n\n✓ Momentálne máte evidovaných {docs_count} dokladov v systéme TAXA."
+            
+            return ai_response
+            
+        except Exception as e:
+            print(f"OpenAI API error: {e}")
+            # Fall back to knowledge base
+    
+    # Fallback: Use knowledge base directly (if OpenAI fails or no API key)
     message_lower = message.lower()
     
     # Tax-related keywords and responses
