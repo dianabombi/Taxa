@@ -1009,6 +1009,68 @@ async def export_tax_return_xml(
     }
 
 # ============================================================================
+# SLOVAK TAX KNOWLEDGE BASE ENDPOINTS
+# ============================================================================
+
+@app.get("/api/knowledge/search")
+async def search_knowledge_base(q: str):
+    """
+    Search Slovak tax knowledge base
+    Public endpoint - no authentication required
+    """
+    kb = SlovakTaxKnowledgeBase()
+    results = kb.search_knowledge(q)
+    
+    return {
+        "query": q,
+        "results": results,
+        "count": len(results)
+    }
+
+@app.get("/api/knowledge/topic/{topic}")
+async def get_knowledge_topic(topic: str):
+    """
+    Get specific topic from knowledge base
+    Topics: tax_rates, deadlines, forms, deductions, vat_info, insurance, procedures, legislation, common_questions
+    """
+    kb = SlovakTaxKnowledgeBase()
+    
+    if topic not in kb.knowledge:
+        return {"error": f"Topic '{topic}' not found"}
+    
+    return {
+        "topic": topic,
+        "data": kb.knowledge[topic]
+    }
+
+@app.get("/api/knowledge/faq")
+async def get_faq():
+    """
+    Get frequently asked questions about Slovak taxes
+    Public endpoint
+    """
+    kb = SlovakTaxKnowledgeBase()
+    return kb.knowledge.get("common_questions", {})
+
+@app.get("/api/knowledge/deadlines")
+async def get_tax_deadlines():
+    """
+    Get current tax deadlines for Slovakia
+    Public endpoint
+    """
+    kb = SlovakTaxKnowledgeBase()
+    return kb.knowledge.get("deadlines", {})
+
+@app.get("/api/knowledge/all")
+async def get_all_knowledge():
+    """
+    Get entire knowledge base
+    Use sparingly - large response
+    """
+    kb = SlovakTaxKnowledgeBase()
+    return kb.knowledge
+
+# ============================================================================
 # ICO VERIFICATION ENDPOINTS
 # ============================================================================
 
