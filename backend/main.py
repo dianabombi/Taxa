@@ -36,7 +36,8 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
 
 # OpenAI setup
-openai.api_key = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+openai.api_key = OPENAI_API_KEY
 
 # OCR Service setup
 OCR_PROVIDER = os.getenv("OCR_PROVIDER", "mindee")  # mindee, tesseract, veryfi, klippa
@@ -729,6 +730,332 @@ Po založení:
 
 TAXA vám s tým všetkým pomôže!"""
     
+    elif any(word in message_lower for word in ['účtovníctvo', 'uctovnictvo', 'evidencia', 'kniha']):
+        return """Účtovníctvo pre SZČO
+
+TYPY ÚČTOVNÍCTVA:
+• Jednoduché účtovníctvo - Pre väčšinu SZČO
+• Podvojné účtovníctvo - Povinné pri obrate nad 500,000 €
+
+Čo musíte evidovať:
+✓ Kniha príjmov (všetky príjmy s dátumom a dokladom)
+✓ Kniha výdavkov (všetky výdavky s faktúrami)
+✓ Peňažný denník (pohyb peňazí)
+✓ Evidencia majetku (ak máte)
+
+Doba uchovávania:
+• Účtovné doklady: 10 rokov
+• Daňové priznania: 10 rokov
+• Faktúry: 10 rokov
+
+TAXA automaticky vedie evidenciu za vás!"""
+    
+    elif any(word in message_lower for word in ['optimalizácia', 'optimalizacia', 'ušetriť', 'usetrit', 'znížiť daň']):
+        return """Daňová optimalizácia pre SZČO
+
+LEGÁLNE SPÔSOBY ZNÍŽENIA DANE:
+
+1. Výber typu výdavkov:
+   • Porovnajte paušálne (60%/40%) vs. skutočné
+   • Použite výhodnejšiu variantu
+
+2. Daňové odpočty:
+   • Daňový bonus na deti: 1,680 € ročne/dieťa
+   • Úroky z hypotéky na bývanie
+   • Dary (až 20% základu dane)
+   • Dôchodkové sporenie (do 180 €)
+
+3. Rozloženie príjmov:
+   • Faktúry vystavujte strategicky
+   • Rozložte príjmy medzi roky
+
+4. Maximalizácia výdavkov:
+   • Evidujte všetky oprávnené výdavky
+   • Domáca kancelária (časť nájmu, energií)
+   • Vzdelávanie a kurzy
+   • Auto (do 80% PHM)
+
+5. Zamestnanec vs. dodávateľ:
+   • Zvážte zamestnanie rodinného príslušníka
+
+Pozor: Vyhýbajte sa daňovým únikom!"""
+    
+    elif any(word in message_lower for word in ['pokuta', 'sankcia', 'sankcie', 'penále', 'penale']):
+        return """Pokuty a sankcie v daňovom systéme
+
+ZA NEPODANIE DAŇOVÉHO PRIZNANIA:
+• Pokuta až 3,500 € za DPFO
+• Pokuta až 3,000 € za DPH výkaz
+
+ZA ONESKORENÉ PLATBY:
+• Úrok z omeškania: 9.5% ročne (2024)
+• Dodatočná pokuta až do výšky dlhu
+
+ZA NESPRÁVNE ÚDAJE:
+• Pokuta do 10,000 €
+• Možnosť dodatočného priznania do 3 rokov
+
+ZA NEPODANIE DPH:
+• Pokuta 60 € - 16,000 € podľa závažnosti
+
+AKO SA VYHNÚŤ POKUTÁM:
+✓ Podávajte včas (31.3 alebo 30.6)
+✓ Plaťte odvody do 8. dňa v mesiaci
+✓ Kontrolujte správnosť údajov
+✓ Uchovávajte doklady 10 rokov
+
+TAXA vám pripomenie všetky termíny!"""
+    
+    elif any(word in message_lower for word in ['zamestnanec', 'zamestnať', 'mzda', 'pracovník']):
+        return """Zamestnanie pracovníka ako SZČO
+
+POVINNOSTI ZAMESTNÁVATEĽA:
+
+1. Pred nástupom:
+   • Pracovná zmluva (písomne)
+   • Registrácia na Sociálnej poisťovni
+   • Registrácia na zdravotnej poisťovni
+
+2. Mesačné povinnosti:
+   • Výplata mzdy (min. 750 € v 2024)
+   • Odvody zamestnávateľa: 35.2%
+   • Odvody zamestnanca: 13.4%
+
+3. Príklad výpočtu:
+   Hrubá mzda: 1,000 €
+   • Odvody zamestnávateľa: 352 €
+   • Odvody zamestnanca: 134 €
+   • Čistá mzda: ~866 €
+   • Celkový náklad: 1,352 €
+
+4. Výhody:
+   ✓ Mzda je daňový výdavok
+   ✓ Znižuje váš základ dane
+   ✓ Rodinný príslušník = nižšie celkové dane
+
+ALTERNATÍVA:
+• Dohoda o vykonaní práce (DPP)
+• Dohoda o pracovnej činnosti (DPČ)
+• Živnostník (subdodávateľ)"""
+    
+    elif any(word in message_lower for word in ['deti', 'dieťa', 'bonus', 'daňový bonus']):
+        return f"""Daňový bonus na deti
+
+ZÁKLADNÉ INFORMÁCIE:
+• Suma: 140 € mesačne (1,680 € ročne)
+• Na každé vyživované dieťa
+
+PODMIENKY:
+✓ Dieťa do 18 rokov
+✓ Študent do 25 rokov (denné štúdium)
+✓ Dieťa so zdravotným postihnutím (bez veku)
+✓ Musíte mať zdaniteľný príjem
+
+AKO FUNGUJE:
+1. Znižuje vypočítanú daň
+2. Ak je bonus vyšší ako daň → preplatok
+3. Dostanete peniaze späť od štátu
+
+PRÍKLAD:
+Daň: 500 €
+Bonus na 2 deti: 3,360 €
+Výsledok: Preplatok 2,860 € ✓
+
+AKO UPLATNIŤ:
+• V daňovom priznaní DPFO
+• Priložiť rodný list dieťaťa
+• Potvrdenie o návšteve školy (študent)
+
+Momentálne máte {docs_count} dokladov v systéme."""
+    
+    elif any(word in message_lower for word in ['dar', 'dary', 'darovanie', 'charita']):
+        return """Daňové odpočty za dary
+
+ČO MÔŽETE ODPOČÍTAŤ:
+• Dary na verejnoprospešné účely
+• Dary registrovaným organizáciám
+• Dary na vedu, vzdelávanie, kultúru
+• Dary na zdravotníctvo, šport
+
+MAXIMÁLNA VÝŠKA:
+• 20% zo základu dane ALEBO
+• Minimálne 3% z príjmov
+• Platí sa vyššia suma
+
+PRÍKLAD:
+Základ dane: 10,000 €
+Príjmy: 30,000 €
+
+20% z 10,000 = 2,000 €
+3% z 30,000 = 900 €
+Môžete odpočítať: 2,000 € ✓
+
+PODMIENKY:
+✓ Dar musí byť bezodplatný
+✓ Organizácia musí byť registrovaná
+✓ Musíte mať potvrdenie o dare
+✓ Minimálna suma: 10 €
+
+KAM DAROVAŤ:
+• Neziskové organizácie
+• Nadácie
+• Občianske združenia
+• Cirkvi
+• Verejné výskumné inštitúcie"""
+    
+    elif any(word in message_lower for word in ['dôchodok', 'dochodok', 'sporenie', '3. pilier', 'dds']):
+        return """Dôchodkové sporenie a daňové odpočty
+
+3. PILIER (DDS - Doplnkové dôchodkové sporenie):
+• Daňový odpočet: až 180 € ročne
+• Znižuje základ dane
+• Dobrovoľné sporenie
+
+PRÍKLAD:
+Vložíte do DDS: 500 € ročne
+Odpočet: 180 €
+Daň 19%: Ušetríte 34.20 € na dani
+
+2. PILIER (Starobné dôchodkové sporenie):
+• Povinné pre narodených po 1.1.1984
+• Nie je daňový odpočet
+• Časť odvodov ide do fondu
+
+VÝHODY 3. PILIERA:
+✓ Daňový odpočet
+✓ Príspevok od zamestnávateľa (ak máte)
+✓ Dlhodobé zhodnotenie
+✓ Výber po 55. roku veku
+
+AKO UPLATNIŤ:
+• V daňovom priznaní DPFO
+• Priložiť potvrdenie od DSS
+• Maximálne 180 € ročne
+
+ODPORÚČANIE:
+Kombinujte s inými odpočtami pre maximálnu úsporu!"""
+    
+    elif any(word in message_lower for word in ['cestovné', 'cestovne', 'cesta', 'stravné', 'stravne']):
+        return """Cestovné náhrady a stravné
+
+SLUŽOBNÁ CESTA SZČO:
+
+1. STRAVNÉ:
+   • Slovensko: 5.10 € - 9.20 € (podľa dĺžky)
+   • Zahraničie: podľa krajiny (15-52 €)
+   • 5-12 hodín: 75% sadzby
+   • Nad 12 hodín: 100% sadzby
+
+2. UBYTOVANIE:
+   • Skutočné náklady s faktúrou
+   • Bez limitu (primeranosť)
+
+3. DOPRAVA:
+   • Vlastné auto: 0.263 €/km (2024)
+   • Verejná doprava: skutočné náklady
+   • Taxi: s dokladom
+
+4. INÉ VÝDAVKY:
+   • Parkovné, dálničné poplatky
+   • Telefón počas cesty
+
+PRÍKLAD VÝPOČTU:
+Cesta: Bratislava → Košice (400 km)
+• Km náhrada: 400 × 0.263 = 105.20 €
+• Stravné (1 deň): 9.20 €
+• Ubytovanie: 60 €
+• Spolu: 174.40 € (daňový výdavok)
+
+DOKLADY:
+✓ Cestovný príkaz
+✓ Faktúry za ubytovanie
+✓ Doklady o doprave
+✓ Kniha jázd (auto)"""
+    
+    elif any(word in message_lower for word in ['auto', 'vozidlo', 'phm', 'pohonné hmoty', 'pohonne hmoty']):
+        return """Automobil a daňové výdavky
+
+POUŽÍVANIE AUTA NA PODNIKANIE:
+
+1. POHONNÉ HMOTY:
+   • Odpočet: až 80% nákladov
+   • Potrebné: kniha jázd
+   • Evidencia: služobné vs. súkromné km
+
+2. NÁKUP VOZIDLA:
+   • Odpisovanie: 4-6 rokov
+   • Limit: 48,000 € (nad limit nie je výdavok)
+   • Leasing: splátky sú výdavok
+
+3. PREVÁDZKOVÉ NÁKLADY:
+   ✓ Servis a opravy: 100%
+   ✓ Povinné ručenie: 100%
+   ✓ Havarijné poistenie: 100%
+   ✓ Diaľničná známka: 100%
+   ✓ Parkovné (služobné): 100%
+
+4. KNIHA JÁZD musí obsahovať:
+   • Dátum cesty
+   • Účel cesty
+   • Trasa (odkiaľ - kam)
+   • Počet km
+   • Stav tachometra
+
+PRÍKLAD:
+Ročne najazdené: 20,000 km
+Služ. cesty: 16,000 km (80%)
+PHM celkom: 2,000 €
+Odpočet: 2,000 × 80% × 80% = 1,280 €
+
+ALTERNATÍVA:
+• Paušál 0.263 €/km (bez dokladov o PHM)"""
+    
+    elif any(word in message_lower for word in ['kancelária', 'kancelaria', 'home office', 'domáca kancelária', 'domaca kancelaria', 'priestory']):
+        return """Domáca kancelária a priestory
+
+ODPOČET NÁKLADOV NA KANCELÁRIU:
+
+1. PRENÁJOM KANCELÁRIE:
+   • 100% nájomného je daňový výdavok
+   • Potrebná nájomná zmluva
+   • Faktúra/potvrdenie o platbe
+
+2. DOMÁCA KANCELÁRIA:
+   • Časť nákladov na bývanie
+   • Podľa pomeru plôch
+
+   Príklad výpočtu:
+   Byt: 80 m²
+   Kancelária: 16 m² (20%)
+   
+   Odpočítate 20% z:
+   • Nájomné (ak prenajatý byt)
+   • Energie (elektrina, plyn)
+   • Internet
+   • Telefón
+
+3. ENERGIE:
+   • Elektrina: podľa pomeru
+   • Vykurovanie: podľa pomeru
+   • Voda: podľa pomeru
+
+4. VYBAVENIE:
+   ✓ Nábytok (stôl, stolička)
+   ✓ Počítač, notebook
+   ✓ Tlačiareň, skener
+   ✓ Telefón
+   ✓ Software
+
+PRÍKLAD MESAČNE:
+Nájom: 600 € × 20% = 120 €
+Energie: 100 € × 20% = 20 €
+Internet: 30 € × 100% = 30 €
+Spolu: 170 € mesačne = 2,040 € ročne
+
+POZOR:
+• Musíte preukázať pracovné využitie
+• Odporúčané: fotky, popis činnosti"""
+    
     else:
         # Default helpful response
         return f"""Dobrý deň! Som váš AI daňový konzultant.
@@ -744,11 +1071,23 @@ Môžem vám poradiť s:
 • Termínmi a lehotami
 • Vystavovaním faktúr
 • Začatím podnikania
+• Účtovníctvom a evidenciou
+• Daňovou optimalizáciou
+• Pokutami a sankciami
+• Zamestnaním pracovníka
+• Daňovým bonusom na deti
+• Darmi a odpočtami
+• Dôchodkovým sporením
+• Cestovnými náhradami
+• Autom a PHM
+• Domácou kanceláriou
 
 Príklady otázok:
 "Kedy musím podať daňové priznanie?"
 "Koľko sú minimálne odvody?"
-"Aký je rozdiel medzi paušálnymi a skutočnými výdavkami?"
+"Ako ušetriť na daniach?"
+"Môžem odpočítať auto?"
+"Aký je daňový bonus na deti?"
 
 Opýtajte sa ma na čokoľvek!"""
 
