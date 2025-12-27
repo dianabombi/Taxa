@@ -67,12 +67,12 @@ export default function SettingsPage() {
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
                 
-                setMessage({ type: 'success', text: 'Vaše dáta boli úspešne exportované!' });
+                setMessage({ type: 'success', text: t('settings.export_success') });
             } else {
-                setMessage({ type: 'error', text: 'Chyba pri exporte dát' });
+                setMessage({ type: 'error', text: t('settings.export_error') });
             }
         } catch (error) {
-            setMessage({ type: 'error', text: 'Chyba pripojenia' });
+            setMessage({ type: 'error', text: t('settings.connection_error') });
         } finally {
             setLoading(false);
         }
@@ -99,15 +99,15 @@ export default function SettingsPage() {
                 localStorage.removeItem('user');
                 
                 // Show success message and redirect
-                alert(`Účet bol úspešne zmazaný.\n\nZmazané dáta:\n- Profil: 1\n- Dokumenty: ${data.data_deleted.documents}\n- Správy: ${data.data_deleted.chat_messages}\n\nVšetky vaše dáta boli trvalo odstránené zo systémov TAXA.`);
+                alert(`${t('settings.delete_success')}\n\n${t('settings.deleted_data')}:\n- ${t('settings.profile')}: 1\n- ${t('settings.documents')}: ${data.data_deleted.documents}\n- ${t('settings.messages')}: ${data.data_deleted.chat_messages}\n\n${t('settings.all_data_removed')}`);
                 
                 router.push('/');
             } else {
-                setMessage({ type: 'error', text: 'Chyba pri mazaní účtu' });
+                setMessage({ type: 'error', text: t('settings.delete_error') });
                 setShowDeleteConfirm(false);
             }
         } catch (error) {
-            setMessage({ type: 'error', text: 'Chyba pripojenia' });
+            setMessage({ type: 'error', text: t('settings.connection_error') });
             setShowDeleteConfirm(false);
         } finally {
             setLoading(false);
@@ -173,9 +173,9 @@ export default function SettingsPage() {
                     <div className="mb-8">
                         <h1 className="text-4xl font-bold text-primary mb-2 flex items-center">
                             <Shield className="w-10 h-10 mr-3" />
-                            Nastavenia & Súkromie
+                            {t('settings.title')}
                         </h1>
-                        <p className="text-text-light text-lg">Spravujte svoje dáta a súkromie v súlade s GDPR</p>
+                        <p className="text-text-light text-lg">{t('settings.subtitle')}</p>
                     </div>
 
                     {/* Message */}
@@ -199,24 +199,24 @@ export default function SettingsPage() {
                         <div className="bg-bg-card rounded-3xl p-8 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] mb-6">
                             <h2 className="text-2xl font-bold text-primary mb-4 flex items-center">
                                 <Info className="w-6 h-6 mr-2" />
-                                GDPR Compliance
+                                {t('settings.gdpr_compliance')}
                             </h2>
                             
                             <div className="space-y-4">
                                 <div className="bg-bg-main rounded-xl p-4 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
-                                    <p className="text-text-light text-sm mb-1">📍 Umiestnenie dát</p>
+                                    <p className="text-text-light text-sm mb-1">📍 {t('settings.data_location')}</p>
                                     <p className="text-text-dark font-bold">{privacyInfo.data_storage.location}</p>
-                                    <p className="text-text-light text-sm mt-2">🔒 Šifrovanie</p>
+                                    <p className="text-text-light text-sm mt-2">🔒 {t('settings.encryption')}</p>
                                     <p className="text-text-dark font-medium">{privacyInfo.data_storage.encryption}</p>
                                 </div>
                                 
                                 <div className="bg-accent/10 border-2 border-accent rounded-xl p-4">
-                                    <p className="text-accent font-bold mb-2">✓ Vaše GDPR práva:</p>
+                                    <p className="text-accent font-bold mb-2">✓ {t('settings.your_rights')}</p>
                                     <ul className="text-text-dark text-sm space-y-1">
-                                        <li>• Prístup k dátam (export nižšie)</li>
-                                        <li>• Právo na výmaz (zmazanie účtu)</li>
-                                        <li>• Prenositeľnosť dát (JSON formát)</li>
-                                        <li>• Právo na opravu (profilové nastavenia)</li>
+                                        <li>• {t('settings.right_access')}</li>
+                                        <li>• {t('settings.right_delete')}</li>
+                                        <li>• {t('settings.right_portability')}</li>
+                                        <li>• {t('settings.right_rectification')}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -227,12 +227,11 @@ export default function SettingsPage() {
                     <div className="bg-bg-card rounded-3xl p-8 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] mb-6">
                         <h2 className="text-2xl font-bold text-primary mb-4 flex items-center">
                             <Download className="w-6 h-6 mr-2" />
-                            Export vašich dát
+                            {t('settings.export_title')}
                         </h2>
                         
                         <p className="text-text-dark mb-6">
-                            GDPR Článok 15: Právo na prístup k osobným údajom.
-                            Stiahnite všetky svoje dáta v strojovo čitateľnom formáte (JSON).
+                            {t('settings.export_description')}
                         </p>
                         
                         <button
@@ -241,11 +240,11 @@ export default function SettingsPage() {
                             className="px-6 py-3 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] active:shadow-[inset_4px_4px_8px_#A3B1C6,inset_-4px_-4px_8px_#FFFFFF] transition-all flex items-center space-x-2 disabled:opacity-50"
                         >
                             <Download className="w-5 h-5" />
-                            <span>{loading ? 'Exportujem...' : 'Stiahnuť moje dáta (JSON)'}</span>
+                            <span>{loading ? t('settings.exporting') : t('settings.download_data')}</span>
                         </button>
                         
                         <p className="text-text-light text-sm mt-4">
-                            Export obsahuje: profil, dokumenty, chat históriu, štatistiky
+                            {t('settings.export_includes')}
                         </p>
                     </div>
 
@@ -253,22 +252,21 @@ export default function SettingsPage() {
                     <div className="bg-bg-card rounded-3xl p-8 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] mb-6 border-2 border-error/20">
                         <h2 className="text-2xl font-bold text-error mb-4 flex items-center">
                             <Trash2 className="w-6 h-6 mr-2" />
-                            Zmazať účet
+                            {t('settings.delete_account_title')}
                         </h2>
                         
                         <p className="text-text-dark mb-4">
-                            GDPR Článok 17: Právo na výmaz ("právo byť zabudnutý").
-                            Trvalo odstránite váš účet a všetky súvisiace dáta.
+                            {t('settings.delete_description')}
                         </p>
                         
                         <div className="bg-error/10 border-2 border-error rounded-xl p-4 mb-6">
-                            <p className="text-error font-bold mb-2">⚠️ Upozornenie:</p>
+                            <p className="text-error font-bold mb-2">⚠️ {t('settings.warning')}</p>
                             <ul className="text-text-dark text-sm space-y-1">
-                                <li>• Táto akcia je NEVRATNÁ</li>
-                                <li>• Všetky dokumenty budú trvalo zmazané</li>
-                                <li>• Chat história bude odstránená</li>
-                                <li>• Profil a všetky dáta budú vymazané</li>
-                                <li>• Dáta nemožno obnoviť</li>
+                                <li>• {t('settings.warning_irreversible')}</li>
+                                <li>• {t('settings.warning_documents')}</li>
+                                <li>• {t('settings.warning_chat')}</li>
+                                <li>• {t('settings.warning_profile')}</li>
+                                <li>• {t('settings.warning_no_recovery')}</li>
                             </ul>
                         </div>
                         
@@ -278,12 +276,12 @@ export default function SettingsPage() {
                                 className="px-6 py-3 bg-error text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] active:shadow-[inset_4px_4px_8px_#A3B1C6,inset_-4px_-4px_8px_#FFFFFF] transition-all flex items-center space-x-2"
                             >
                                 <Trash2 className="w-5 h-5" />
-                                <span>Chcem zmazať účet</span>
+                                <span>{t('settings.want_delete')}</span>
                             </button>
                         ) : (
                             <div className="space-y-4">
                                 <p className="text-error font-bold text-lg">
-                                    Ste si istý? Táto akcia je nevratná!
+                                    {t('settings.confirm_delete')}
                                 </p>
                                 <div className="flex space-x-4">
                                     <button
@@ -292,13 +290,13 @@ export default function SettingsPage() {
                                         className="px-6 py-3 bg-error text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all flex items-center space-x-2 disabled:opacity-50"
                                     >
                                         <Trash2 className="w-5 h-5" />
-                                        <span>{loading ? 'Mažem...' : 'Áno, zmazať účet'}</span>
+                                        <span>{loading ? t('settings.deleting') : t('settings.yes_delete')}</span>
                                     </button>
                                     <button
                                         onClick={() => setShowDeleteConfirm(false)}
                                         className="px-6 py-3 bg-bg-main text-text-dark rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all"
                                     >
-                                        Zrušiť
+                                        {t('settings.cancel')}
                                     </button>
                                 </div>
                             </div>
@@ -309,7 +307,7 @@ export default function SettingsPage() {
                     <div className="bg-bg-card rounded-3xl p-8 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF]">
                         <h2 className="text-2xl font-bold text-primary mb-4 flex items-center">
                             <Lock className="w-6 h-6 mr-2" />
-                            Bezpečnostné opatrenia
+                            {t('settings.security_measures')}
                         </h2>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

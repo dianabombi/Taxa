@@ -91,15 +91,15 @@ function LoginForm() {
                         <div>
                             <h1 className="text-6xl font-bold leading-tight mb-6">
                                 <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                                    Vítajte späť
+                                    {t('auth.login.tagline_1')}
                                 </span>
                                 <br />
                                 <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-                                    v TAXA
+                                    {t('auth.login.tagline_2')}
                                 </span>
                             </h1>
                             <p className="text-xl text-text-light leading-relaxed">
-                                Prihláste sa a pokračujte v evidencii príjmov a výdavkov. Vaše účtovníctvo máte pod kontrolou.
+                                {t('auth.login.tagline_description')}
                             </p>
                         </div>
                         

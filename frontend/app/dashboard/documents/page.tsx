@@ -206,19 +206,19 @@ export default function DocumentsPage() {
                     {/* Documents List */}
                     {loading ? (
                         <div className="bg-bg-card rounded-3xl p-12 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] text-center">
-                            <p className="text-text-light">Načítavam doklady...</p>
+                            <p className="text-text-light">{t('documents.loading')}</p>
                         </div>
                     ) : documents.length === 0 ? (
                         <div className="bg-bg-card rounded-3xl p-12 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] text-center">
                             <FileText className="w-16 h-16 text-text-light mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-primary mb-2">Zatiaľ žiadne doklady</h3>
-                            <p className="text-text-light mb-6">Nahrajte svoj prvý doklad a začnite evidovať príjmy a výdavky</p>
+                            <h3 className="text-xl font-bold text-primary mb-2">{t('documents.no_documents')}</h3>
+                            <p className="text-text-light mb-6">{t('documents.upload_first')}</p>
                             <Link
                                 href="/dashboard/upload"
                                 className="inline-flex items-center space-x-2 px-6 py-3 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all"
                             >
                                 <Upload className="w-5 h-5" />
-                                <span>Nahrať doklad</span>
+                                <span>{t('documents.upload_button')}</span>
                             </Link>
                         </div>
                     ) : (
