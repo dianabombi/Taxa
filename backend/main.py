@@ -17,6 +17,8 @@ from services.encryption_service import EncryptionService, DataAnonymizationServ
 from services.ico_verification import ICOVerificationService
 from knowledge.slovak_tax_kb import SlovakTaxKnowledgeBase, get_ai_context
 from decimal import Decimal
+import uuid
+from pathlib import Path
 
 # Database setup
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./taxa.db")
@@ -42,6 +44,10 @@ openai.api_key = OPENAI_API_KEY
 # OCR Service setup
 OCR_PROVIDER = os.getenv("OCR_PROVIDER", "mindee")  # mindee, tesseract, veryfi, klippa
 ocr_service = OCRService(provider=OCRProvider(OCR_PROVIDER))
+
+# File upload directory
+UPLOAD_DIR = Path("uploads")
+UPLOAD_DIR.mkdir(exist_ok=True)
 
 # Models
 class User(Base):
@@ -475,18 +481,22 @@ async def upload_document(
     uploaded_files = []
     
     for file in files:
-        # Save file temporarily
-        file_path = f"/tmp/{file.filename}"
+        # Generate unique filename to avoid conflicts
+        file_extension = Path(file.filename).suffix
+        unique_filename = f"{uuid.uuid4()}{file_extension}"
+        file_path = UPLOAD_DIR / unique_filename
+        
+        # Save file permanently
         with open(file_path, "wb") as f:
             content = await file.read()
             f.write(content)
         
         # Classify document type
-        doc_type = await classify_document(file_path)
+        doc_type = await classify_document(str(file_path))
         
         # Process with OCR
         try:
-            extracted_data = await ocr_service.process_document(file_path, doc_type)
+            extracted_data = await ocr_service.process_document(str(file_path), doc_type)
             confidence = int(extracted_data.get('confidence', 0) * 100)
         except Exception as e:
             print(f"OCR processing failed: {e}")
@@ -496,7 +506,7 @@ async def upload_document(
         # Save to database
         new_doc = Document(
             filename=file.filename,
-            file_path=file_path,
+            file_path=str(file_path),
             document_type=doc_type,
             extracted_data=extracted_data,
             confidence=confidence,

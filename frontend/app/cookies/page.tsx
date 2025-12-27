@@ -5,8 +5,11 @@ import Image from 'next/image';
 import { ArrowLeft, Cookie } from 'lucide-react';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/LanguageContext';
 
 export default function CookiePolicyPage() {
+    const { t } = useLanguage();
+    
     return (
         <div className="min-h-screen bg-bg-main">
             {/* Logo - Fixed Position */}
@@ -25,7 +28,7 @@ export default function CookiePolicyPage() {
             <div className="container mx-auto px-6 py-12">
                 <Link href="/" className="inline-flex items-center space-x-2 text-text-light hover:text-accent mb-8 transition-colors">
                     <ArrowLeft className="w-5 h-5" />
-                    <span>Späť na hlavnú stránku</span>
+                    <span>{t('common.back_home')}</span>
                 </Link>
 
                 <div className="max-w-4xl mx-auto">
@@ -33,25 +36,23 @@ export default function CookiePolicyPage() {
                         <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF]">
                             <Cookie className="w-8 h-8 text-white" />
                         </div>
-                        <h1 className="text-4xl font-bold text-primary">Zásady používania cookies</h1>
+                        <h1 className="text-4xl font-bold text-primary">{t('cookie_page.title')}</h1>
                     </div>
 
                     <div className="bg-bg-card rounded-3xl p-8 shadow-[8px_8px_16px_#A3B1C6,-8px_-8px_16px_#FFFFFF] space-y-8">
                         <p className="text-text-light">
-                            Posledná aktualizácia: {new Date().toLocaleDateString('sk-SK')}
+                            {t('common.last_updated')}: {new Date().toLocaleDateString()}
                         </p>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-primary mb-4">1. Čo sú cookies?</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-4">{t('cookie_page.section1.title')}</h2>
                             <p className="text-text-dark leading-relaxed">
-                                Cookies sú malé textové súbory, ktoré sa ukladajú vo vašom zariadení (počítač, tablet, smartfón) 
-                                pri návšteve webových stránok. Pomáhajú nám zabezpečiť správne fungovanie stránky, zlepšiť 
-                                používateľský zážitok a analyzovať návštevnosť.
+                                {t('cookie_page.section1.content')}
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-primary mb-4">2. Typy cookies, ktoré používame</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-4">{t('cookie_page.section2.title')}</h2>
                             
                             <div className="space-y-4">
                                 <div className="bg-bg-main rounded-xl p-6 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
@@ -60,13 +61,12 @@ export default function CookiePolicyPage() {
                                             <span className="text-white font-bold">1</span>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-text-dark mb-2">Nevyhnutné cookies</h3>
+                                            <h3 className="font-bold text-text-dark mb-2">{t('cookie_page.section2.type1_title')}</h3>
                                             <p className="text-text-light text-sm mb-2">
-                                                Tieto cookies sú nevyhnutné pre správne fungovanie webovej stránky. 
-                                                Bez nich by stránka nefungovala správne.
+                                                {t('cookie_page.section2.type1_desc')}
                                             </p>
-                                            <p className="text-text-dark text-sm"><strong>Účel:</strong> Autentifikácia, bezpečnosť, jazykové nastavenia</p>
-                                            <p className="text-text-dark text-sm"><strong>Platnosť:</strong> Session / 1 rok</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.purpose_label')}</strong> {t('cookie_page.section2.type1_purpose')}</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.validity_label')}</strong> {t('cookie_page.section2.type1_validity')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -77,13 +77,12 @@ export default function CookiePolicyPage() {
                                             <span className="text-white font-bold">2</span>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-text-dark mb-2">Analytické cookies</h3>
+                                            <h3 className="font-bold text-text-dark mb-2">{t('cookie_page.section2.type2_title')}</h3>
                                             <p className="text-text-light text-sm mb-2">
-                                                Pomáhajú nám pochopiť, ako používatelia interagujú s našou stránkou. 
-                                                Zbierame anonymné štatistiky o návštevnosti.
+                                                {t('cookie_page.section2.type2_desc')}
                                             </p>
-                                            <p className="text-text-dark text-sm"><strong>Účel:</strong> Google Analytics, analýza návštevnosti</p>
-                                            <p className="text-text-dark text-sm"><strong>Platnosť:</strong> 2 roky</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.purpose_label')}</strong> {t('cookie_page.section2.type2_purpose')}</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.validity_label')}</strong> {t('cookie_page.section2.type2_validity')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -94,13 +93,12 @@ export default function CookiePolicyPage() {
                                             <span className="text-white font-bold">3</span>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-text-dark mb-2">Funkčné cookies</h3>
+                                            <h3 className="font-bold text-text-dark mb-2">{t('cookie_page.section2.type3_title')}</h3>
                                             <p className="text-text-light text-sm mb-2">
-                                                Umožňujú stránke zapamätať si vaše preferencie a nastavenia 
-                                                pre lepší používateľský zážitok.
+                                                {t('cookie_page.section2.type3_desc')}
                                             </p>
-                                            <p className="text-text-dark text-sm"><strong>Účel:</strong> Jazykové preferencie, nastavenia zobrazenia</p>
-                                            <p className="text-text-dark text-sm"><strong>Platnosť:</strong> 1 rok</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.purpose_label')}</strong> {t('cookie_page.section2.type3_purpose')}</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.validity_label')}</strong> {t('cookie_page.section2.type3_validity')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -111,13 +109,12 @@ export default function CookiePolicyPage() {
                                             <span className="text-white font-bold">4</span>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-text-dark mb-2">Marketingové cookies</h3>
+                                            <h3 className="font-bold text-text-dark mb-2">{t('cookie_page.section2.type4_title')}</h3>
                                             <p className="text-text-light text-sm mb-2">
-                                                Používajú sa na zobrazenie relevantných reklám a meranie efektivity 
-                                                marketingových kampaní.
+                                                {t('cookie_page.section2.type4_desc')}
                                             </p>
-                                            <p className="text-text-dark text-sm"><strong>Účel:</strong> Cielená reklama, remarketing</p>
-                                            <p className="text-text-dark text-sm"><strong>Platnosť:</strong> 90 dní</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.purpose_label')}</strong> {t('cookie_page.section2.type4_purpose')}</p>
+                                            <p className="text-text-dark text-sm"><strong>{t('cookie_page.section2.validity_label')}</strong> {t('cookie_page.section2.type4_validity')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -125,75 +122,73 @@ export default function CookiePolicyPage() {
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-primary mb-4">3. Cookies tretích strán</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-4">{t('cookie_page.section3.title')}</h2>
                             <p className="text-text-dark leading-relaxed mb-4">
-                                Na našej stránke môžu byť použité cookies od nasledujúcich poskytovateľov:
+                                {t('cookie_page.section3.intro')}
                             </p>
                             <div className="space-y-2">
                                 <div className="flex items-center space-x-2">
                                     <div className="w-2 h-2 bg-accent rounded-full"></div>
-                                    <p className="text-text-dark"><strong>Google Analytics:</strong> Analýza návštevnosti</p>
+                                    <p className="text-text-dark"><strong>{t('cookie_page.section3.provider1')}</strong> {t('cookie_page.section3.provider1_desc')}</p>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     <div className="w-2 h-2 bg-accent rounded-full"></div>
-                                    <p className="text-text-dark"><strong>Google Ads:</strong> Marketingové kampane</p>
+                                    <p className="text-text-dark"><strong>{t('cookie_page.section3.provider2')}</strong> {t('cookie_page.section3.provider2_desc')}</p>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     <div className="w-2 h-2 bg-accent rounded-full"></div>
-                                    <p className="text-text-dark"><strong>Facebook Pixel:</strong> Sociálne médiá a remarketing</p>
+                                    <p className="text-text-dark"><strong>{t('cookie_page.section3.provider3')}</strong> {t('cookie_page.section3.provider3_desc')}</p>
                                 </div>
                             </div>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-primary mb-4">4. Správa cookies</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-4">{t('cookie_page.section4.title')}</h2>
                             <p className="text-text-dark leading-relaxed mb-4">
-                                Môžete kedykoľvek zmeniť nastavenia cookies alebo ich odmietnuť:
+                                {t('cookie_page.section4.intro')}
                             </p>
                             
                             <div className="bg-accent/10 border border-accent rounded-xl p-6 space-y-4">
                                 <div>
-                                    <h3 className="font-semibold text-text-dark mb-2">V nastaveniach prehliadača:</h3>
+                                    <h3 className="font-semibold text-text-dark mb-2">{t('cookie_page.section4.browser_title')}</h3>
                                     <ul className="list-disc list-inside text-text-dark space-y-1 ml-4">
-                                        <li><strong>Chrome:</strong> Nastavenia → Ochrana súkromia a zabezpečenie → Cookies</li>
-                                        <li><strong>Firefox:</strong> Možnosti → Súkromie a zabezpečenie → Cookies</li>
-                                        <li><strong>Safari:</strong> Predvoľby → Súkromie → Cookies</li>
-                                        <li><strong>Edge:</strong> Nastavenia → Cookies a povolenia stránok</li>
+                                        <li><strong>Chrome:</strong> {t('cookie_page.section4.chrome')}</li>
+                                        <li><strong>Firefox:</strong> {t('cookie_page.section4.firefox')}</li>
+                                        <li><strong>Safari:</strong> {t('cookie_page.section4.safari')}</li>
+                                        <li><strong>Edge:</strong> {t('cookie_page.section4.edge')}</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-text-dark mb-2">Na našej stránke:</h3>
-                                    <p className="text-text-dark">Môžete upraviť svoje preferencie v nastaveniach účtu.</p>
+                                    <h3 className="font-semibold text-text-dark mb-2">{t('cookie_page.section4.site_title')}</h3>
+                                    <p className="text-text-dark">{t('cookie_page.section4.site_desc')}</p>
                                 </div>
                             </div>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-primary mb-4">5. Dôsledky odmietnutia cookies</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-4">{t('cookie_page.section5.title')}</h2>
                             <div className="bg-bg-main rounded-xl p-4 shadow-[inset_2px_2px_4px_#A3B1C6,inset_-2px_-2px_4px_#FFFFFF]">
                                 <p className="text-text-dark leading-relaxed">
-                                    Ak odmietne nevyhnutné cookies, niektoré funkcie stránky nebudú fungovať správne. 
-                                    Nebudete sa môcť prihlásiť do účtu a používať plný rozsah služieb platformy TAXA.
+                                    {t('cookie_page.section5.content')}
                                 </p>
                             </div>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-primary mb-4">6. Aktualizácie zásad</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-4">{t('cookie_page.section6.title')}</h2>
                             <p className="text-text-dark leading-relaxed">
-                                Tieto zásady používania cookies môžeme príležitostne aktualizovať. O významných zmenách 
-                                vás budeme informovať prostredníctvom oznámenia na stránke alebo e-mailom.
+                                {t('cookie_page.section6.content')}
                             </p>
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-bold text-primary mb-4">7. Kontakt</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-4">{t('cookie_page.section7.title')}</h2>
                             <p className="text-text-dark leading-relaxed mb-4">
-                                Ak máte otázky týkajúce sa používania cookies, kontaktujte nás:
+                                {t('cookie_page.section7.intro')}
                             </p>
                             <div className="bg-accent/10 border border-accent rounded-xl p-4">
-                                <p className="text-text-dark"><strong>E-mail:</strong> cookies@taxa.sk</p>
-                                <p className="text-text-dark"><strong>Telefón:</strong> +421 900 000 000</p>
+                                <p className="text-text-dark"><strong>{t('cookie_page.section7.email_label')}</strong> cookies@taxa.sk</p>
+                                <p className="text-text-dark"><strong>{t('cookie_page.section7.phone_label')}</strong> +421 900 000 000</p>
                             </div>
                         </section>
                     </div>

@@ -155,15 +155,15 @@ export default function RegisterPage() {
                         <div>
                             <h1 className="text-6xl font-bold leading-tight mb-6">
                                 <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                                    Bez stresu
+                                    {t('auth.register.tagline_1')}
                                 </span>
                                 <br />
                                 <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-                                    z papierov a termínov
+                                    {t('auth.register.tagline_2')}
                                 </span>
                             </h1>
                             <p className="text-xl text-text-light leading-relaxed">
-                                Digitálny sprievodca pre slovenských živnostníkov. Evidencia príjmov a výdavkov automaticky, daňové priznanie na jeden klik.
+                                {t('auth.register.tagline_description')}
                             </p>
                         </div>
                         
@@ -251,20 +251,20 @@ export default function RegisterPage() {
                                         className="px-4 py-3 bg-accent text-white rounded-xl shadow-[4px_4px_8px_#A3B1C6,-4px_-4px_8px_#FFFFFF] hover:shadow-[6px_6px_12px_#A3B1C6,-6px_-6px_12px_#FFFFFF] transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
                                     >
                                         {verifyingICO ? (
-                                            'Overujem...'
+                                            t('auth.register.verifying')
                                         ) : icoVerified ? (
                                             <CheckCircle className="w-5 h-5" />
                                         ) : (
                                             <>
                                                 <Search className="w-5 h-5 inline mr-1" />
-                                                Overiť
+                                                {t('auth.register.verify')}
                                             </>
                                         )}
                                     </button>
                                 </div>
                                 {icoVerified && formData.business_name && (
                                     <div className="mt-3 p-3 bg-success/10 border border-success/30 rounded-lg">
-                                        <p className="text-sm text-success font-medium">✓ IČO overené</p>
+                                        <p className="text-sm text-success font-medium">✓ {t('auth.register.ico_verified')}</p>
                                         <p className="text-sm text-text-dark mt-1">{formData.business_name}</p>
                                         {formData.business_address && (
                                             <p className="text-xs text-text-light mt-1">{formData.business_address}</p>
