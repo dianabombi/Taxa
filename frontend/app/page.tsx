@@ -79,15 +79,15 @@ export default function LandingPage() {
                     <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-6 mb-8 sm:mb-12 text-xs sm:text-sm text-text-light">
                         <div className="flex items-center space-x-2">
                             <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span>Evidencia príjmov/výdavkov</span>
+                            <span>{t('landing.benefit1')}</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span>Žiadne manuálne výpočty</span>
+                            <span>{t('landing.benefit2')}</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
-                            <span>Daňové priznanie na 1 klik</span>
+                            <span>{t('landing.benefit3')}</span>
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">

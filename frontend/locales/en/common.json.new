@@ -8,49 +8,46 @@
     },
     "auth": {
         "login": {
-            "title": "Prihlásenie",
-            "welcome": "Vitajte späť!",
-            "subtitle": "Prihláste sa do svojho účtu",
-            "tagline_1": "Vítajte späť",
-            "tagline_2": "v TAXA",
-            "tagline_description": "Prihláste sa a pokračujte v evidencii príjmov a výdavkov. Vaše účtovníctvo máte pod kontrolou.",
-            "email": "E-mail",
-            "password": "Heslo",
-            "button": "Prihlásiť sa",
-            "button_loading": "Prihlasovanie...",
-            "no_account": "Nemáte účet?",
-            "register_here": "Zaregistrujte sa tu",
-            "register_link": "Zaregistrovať sa",
-            "success_registered": "Registrácia úspešná! Teraz sa môžete prihlásiť.",
-            "error_invalid": "Nesprávny email alebo heslo",
-            "error_connection": "Chyba pripojenia k serveru",
+            "title": "Login",
+            "welcome": "Welcome back!",
+            "subtitle": "Sign in to your account",
+            "tagline_1": "Welcome back",
+            "tagline_2": "to TAXA",
+            "tagline_description": "Sign in and continue tracking income and expenses. Your accounting is under control.",
+            "email": "Email",
+            "password": "Password",
+            "button": "Sign In",
+            "button_loading": "Signing in...",
+            "no_account": "Don't have an account?",
+            "register_here": "Register here",
+            "register_link": "Sign up",
+            "success_registered": "Registration successful! You can now sign in.",
+            "error_invalid": "Invalid email or password",
+            "error_connection": "Server connection error",
             "placeholder_email": "your@email.com",
             "placeholder_password": "••••••••"
         },
         "register": {
-            "title": "Registrácia",
-            "create_account": "Vytvoriť účet",
-            "subtitle": "Začnite používať TAXA zadarmo",
-            "tagline_1": "Bez stresu",
-            "tagline_2": "z papierov a termínov",
-            "tagline_description": "Digitálny sprievodca pre slovenských živnostníkov. Evidencia príjmov a výdavkov automaticky, daňové priznanie na jeden klik.",
-            "name": "Meno a priezvisko",
-            "email": "E-mail",
-            "password": "Heslo",
-            "confirm_password": "Potvrďte heslo",
-            "button": "Vytvoriť účet",
-            "button_loading": "Registrácia...",
-            "have_account": "Už máte účet?",
-            "login_link": "Prihlásiť sa",
-            "error_password_mismatch": "Heslá sa nezhodujú",
-            "error_registration": "Chyba registrácie",
-            "error_connection": "Chyba pripojenia k serveru",
-            "placeholder_name": "Vaše meno",
+            "title": "Register",
+            "create_account": "Create Account",
+            "subtitle": "Start using TAXA for free",
+            "tagline_1": "Start your journey",
+            "tagline_2": "with TAXA",
+            "tagline_description": "Create an account and start tracking your income and expenses. Simple accounting for entrepreneurs.",
+            "name": "Full Name",
+            "email": "Email",
+            "password": "Password",
+            "confirm_password": "Confirm Password",
+            "button": "Create Account",
+            "button_loading": "Creating...",
+            "have_account": "Already have an account?",
+            "login_link": "Sign in",
+            "error_password_mismatch": "Passwords do not match",
+            "error_registration": "Registration error",
+            "error_connection": "Server connection error",
+            "placeholder_name": "Your name",
             "placeholder_email": "your@email.com",
-            "placeholder_password": "••••••••",
-            "verify": "Overiť",
-            "verifying": "Overujem...",
-            "ico_verified": "IČO overené"
+            "placeholder_password": "••••••••"
         }
     },
     "dashboard": {
@@ -135,36 +132,33 @@
         "blog": "Blog"
     },
     "landing": {
-        "title": "Daňová platforma",
-        "subtitle": "novej generácie",
-        "description": "AI asistent pre daňové konzultácie, automatické spracovanie dokumentov a vytvorenie daňového priznania za minúty",
-        "benefit1": "Evidencia príjmov/výdavkov",
-        "benefit2": "Žiadne manuálne výpočty",
-        "benefit3": "Daňové priznanie na 1 klik",
+        "title": "Jednoduchý digitálny sprievodca",
+        "subtitle": "pre slovenských živnostníkov",
+        "description": "Zbavte sa stresu z papierov, výpočtov a termínov. Automatizujte evidenciu príjmov a výdavkov. Vytvorte daňové priznanie jedným klikom.",
         "cta": {
             "start": "Začať zadarmo",
             "login": "Už máte účet?"
         },
         "feature1": {
-            "title": "AI Konzultant",
-            "desc": "Získajte okamžité odpovede na daňové otázky od AI asistenta trénovaného na daňových zákonoch"
+            "title": "Automatická evidencia príjmov a výdavkov",
+            "desc": "Nahrajte faktúru a TAXA automaticky zaradí príjem alebo výdavok do správnej kategórie. Žiadne ručné výpočty."
         },
         "feature2": {
-            "title": "Spracovanie dokumentov",
-            "desc": "Nahrajte dokumenty a automaticky získajte analýzu, extrakciu dát a odporúčania pre daňovú evidenciu"
+            "title": "AI asistent pre každodenné účtovníctvo",
+            "desc": "Pýtajte sa na čokoľvek o daňách, odvodoch a termínoch. AI vyškolený na slovenskom daňovom systéme vám odpovie okamžite."
         },
         "feature3": {
-            "title": "Daňové priznania",
-            "desc": "Vytvorte daňové priznania automaticky na základe vašich dokumentov s garantovanou správnosťou"
+            "title": "Daňové priznanie na jeden klik",
+            "desc": "Všetky príjmy a výdavky máte automaticky pripravené. Jedno kliknutie a vaše daňové priznanie je hotové."
         }
     },
     "common": {
-        "back": "Späť",
-        "back_home": "Späť na hlavnú stránku",
-        "last_updated": "Posledná aktualizácia",
-        "loading": "Načítavam...",
-        "error": "Chyba",
-        "success": "Úspech"
+        "back": "Back",
+        "back_home": "Back to home",
+        "last_updated": "Last updated",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success"
     },
     "onboarding": {
         "step1_title": "Nastavenie živnosti",
@@ -223,62 +217,62 @@
         "accept_cookies": "Prijať cookies"
     },
     "privacy": {
-        "back_home": "Späť na hlavnú stránku",
-        "title": "Zásady ochrany osobných údajov",
-        "last_updated": "Posledná aktualizácia",
+        "back_home": "Back to home",
+        "title": "Privacy Policy",
+        "last_updated": "Last updated",
         "section1": {
-            "title": "1. Úvod",
-            "content": "Spoločnosť TAXA Platform (\"my\", \"nás\", \"naša\") rešpektuje vaše súkromie a zaväzuje sa chrániť vaše osobné údaje. Tieto zásady ochrany osobných údajov vysvetľujú, ako zhromažďujeme, používame, zverejňujeme a chránime vaše informácie, keď používate našu webovú stránku a služby."
+            "title": "1. Introduction",
+            "content": "TAXA Platform (\"we\", \"us\", \"our\") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, disclose and protect your information when you use our website and services."
         },
         "section2": {
-            "title": "2. Zhromažďované údaje",
-            "personal_title": "Osobné identifikačné údaje:",
-            "personal_1": "Meno a priezvisko",
-            "personal_2": "E-mailová adresa",
-            "personal_3": "Telefónne číslo",
-            "personal_4": "Fakturačné údaje",
-            "usage_title": "Údaje o používaní:",
-            "usage_1": "IP adresa",
-            "usage_2": "Typ prehliadača",
-            "usage_3": "Stránky, ktoré navštívite",
-            "usage_4": "Čas a dátum návštevy"
+            "title": "2. Data We Collect",
+            "personal_title": "Personal identification data:",
+            "personal_1": "Name and surname",
+            "personal_2": "Email address",
+            "personal_3": "Phone number",
+            "personal_4": "Billing information",
+            "usage_title": "Usage data:",
+            "usage_1": "IP address",
+            "usage_2": "Browser type",
+            "usage_3": "Pages you visit",
+            "usage_4": "Time and date of visit"
         },
         "section3": {
-            "title": "3. Použitie údajov",
-            "intro": "Vaše údaje používame na:",
-            "item_1": "Poskytovanie a zlepšovanie našich služieb",
-            "item_2": "Spracovanie vašich daňových priznaní",
-            "item_3": "Komunikáciu s vami o vašom účte",
-            "item_4": "Zabezpečenie platformy",
-            "item_5": "Splnenie zákonných povinností"
+            "title": "3. Data Usage",
+            "intro": "We use your data to:",
+            "item_1": "Provide and improve our services",
+            "item_2": "Process your tax returns",
+            "item_3": "Communicate with you about your account",
+            "item_4": "Ensure platform security",
+            "item_5": "Fulfill legal obligations"
         },
         "section4": {
-            "title": "4. Zdieľanie údajov",
-            "intro": "Vaše osobné údaje nepredávame tretím stranám. Údaje môžeme zdieľať len v týchto prípadoch:",
-            "item_1": "S vaším výslovným súhlasom",
-            "item_2": "Na splnenie zákonných požiadaviek",
-            "item_3": "S dôveryhodnými poskytovateľmi služieb (napr. hosting, platobné brány)"
+            "title": "4. Data Sharing",
+            "intro": "We do not sell your personal data to third parties. We may share data only in these cases:",
+            "item_1": "With your explicit consent",
+            "item_2": "To fulfill legal requirements",
+            "item_3": "With trusted service providers (e.g. hosting, payment gateways)"
         },
         "section5": {
-            "title": "5. Bezpečnosť údajov",
-            "content": "Používame priemyselné štandardné bezpečnostné opatrenia na ochranu vašich údajov, vrátane šifrovania, bezpečného uloženia a pravidelných bezpečnostných auditov."
+            "title": "5. Data Security",
+            "content": "We use industry-standard security measures to protect your data, including encryption, secure storage and regular security audits."
         },
         "section6": {
-            "title": "6. Vaše práva",
-            "intro": "Máte právo:",
-            "right_1": "Pristupovať k svojim osobným údajom",
-            "right_2": "Opraviť nesprávne údaje",
-            "right_3": "Vymazať svoje údaje",
-            "right_4": "Obmedziť spracovanie údajov",
-            "right_5": "Prenosnosť údajov",
-            "right_6": "Namietať voči spracovaniu"
+            "title": "6. Your Rights",
+            "intro": "You have the right to:",
+            "right_1": "Access your personal data",
+            "right_2": "Correct incorrect data",
+            "right_3": "Delete your data",
+            "right_4": "Restrict data processing",
+            "right_5": "Data portability",
+            "right_6": "Object to processing"
         },
         "section7": {
-            "title": "7. Kontakt",
-            "intro": "Ak máte akékoľvek otázky týkajúce sa týchto zásad ochrany osobných údajov, kontaktujte nás na:",
-            "email_label": "E-mail:",
-            "address_label": "Adresa:",
-            "address": "Bratislava, Slovensko"
+            "title": "7. Contact",
+            "intro": "If you have any questions regarding this privacy policy, contact us at:",
+            "email_label": "Email:",
+            "address_label": "Address:",
+            "address": "Bratislava, Slovakia"
         }
     },
     "terms": {
@@ -539,9 +533,9 @@
         "security_measures": "Bezpečnostné opatrenia"
     },
     "documents": {
-        "loading": "Načítavam doklady...",
-        "no_documents": "Zatiaľ žiadne doklady",
-        "upload_first": "Nahrajte svoj prvý doklad a začnite evidovať príjmy a výdavky",
-        "upload_button": "Nahrať doklad"
+        "loading": "Loading documents...",
+        "no_documents": "No documents yet",
+        "upload_first": "Upload your first document and start tracking income and expenses",
+        "upload_button": "Upload Document"
     }
 }

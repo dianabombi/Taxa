@@ -135,27 +135,24 @@
         "blog": "Blog"
     },
     "landing": {
-        "title": "Daňová platforma",
-        "subtitle": "novej generácie",
-        "description": "AI asistent pre daňové konzultácie, automatické spracovanie dokumentov a vytvorenie daňového priznania za minúty",
-        "benefit1": "Evidencia príjmov/výdavkov",
-        "benefit2": "Žiadne manuálne výpočty",
-        "benefit3": "Daňové priznanie na 1 klik",
+        "title": "Jednoduchý digitálny sprievodca",
+        "subtitle": "pre slovenských živnostníkov",
+        "description": "Zbavte sa stresu z papierov, výpočtov a termínov. Automatizujte evidenciu príjmov a výdavkov. Vytvorte daňové priznanie jedným klikom.",
         "cta": {
             "start": "Začať zadarmo",
             "login": "Už máte účet?"
         },
         "feature1": {
-            "title": "AI Konzultant",
-            "desc": "Získajte okamžité odpovede na daňové otázky od AI asistenta trénovaného na daňových zákonoch"
+            "title": "Automatická evidencia príjmov a výdavkov",
+            "desc": "Nahrajte faktúru a TAXA automaticky zaradí príjem alebo výdavok do správnej kategórie. Žiadne ručné výpočty."
         },
         "feature2": {
-            "title": "Spracovanie dokumentov",
-            "desc": "Nahrajte dokumenty a automaticky získajte analýzu, extrakciu dát a odporúčania pre daňovú evidenciu"
+            "title": "AI asistent pre každodenné účtovníctvo",
+            "desc": "Pýtajte sa na čokoľvek o daňách, odvodoch a termínoch. AI vyškolený na slovenskom daňovom systéme vám odpovie okamžite."
         },
         "feature3": {
-            "title": "Daňové priznania",
-            "desc": "Vytvorte daňové priznania automaticky na základe vašich dokumentov s garantovanou správnosťou"
+            "title": "Daňové priznanie na jeden klik",
+            "desc": "Všetky príjmy a výdavky máte automaticky pripravené. Jedno kliknutie a vaše daňové priznanie je hotové."
         }
     },
     "common": {

@@ -11,6 +11,9 @@
             "title": "Login",
             "welcome": "Welcome back!",
             "subtitle": "Sign in to your account",
+            "tagline_1": "Welcome back",
+            "tagline_2": "to TAXA",
+            "tagline_description": "Sign in and continue tracking income and expenses. Your accounting is under control.",
             "email": "Email",
             "password": "Password",
             "button": "Sign In",
@@ -28,6 +31,9 @@
             "title": "Register",
             "create_account": "Create Account",
             "subtitle": "Start using TAXA for free",
+            "tagline_1": "Start your journey",
+            "tagline_2": "with TAXA",
+            "tagline_description": "Create an account and start tracking your income and expenses. Simple accounting for entrepreneurs.",
             "name": "Full Name",
             "email": "Email",
             "password": "Password",
@@ -144,10 +150,15 @@
         "feature3": {
             "title": "Tax Returns",
             "desc": "Create tax returns automatically based on your documents with guaranteed compliance"
-        }
+        },
+        "benefit1": "Income/expense tracking",
+        "benefit2": "No manual calculations",
+        "benefit3": "Tax return in 1 click"
     },
     "common": {
         "back": "Back",
+        "back_home": "Back to home",
+        "last_updated": "Last updated",
         "loading": "Loading...",
         "error": "Error",
         "success": "Success"
@@ -161,36 +172,20 @@
         "step3_description": "Your dashboard is ready. You can now start tracking income and expenses.",
         "phone": "Phone Number",
         "optional": "optional",
-        "business_type": "Expense Accounting Type",
-        "flat_rate": "Flat Rate Expenses",
-        "flat_rate_desc": "Expenses calculated as percentage of income (60% or 40%). Simpler, less paperwork.",
-        "actual_expenses": "Actual Expenses",
-        "actual_expenses_desc": "Track every expense separately with receipts. More accurate, more administration.",
-        "vat_status": "Are you VAT registered?",
-        "vat_non_payer": "Not VAT registered",
-        "vat_non_payer_desc": "Turnover up to €49,790. No monthly VAT returns required.",
-        "vat_payer": "VAT registered",
-        "vat_payer_desc": "Turnover over €49,790. Monthly VAT returns required.",
-        "next_step": "Continue",
-        "back": "Back",
-        "saving": "Saving...",
-        "upload_drag_drop": "Drag files here",
-        "upload_or": "or",
-        "upload_button": "Select Files",
-        "upload_file_types": "PDF, JPG, PNG – invoices, receipts (max 10MB)",
-        "selected_files": "Selected files ({{count}})",
-        "how_it_works": "How TAXA processes documents",
-        "how_it_works_1": "TAXA automatically recognizes document type (invoice, receipt, etc.)",
-        "how_it_works_2": "Extracts important data: amount, date, supplier, items",
-        "how_it_works_3": "Categorizes as income or expense automatically",
-        "skip_for_now": "Skip for now",
+        "company_name": "Company Name",
+        "ico": "Company ID",
+        "business_type": "Business Type",
+        "select_type": "Select type",
+        "freelancer": "Freelancer",
+        "small_business": "Small Business",
+        "corporation": "Corporation",
+        "next": "Next",
+        "previous": "Back",
+        "skip": "Skip",
+        "finish": "Finish",
+        "upload_document": "Upload Document",
         "uploading": "Uploading...",
-        "your_setup": "Your Setup",
-        "documents_uploaded": "Documents Uploaded",
-        "next_steps": "What's Next?",
-        "next_steps_1": "Add income and expenses via dashboard",
-        "next_steps_2": "Use AI assistant for accounting questions",
-        "next_steps_3": "Create tax returns with one click at year end",
+        "success": "Success!",
         "go_to_dashboard": "Go to Dashboard",
         "loading": "Loading...",
         "error_required_fields": "Please fill in all required fields",
@@ -207,5 +202,327 @@
         "cookies": "Cookies",
         "accept": "Accept",
         "accept_cookies": "Accept Cookies"
+    },
+    "privacy": {
+        "back_home": "Back to home",
+        "title": "Privacy Policy",
+        "last_updated": "Last updated",
+        "section1": {
+            "title": "1. Introduction",
+            "content": "TAXA Platform (\"we\", \"us\", \"our\") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, disclose and protect your information when you use our website and services."
+        },
+        "section2": {
+            "title": "2. Data We Collect",
+            "personal_title": "Personal identification data:",
+            "personal_1": "Name and surname",
+            "personal_2": "Email address",
+            "personal_3": "Phone number",
+            "personal_4": "Billing information",
+            "usage_title": "Usage data:",
+            "usage_1": "IP address",
+            "usage_2": "Browser type",
+            "usage_3": "Pages you visit",
+            "usage_4": "Time and date of visit"
+        },
+        "section3": {
+            "title": "3. Data Usage",
+            "intro": "We use your data to:",
+            "item_1": "Provide and improve our services",
+            "item_2": "Process your tax returns",
+            "item_3": "Communicate with you about your account",
+            "item_4": "Ensure platform security",
+            "item_5": "Fulfill legal obligations"
+        },
+        "section4": {
+            "title": "4. Data Sharing",
+            "intro": "We do not sell your personal data to third parties. We may share data only in these cases:",
+            "item_1": "With your explicit consent",
+            "item_2": "To fulfill legal requirements",
+            "item_3": "With trusted service providers (e.g. hosting, payment gateways)"
+        },
+        "section5": {
+            "title": "5. Data Security",
+            "content": "We use industry-standard security measures to protect your data, including encryption, secure storage and regular security audits."
+        },
+        "section6": {
+            "title": "6. Your Rights",
+            "intro": "You have the right to:",
+            "right_1": "Access your personal data",
+            "right_2": "Correct incorrect data",
+            "right_3": "Delete your data",
+            "right_4": "Restrict data processing",
+            "right_5": "Data portability",
+            "right_6": "Object to processing"
+        },
+        "section7": {
+            "title": "7. Contact",
+            "intro": "If you have any questions regarding this privacy policy, contact us at:",
+            "email_label": "Email:",
+            "address_label": "Address:",
+            "address": "Bratislava, Slovakia"
+        }
+    },
+    "terms": {
+        "title": "Terms of Service",
+        "section1": {
+            "title": "1. General Provisions",
+            "content": "These Terms of Service (hereinafter \"Terms\") govern the rights and obligations between TAXA Platform (hereinafter \"provider\") and service users (hereinafter \"user\"). By using our platform, you agree to these terms."
+        },
+        "section2": {
+            "title": "2. Definitions",
+            "platform_label": "Platform:",
+            "platform_desc": "TAXA web application available at taxa.sk",
+            "services_label": "Services:",
+            "services_desc": "Automatic income and expense tracking, AI assistance for daily accounting, tax return generation",
+            "account_label": "Account:",
+            "account_desc": "User account created during registration"
+        },
+        "section3": {
+            "title": "3. Registration and Account",
+            "item_1": "Registration is required to use the services",
+            "item_2": "You must provide truthful and current information during registration",
+            "item_3": "You are responsible for the security of your password",
+            "item_4": "One user can have only one active account",
+            "item_5": "The account is not transferable to another person"
+        },
+        "section4": {
+            "title": "4. Services Provided",
+            "intro": "The platform provides the following services:",
+            "service1_title": "Automatic income and expense tracking",
+            "service1_desc": "Upload an invoice or receipt and TAXA automatically recognizes whether it's income or expense and categorizes it correctly",
+            "service2_title": "AI assistant for daily accounting",
+            "service2_desc": "Don't know how to account for something? Ask the AI trained on the Slovak tax system and get an instant answer",
+            "service3_title": "Tax return with one click",
+            "service3_desc": "All your income and expenses are ready. Press the button and TAXA generates your complete tax return"
+        },
+        "section5": {
+            "title": "5. Fees and Payments",
+            "content": "Basic platform features are available for free. Advanced features are charged according to the current price list published on the website. All prices include VAT."
+        },
+        "section6": {
+            "title": "6. User Obligations",
+            "item_1": "Use services in accordance with the law",
+            "item_2": "Provide truthful and current information",
+            "item_3": "Do not use the platform for illegal purposes",
+            "item_4": "Do not abuse the AI consultant for spam or testing",
+            "item_5": "Do not disrupt platform functionality"
+        },
+        "section7": {
+            "title": "7. Limitation of Liability",
+            "content": "Services are provided \"as is\". The provider is not liable for damages arising from improper use of services or errors in generated tax returns. We recommend consulting results with a tax advisor."
+        },
+        "section8": {
+            "title": "8. Account Termination",
+            "content": "Users can request account deletion at any time. The provider reserves the right to block or delete an account in case of violation of these Terms."
+        },
+        "section9": {
+            "title": "9. Changes to Terms",
+            "content": "The provider reserves the right to change these Terms at any time. We will inform users about changes via email and on the website."
+        },
+        "section10": {
+            "title": "10. Final Provisions",
+            "content": "These Terms are governed by the laws of the Slovak Republic. Any disputes will be resolved by the competent courts of the Slovak Republic."
+        },
+        "section11": {
+            "title": "11. Contact",
+            "email_label": "Email:",
+            "phone_label": "Phone:",
+            "address_label": "Address:",
+            "address": "Bratislava, Slovakia"
+        }
+    },
+    "cookie_page": {
+        "title": "Cookie Policy",
+        "section1": {
+            "title": "1. What are Cookies?",
+            "content": "Cookies are small text files stored on your device (computer, tablet, smartphone) when you visit websites. They help us ensure proper website functionality, improve user experience and analyze traffic."
+        },
+        "section2": {
+            "title": "2. Types of Cookies We Use",
+            "purpose_label": "Purpose:",
+            "validity_label": "Validity:",
+            "type1_title": "Essential Cookies",
+            "type1_desc": "These cookies are necessary for the website to function properly. Without them, the site would not work correctly.",
+            "type1_purpose": "Authentication, security, language settings",
+            "type1_validity": "Session / 1 year",
+            "type2_title": "Analytics Cookies",
+            "type2_desc": "Help us understand how users interact with our site. We collect anonymous statistics about traffic.",
+            "type2_purpose": "Google Analytics, traffic analysis",
+            "type2_validity": "2 years",
+            "type3_title": "Functional Cookies",
+            "type3_desc": "Allow the site to remember your preferences and settings for a better user experience.",
+            "type3_purpose": "Language preferences, display settings",
+            "type3_validity": "1 year",
+            "type4_title": "Marketing Cookies",
+            "type4_desc": "Used to display relevant ads and measure the effectiveness of marketing campaigns.",
+            "type4_purpose": "Targeted advertising, remarketing",
+            "type4_validity": "90 days"
+        },
+        "section3": {
+            "title": "3. Third-Party Cookies",
+            "intro": "Our site may use cookies from the following providers:",
+            "provider1": "Google Analytics:",
+            "provider1_desc": "Traffic analysis",
+            "provider2": "Google Ads:",
+            "provider2_desc": "Marketing campaigns",
+            "provider3": "Facebook Pixel:",
+            "provider3_desc": "Social media and remarketing"
+        },
+        "section4": {
+            "title": "4. Cookie Management",
+            "intro": "You can change cookie settings or reject them at any time:",
+            "browser_title": "In browser settings:",
+            "chrome": "Settings → Privacy and security → Cookies",
+            "firefox": "Options → Privacy and security → Cookies",
+            "safari": "Preferences → Privacy → Cookies",
+            "edge": "Settings → Cookies and site permissions",
+            "site_title": "On our site:",
+            "site_desc": "You can adjust your preferences in account settings."
+        },
+        "section5": {
+            "title": "5. Consequences of Rejecting Cookies",
+            "content": "If you reject essential cookies, some site features will not work properly. You will not be able to log in to your account and use the full range of TAXA platform services."
+        },
+        "section6": {
+            "title": "6. Policy Updates",
+            "content": "We may occasionally update this Cookie Policy. We will inform you of significant changes through a notice on the site or by email."
+        },
+        "section7": {
+            "title": "7. Contact",
+            "intro": "If you have questions about cookie usage, contact us:",
+            "email_label": "Email:",
+            "phone_label": "Phone:"
+        }
+    },
+    "gdpr": {
+        "title": "GDPR - Personal Data Protection",
+        "intro": {
+            "title": "What is GDPR?",
+            "content": "GDPR (General Data Protection Regulation) is European Union Regulation No. 2016/679 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data. The TAXA platform fully complies with GDPR requirements."
+        },
+        "rights": {
+            "title": "Your Rights Under GDPR",
+            "right1_title": "Right of Access",
+            "right1_desc": "You have the right to know what personal data we process about you and request a copy.",
+            "right2_title": "Right to Rectification",
+            "right2_desc": "You can request correction of incorrect or incomplete personal data.",
+            "right3_title": "Right to Erasure ('Right to be Forgotten')",
+            "right3_desc": "You can request deletion of your personal data under certain conditions.",
+            "right4_title": "Right to Restriction of Processing",
+            "right4_desc": "In certain cases, you can request restriction of processing your data.",
+            "right5_title": "Right to Data Portability",
+            "right5_desc": "You have the right to receive your personal data in a structured, commonly used format.",
+            "right6_title": "Right to Object",
+            "right6_desc": "You can object to the processing of your personal data for marketing purposes.",
+            "right7_title": "Right to Lodge a Complaint",
+            "right7_desc": "You have the right to lodge a complaint with the Personal Data Protection Office of the Slovak Republic."
+        },
+        "exercise": {
+            "title": "How to Exercise Your Rights",
+            "intro": "To exercise your rights, you can contact us in the following ways:",
+            "email_label": "Email:",
+            "address_label": "Postal address:",
+            "address": "TAXA Platform, Bratislava, Slovakia",
+            "phone_label": "Phone:",
+            "response_time": "We will respond within 30 days of receiving your request. In complex cases, we may extend this period by an additional 60 days, which we will inform you about."
+        },
+        "legal_basis": {
+            "title": "Legal Basis for Data Processing",
+            "basis1_title": "Consent",
+            "basis1_desc": "For marketing purposes and analytics cookies, we require your explicit consent.",
+            "basis2_title": "Contract Performance",
+            "basis2_desc": "We process data necessary to provide our services (tax returns, documents).",
+            "basis3_title": "Legitimate Interest",
+            "basis3_desc": "We process data to secure the platform and prevent fraud.",
+            "basis4_title": "Legal Obligation",
+            "basis4_desc": "We retain data necessary to fulfill tax and accounting legal obligations."
+        },
+        "retention": {
+            "title": "Data Retention Period",
+            "item1_label": "Accounting documents:",
+            "item1_period": "10 years (legal obligation)",
+            "item2_label": "Tax returns:",
+            "item2_period": "10 years (legal obligation)",
+            "item3_label": "Chat history:",
+            "item3_period": "2 years or until account deletion",
+            "item4_label": "User profile:",
+            "item4_period": "Until account deletion",
+            "item5_label": "Marketing consent:",
+            "item5_period": "Until consent withdrawal"
+        },
+        "security": {
+            "title": "Data Security",
+            "intro": "We have implemented technical and organizational measures to protect your personal data:",
+            "measure1": "SSL/TLS encryption",
+            "measure2": "Firewall protection",
+            "measure3": "Regular backups",
+            "measure4": "Database encryption",
+            "measure5": "Access control",
+            "measure6": "Security audits"
+        },
+        "dpo": {
+            "title": "DPO Contact",
+            "intro": "If you have any questions regarding personal data protection, contact our Data Protection Officer (DPO):",
+            "email_label": "Email:",
+            "phone_label": "Phone:",
+            "address_label": "Address:",
+            "address": "TAXA Platform, Bratislava, Slovakia"
+        },
+        "authority": {
+            "title": "Personal Data Protection Office of the Slovak Republic",
+            "intro": "You have the right to lodge a complaint with the supervisory authority:",
+            "name": "Personal Data Protection Office of the Slovak Republic",
+            "address": "Hraničná 12, 820 07 Bratislava 27",
+            "phone": "Tel: +421 2 3231 3214",
+            "email": "Email: statny.dozor@pdp.gov.sk",
+            "web": "Web: www.dataprotection.gov.sk"
+        }
+    },
+    "settings": {
+        "title": "Settings & Privacy",
+        "subtitle": "Manage your data and privacy in compliance with GDPR",
+        "gdpr_compliance": "GDPR Compliance",
+        "data_location": "Data Location",
+        "encryption": "Encryption",
+        "your_rights": "Your GDPR Rights:",
+        "right_access": "Access to data (export below)",
+        "right_delete": "Right to erasure (account deletion)",
+        "right_portability": "Data portability (JSON format)",
+        "right_rectification": "Right to rectification (profile settings)",
+        "export_title": "Export Your Data",
+        "export_description": "GDPR Article 15: Right of access to personal data. Download all your data in machine-readable format (JSON).",
+        "download_data": "Download My Data (JSON)",
+        "exporting": "Exporting...",
+        "export_includes": "Export includes: profile, documents, chat history, statistics",
+        "export_success": "Your data has been successfully exported!",
+        "export_error": "Error exporting data",
+        "connection_error": "Connection error",
+        "delete_account_title": "Delete Account",
+        "delete_description": "GDPR Article 17: Right to erasure ('right to be forgotten'). Permanently delete your account and all related data.",
+        "warning": "Warning:",
+        "warning_irreversible": "This action is IRREVERSIBLE",
+        "warning_documents": "All documents will be permanently deleted",
+        "warning_chat": "Chat history will be removed",
+        "warning_profile": "Profile and all data will be deleted",
+        "warning_no_recovery": "Data cannot be recovered",
+        "want_delete": "I want to delete my account",
+        "confirm_delete": "Are you sure? This action is irreversible!",
+        "yes_delete": "Yes, delete account",
+        "deleting": "Deleting...",
+        "cancel": "Cancel",
+        "delete_success": "Account successfully deleted.",
+        "deleted_data": "Deleted data",
+        "profile": "Profile",
+        "documents": "Documents",
+        "messages": "Messages",
+        "all_data_removed": "All your data has been permanently removed from TAXA systems.",
+        "delete_error": "Error deleting account",
+        "security_measures": "Security Measures"
+    },
+    "documents": {
+        "loading": "Loading documents...",
+        "no_documents": "No documents yet",
+        "upload_first": "Upload your first document and start tracking income and expenses",
+        "upload_button": "Upload Document"
     }
 }
