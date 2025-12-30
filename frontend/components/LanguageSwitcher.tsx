@@ -14,6 +14,7 @@ export default function LanguageSwitcher() {
         { code: 'en', label: 'English', flag: '🇬🇧' },
         { code: 'uk', label: 'Українська', flag: '🇺🇦' },
         { code: 'ru', label: 'Русский', flag: '🇷🇺' },
+        { code: 'hu', label: 'Magyar', flag: '🇭🇺' },
     ] as const;
 
     useEffect(() => {

@@ -1,0 +1,528 @@
+{
+    "menu": {
+        "dashboard": "Irányítópult",
+        "documents": "Dokumentumok",
+        "ai_consultant": "AI Tanácsadó",
+        "settings": "Beállítások",
+        "logout": "Kijelentkezés"
+    },
+    "auth": {
+        "login": {
+            "title": "Bejelentkezés",
+            "welcome": "Üdvözöljük újra!",
+            "subtitle": "Jelentkezzen be fiókjába",
+            "tagline_1": "Üdvözöljük újra",
+            "tagline_2": "a TAXA-ban",
+            "tagline_description": "Jelentkezzen be és folytassa a bevételek és kiadások nyomon követését. A könyvelése ellenőrzés alatt van.",
+            "email": "E-mail",
+            "password": "Jelszó",
+            "button": "Bejelentkezés",
+            "button_loading": "Bejelentkezés...",
+            "no_account": "Nincs még fiókja?",
+            "register_here": "Regisztráljon itt",
+            "register_link": "Regisztráció",
+            "success_registered": "Sikeres regisztráció! Most már bejelentkezhet.",
+            "error_invalid": "Érvénytelen e-mail vagy jelszó",
+            "error_connection": "Szerver kapcsolati hiba",
+            "placeholder_email": "az@email.hu",
+            "placeholder_password": "••••••••"
+        },
+        "register": {
+            "title": "Regisztráció",
+            "create_account": "Fiók létrehozása",
+            "subtitle": "Kezdje el használni a TAXA-t ingyenesen",
+            "tagline_1": "Kezdje el az útját",
+            "tagline_2": "a TAXA-val",
+            "tagline_description": "Hozzon létre egy fiókot és kezdje el nyomon követni bevételeit és kiadásait. Egyszerű könyvelés vállalkozóknak.",
+            "name": "Teljes név",
+            "email": "E-mail",
+            "password": "Jelszó",
+            "confirm_password": "Jelszó megerősítése",
+            "button": "Fiók létrehozása",
+            "button_loading": "Létrehozás...",
+            "have_account": "Már van fiókja?",
+            "login_link": "Bejelentkezés",
+            "error_password_mismatch": "A jelszavak nem egyeznek",
+            "error_registration": "Regisztrációs hiba",
+            "error_connection": "Szerver kapcsolati hiba",
+            "placeholder_name": "Az Ön neve",
+            "placeholder_email": "az@email.hu",
+            "placeholder_password": "••••••••"
+        }
+    },
+    "dashboard": {
+        "welcome": "Üdvözöljük újra, {{name}}! 👋",
+        "subtitle": "Mit szeretne ma csinálni?",
+        "no_documents": "Még nem töltött fel dokumentumokat.",
+        "upload_now": "Feltöltés most",
+        "logout": "Kijelentkezés",
+        "nav": {
+            "dashboard": "Irányítópult",
+            "upload": "Feltöltés",
+            "chat": "AI Tanácsadó"
+        },
+        "upload_card": {
+            "title": "Dokumentum feltöltése",
+            "description": "Töltsön fel számlákat, szerződéseket vagy más adódokumentumokat automatikus feldolgozásra"
+        },
+        "declaration_card": {
+            "title": "Adóbevallás készítése",
+            "description": "Automatikusan generáljon adóbevallást a dokumentumai alapján"
+        },
+        "chat_card": {
+            "title": "AI Tanácsadó",
+            "description": "Tegyen fel adókérdéseket az AI asszisztensnek és kapjon azonnali válaszokat"
+        },
+        "documents_card": {
+            "title": "Dokumentumaim",
+            "count": "{{count}} feltöltött dokumentum",
+            "no_documents": "Még nincsenek dokumentumok"
+        },
+        "stats": {
+            "documents_month": "Dokumentumok ebben a hónapban",
+            "ai_consultations": "AI konzultációk",
+            "tax_declarations": "Adóbevallások"
+        },
+        "back_to_dashboard": "Vissza az irányítópulthoz"
+    },
+    "upload": {
+        "title": "Dokumentumok feltöltése",
+        "description": "Töltsön fel számlákat, szerződéseket vagy más adódokumentumokat",
+        "drag_drop": "Húzza ide a fájlokat",
+        "or": "vagy",
+        "button": "Fájlok kiválasztása",
+        "uploading": "Feltöltés...",
+        "upload_button": "Dokumentumok feltöltése",
+        "success": "Fájl sikeresen feltöltve!",
+        "selected_files": "Kiválasztott fájlok ({{count}})",
+        "file_types": "PDF, DOC, DOCX, JPG, PNG (max 10MB)"
+    },
+    "ai": {
+        "title": "AI Adótanácsadó",
+        "placeholder": "Írja be kérdését...",
+        "send": "Küldés",
+        "thinking": "Gondolkodás...",
+        "error": "Hiba történt az AI-val való kommunikáció során.",
+        "welcome": "Helló! Én vagyok az AI adótanácsadója. Hogyan segíthetek?",
+        "error_retry": "Sajnálom, hiba történt. Kérem, próbálja újra.",
+        "error_connection": "Sajnálom, nem tudok csatlakozni a szerverhez.",
+        "suggestions": {
+            "1": "Hogyan nyújtsam be az adóbevallásomat?",
+            "2": "Mik az adókedvezmények?",
+            "3": "Adóbevallási határidők"
+        }
+    },
+    "footer": {
+        "company_description": "Egyszerű digitális útmutató szlovák vállalkozóknak. Bevételek és kiadások nyomon követése stressz nélkül.",
+        "quick_links": "Gyors linkek",
+        "dashboard": "Irányítópult",
+        "upload_documents": "Dokumentumok feltöltése",
+        "ai_consultant": "AI Tanácsadó",
+        "tax_declaration": "Adóbevallás",
+        "legal": "Jogi",
+        "privacy_policy": "Adatvédelmi irányelvek",
+        "terms_of_service": "Felhasználási feltételek",
+        "cookie_policy": "Cookie szabályzat",
+        "gdpr": "GDPR",
+        "contact": "Kapcsolat",
+        "location": "Pozsony, Szlovákia",
+        "rights": "Minden jog fenntartva.",
+        "about_us": "Rólunk",
+        "support": "Támogatás",
+        "blog": "Blog"
+    },
+    "landing": {
+        "title": "Adóplatform",
+        "subtitle": "új generációs",
+        "description": "AI asszisztens adótanácsadáshoz, automatikus dokumentumfeldolgozás és adóbevallás készítése percek alatt",
+        "benefit1": "Bevételek/kiadások nyilvántartása",
+        "benefit2": "Nincs kézi számítás",
+        "benefit3": "Adóbevallás 1 kattintással",
+        "cta": {
+            "start": "Kezdés ingyen",
+            "login": "Már van fiókja?"
+        },
+        "feature1": {
+            "title": "AI Tanácsadó",
+            "desc": "Kapjon azonnali válaszokat adókérdésekre az adójogra képzett AI asszisztenstől"
+        },
+        "feature2": {
+            "title": "Dokumentumfeldolgozás",
+            "desc": "Töltsön fel dokumentumokat és automatikusan kapjon elemzést, adatkinyerést és adókönyvelési ajánlásokat"
+        },
+        "feature3": {
+            "title": "Adóbevallások",
+            "desc": "Készítsen adóbevallásokat automatikusan a dokumentumai alapján garantált megfelelőséggel"
+        }
+    },
+    "common": {
+        "back": "Vissza",
+        "back_home": "Vissza a főoldalra",
+        "last_updated": "Utolsó frissítés",
+        "loading": "Betöltés...",
+        "error": "Hiba",
+        "success": "Siker"
+    },
+    "onboarding": {
+        "step1_title": "Vállalkozás beállítása",
+        "step1_description": "Segítsen nekünk beállítani a TAXA-t az Ön vállalkozástípusához",
+        "step2_title": "Első dokumentum",
+        "step2_description": "Töltse fel első dokumentumát és nézze meg, hogyan nyeri ki automatikusan a TAXA az adatokat",
+        "step3_title": "Minden kész!",
+        "step3_description": "Az irányítópultja készen áll. Most már elkezdheti a bevételek és kiadások nyomon követését.",
+        "phone": "Telefonszám",
+        "optional": "opcionális",
+        "company_name": "Cégnév",
+        "ico": "Cégazonosító",
+        "business_type": "Vállalkozás típusa",
+        "select_type": "Válasszon típust",
+        "freelancer": "Szabadúszó",
+        "small_business": "Kisvállalkozás",
+        "corporation": "Társaság",
+        "next": "Következő",
+        "previous": "Vissza",
+        "skip": "Kihagyás",
+        "finish": "Befejezés",
+        "upload_document": "Dokumentum feltöltése",
+        "uploading": "Feltöltés...",
+        "success": "Siker!",
+        "go_to_dashboard": "Ugrás az irányítópulthoz",
+        "loading": "Betöltés...",
+        "error_required_fields": "Kérem, töltse ki az összes kötelező mezőt",
+        "error_update": "Hiba a profil frissítése során",
+        "error_connection": "Szerver kapcsolati hiba",
+        "error_upload": "Hiba a fájlok feltöltése során"
+    },
+    "cookies": {
+        "message": "Sütiket használunk a felhasználói élmény javítására.",
+        "message_short": "Sütiket használunk.",
+        "privacy_policy": "Adatvédelmi irányelvek",
+        "cookie_policy": "Cookie szabályzat",
+        "privacy": "Adatvédelem",
+        "cookies": "Sütik",
+        "accept": "Elfogadás",
+        "accept_cookies": "Sütik elfogadása"
+    },
+    "privacy": {
+        "back_home": "Vissza a főoldalra",
+        "title": "Adatvédelmi irányelvek",
+        "last_updated": "Utolsó frissítés",
+        "section1": {
+            "title": "1. Bevezetés",
+            "content": "A TAXA Platform (\"mi\", \"minket\", \"miénk\") tiszteletben tartja az Ön adatvédelmét és elkötelezett személyes adatainak védelme mellett. Ez az adatvédelmi irányelv elmagyarázza, hogyan gyűjtjük, használjuk, közöljük és védjük az Ön információit, amikor weboldalunkat és szolgáltatásainkat használja."
+        },
+        "section2": {
+            "title": "2. Általunk gyűjtött adatok",
+            "personal_title": "Személyes azonosító adatok:",
+            "personal_1": "Név és vezetéknév",
+            "personal_2": "E-mail cím",
+            "personal_3": "Telefonszám",
+            "personal_4": "Számlázási információk",
+            "usage_title": "Használati adatok:",
+            "usage_1": "IP cím",
+            "usage_2": "Böngésző típusa",
+            "usage_3": "Meglátogatott oldalak",
+            "usage_4": "Látogatás ideje és dátuma"
+        },
+        "section3": {
+            "title": "3. Adatok használata",
+            "intro": "Az Ön adatait a következőkre használjuk:",
+            "item_1": "Szolgáltatásaink nyújtása és fejlesztése",
+            "item_2": "Adóbevallások feldolgozása",
+            "item_3": "Kommunikáció Önnel a fiókjával kapcsolatban",
+            "item_4": "Platform biztonságának biztosítása",
+            "item_5": "Jogi kötelezettségek teljesítése"
+        },
+        "section4": {
+            "title": "4. Adatmegosztás",
+            "intro": "Nem adjuk el személyes adatait harmadik feleknek. Csak ezekben az esetekben oszthatjuk meg az adatokat:",
+            "item_1": "Az Ön kifejezett hozzájárulásával",
+            "item_2": "Jogi követelmények teljesítéséhez",
+            "item_3": "Megbízható szolgáltatókkal (pl. tárhelyszolgáltatás, fizetési átjárók)"
+        },
+        "section5": {
+            "title": "5. Adatbiztonság",
+            "content": "Iparági szabványnak megfelelő biztonsági intézkedéseket használunk adatai védelmére, beleértve a titkosítást, biztonságos tárolást és rendszeres biztonsági auditokat."
+        },
+        "section6": {
+            "title": "6. Az Ön jogai",
+            "intro": "Önnek joga van:",
+            "right_1": "Hozzáférni személyes adataihoz",
+            "right_2": "Helytelen adatok javítása",
+            "right_3": "Adatai törlése",
+            "right_4": "Adatfeldolgozás korlátozása",
+            "right_5": "Adathordozhatóság",
+            "right_6": "Tiltakozás a feldolgozás ellen"
+        },
+        "section7": {
+            "title": "7. Kapcsolat",
+            "intro": "Ha kérdése van ezzel az adatvédelmi irányelvvel kapcsolatban, lépjen kapcsolatba velünk:",
+            "email_label": "E-mail:",
+            "address_label": "Cím:",
+            "address": "Pozsony, Szlovákia"
+        }
+    },
+    "terms": {
+        "title": "Felhasználási feltételek",
+        "section1": {
+            "title": "1. Általános rendelkezések",
+            "content": "Ezek a Felhasználási feltételek (a továbbiakban \"Feltételek\") szabályozzák a jogokat és kötelezettségeket a TAXA Platform (a továbbiakban \"szolgáltató\") és a szolgáltatás felhasználói (a továbbiakban \"felhasználó\") között. Platformunk használatával elfogadja ezeket a feltételeket."
+        },
+        "section2": {
+            "title": "2. Meghatározások",
+            "platform_label": "Platform:",
+            "platform_desc": "TAXA webalkalmazás, elérhető a taxa.sk címen",
+            "services_label": "Szolgáltatások:",
+            "services_desc": "Automatikus bevétel- és kiadáskövetés, AI segítség a napi könyveléshez, adóbevallás generálás",
+            "account_label": "Fiók:",
+            "account_desc": "Regisztráció során létrehozott felhasználói fiók"
+        },
+        "section3": {
+            "title": "3. Regisztráció és fiók",
+            "item_1": "A szolgáltatások használatához regisztráció szükséges",
+            "item_2": "Regisztráció során valós és aktuális információkat kell megadnia",
+            "item_3": "Ön felelős jelszava biztonságáért",
+            "item_4": "Egy felhasználó csak egy aktív fiókkal rendelkezhet",
+            "item_5": "A fiók nem ruházható át másik személyre"
+        },
+        "section4": {
+            "title": "4. Nyújtott szolgáltatások",
+            "intro": "A platform a következő szolgáltatásokat nyújtja:",
+            "service1_title": "Automatikus bevétel- és kiadáskövetés",
+            "service1_desc": "Töltsön fel számlát vagy nyugtát, és a TAXA automatikusan felismeri, hogy bevétel vagy kiadás-e, és megfelelően kategorizálja",
+            "service2_title": "AI asszisztens a napi könyveléshez",
+            "service2_desc": "Nem tudja, hogyan könyveljen valamit? Kérdezze meg a szlovák adórendszerre képzett AI-t és kapjon azonnali választ",
+            "service3_title": "Adóbevallás egy kattintással",
+            "service3_desc": "Minden bevétele és kiadása készen áll. Nyomja meg a gombot és a TAXA elkészíti a teljes adóbevallását"
+        },
+        "section5": {
+            "title": "5. Díjak és fizetések",
+            "content": "A platform alapfunkciói ingyenesen elérhetők. A haladó funkciók díjkötelesek a weboldalon közzétett aktuális árlista szerint. Minden ár tartalmazza az ÁFÁ-t."
+        },
+        "section6": {
+            "title": "6. Felhasználói kötelezettségek",
+            "item_1": "A szolgáltatások törvényes használata",
+            "item_2": "Valós és aktuális információk megadása",
+            "item_3": "A platform illegális célokra való használatának mellőzése",
+            "item_4": "Az AI tanácsadó spam vagy tesztelés céljából való visszaélésének mellőzése",
+            "item_5": "A platform funkcionalitásának megzavarásának mellőzése"
+        },
+        "section7": {
+            "title": "7. Felelősség korlátozása",
+            "content": "A szolgáltatások \"ahogy van\" alapon kerülnek nyújtásra. A szolgáltató nem felelős a szolgáltatások helytelen használatából vagy a generált adóbevallások hibáiból eredő károkért. Javasoljuk, hogy konzultáljon adótanácsadóval az eredményekről."
+        },
+        "section8": {
+            "title": "8. Fiók megszüntetése",
+            "content": "A felhasználók bármikor kérhetik fiókjuk törlését. A szolgáltató fenntartja a jogot, hogy letiltsa vagy törölje a fiókot ezen Feltételek megsértése esetén."
+        },
+        "section9": {
+            "title": "9. Feltételek módosítása",
+            "content": "A szolgáltató fenntartja a jogot, hogy bármikor módosítsa ezeket a Feltételeket. A változásokról e-mailben és a weboldalon tájékoztatjuk a felhasználókat."
+        },
+        "section10": {
+            "title": "10. Záró rendelkezések",
+            "content": "Ezeket a Feltételeket a Szlovák Köztársaság törvényei szabályozzák. Bármilyen vita a Szlovák Köztársaság illetékes bíróságai előtt kerül rendezésre."
+        },
+        "section11": {
+            "title": "11. Kapcsolat",
+            "email_label": "E-mail:",
+            "phone_label": "Telefon:",
+            "address_label": "Cím:",
+            "address": "Pozsony, Szlovákia"
+        }
+    },
+    "cookie_page": {
+        "title": "Cookie szabályzat",
+        "section1": {
+            "title": "1. Mik azok a sütik?",
+            "content": "A sütik kis szöveges fájlok, amelyek az Ön eszközén (számítógép, tablet, okostelefon) tárolódnak, amikor weboldalakat látogat meg. Segítenek nekünk biztosítani a weboldal megfelelő működését, javítani a felhasználói élményt és elemezni a forgalmat."
+        },
+        "section2": {
+            "title": "2. Általunk használt sütik típusai",
+            "purpose_label": "Cél:",
+            "validity_label": "Érvényesség:",
+            "type1_title": "Alapvető sütik",
+            "type1_desc": "Ezek a sütik szükségesek a weboldal megfelelő működéséhez. Nélkülük az oldal nem működne megfelelően.",
+            "type1_purpose": "Hitelesítés, biztonság, nyelvi beállítások",
+            "type1_validity": "Munkamenet / 1 év",
+            "type2_title": "Elemző sütik",
+            "type2_desc": "Segítenek megérteni, hogyan lépnek kapcsolatba a felhasználók az oldalunkkal. Névtelen statisztikákat gyűjtünk a forgalomról.",
+            "type2_purpose": "Google Analytics, forgalomelemzés",
+            "type2_validity": "2 év",
+            "type3_title": "Funkcionális sütik",
+            "type3_desc": "Lehetővé teszik az oldal számára, hogy megjegyezze preferenciáit és beállításait a jobb felhasználói élmény érdekében.",
+            "type3_purpose": "Nyelvi preferenciák, megjelenítési beállítások",
+            "type3_validity": "1 év",
+            "type4_title": "Marketing sütik",
+            "type4_desc": "Releváns hirdetések megjelenítésére és a marketing kampányok hatékonyságának mérésére használják.",
+            "type4_purpose": "Célzott hirdetés, remarketing",
+            "type4_validity": "90 nap"
+        },
+        "section3": {
+            "title": "3. Harmadik fél sütik",
+            "intro": "Oldalunk a következő szolgáltatók sütiket használhat:",
+            "provider1": "Google Analytics:",
+            "provider1_desc": "Forgalomelemzés",
+            "provider2": "Google Ads:",
+            "provider2_desc": "Marketing kampányok",
+            "provider3": "Facebook Pixel:",
+            "provider3_desc": "Közösségi média és remarketing"
+        },
+        "section4": {
+            "title": "4. Sütik kezelése",
+            "intro": "Bármikor módosíthatja a süti beállításokat vagy elutasíthatja azokat:",
+            "browser_title": "Böngésző beállításokban:",
+            "chrome": "Beállítások → Adatvédelem és biztonság → Sütik",
+            "firefox": "Beállítások → Adatvédelem és biztonság → Sütik",
+            "safari": "Beállítások → Adatvédelem → Sütik",
+            "edge": "Beállítások → Sütik és webhely engedélyek",
+            "site_title": "Oldalunkon:",
+            "site_desc": "A fiókbeállításokban módosíthatja preferenciáit."
+        },
+        "section5": {
+            "title": "5. A sütik elutasításának következményei",
+            "content": "Ha elutasítja az alapvető sütiket, az oldal egyes funkciói nem fognak megfelelően működni. Nem fog tudni bejelentkezni fiókjába és nem tudja használni a TAXA platform szolgáltatásainak teljes körét."
+        },
+        "section6": {
+            "title": "6. Szabályzat frissítései",
+            "content": "Időnként frissíthetjük ezt a Cookie szabályzatot. A jelentős változásokról értesítést küldünk az oldalon vagy e-mailben."
+        },
+        "section7": {
+            "title": "7. Kapcsolat",
+            "intro": "Ha kérdése van a sütik használatával kapcsolatban, lépjen kapcsolatba velünk:",
+            "email_label": "E-mail:",
+            "phone_label": "Telefon:"
+        }
+    },
+    "gdpr": {
+        "title": "GDPR - Személyes adatok védelme",
+        "intro": {
+            "title": "Mi az a GDPR?",
+            "content": "A GDPR (Általános Adatvédelmi Rendelet) az Európai Unió 2016/679 rendelete a természetes személyek védelméről a személyes adatok kezelése tekintetében és az ilyen adatok szabad áramlásáról. A TAXA platform teljes mértékben megfelel a GDPR követelményeinek."
+        },
+        "rights": {
+            "title": "Az Ön jogai a GDPR szerint",
+            "right1_title": "Hozzáférési jog",
+            "right1_desc": "Önnek joga van tudni, milyen személyes adatokat kezelünk Önről és kérhet másolatot.",
+            "right2_title": "Helyesbítéshez való jog",
+            "right2_desc": "Kérheti a helytelen vagy hiányos személyes adatok javítását.",
+            "right3_title": "Törléshez való jog (\"elfeledtetéshez való jog\")",
+            "right3_desc": "Bizonyos feltételek mellett kérheti személyes adatai törlését.",
+            "right4_title": "Az adatkezelés korlátozásához való jog",
+            "right4_desc": "Bizonyos esetekben kérheti adatai kezelésének korlátozását.",
+            "right5_title": "Adathordozhatósághoz való jog",
+            "right5_desc": "Önnek joga van megkapni személyes adatait strukturált, általánosan használt formátumban.",
+            "right6_title": "Tiltakozáshoz való jog",
+            "right6_desc": "Tiltakozhat személyes adatai marketing célú kezelése ellen.",
+            "right7_title": "Panasz benyújtásához való jog",
+            "right7_desc": "Önnek joga van panaszt benyújtani a Szlovák Köztársaság Személyes Adatok Védelmi Hivatalához."
+        },
+        "exercise": {
+            "title": "Hogyan gyakorolhatja jogait",
+            "intro": "Jogai gyakorlásához a következő módokon léphet kapcsolatba velünk:",
+            "email_label": "E-mail:",
+            "address_label": "Postai cím:",
+            "address": "TAXA Platform, Pozsony, Szlovákia",
+            "phone_label": "Telefon:",
+            "response_time": "Kérése beérkezésétől számított 30 napon belül válaszolunk. Összetett esetekben ezt az időszakot további 60 nappal meghosszabbíthatjuk, amiről tájékoztatjuk Önt."
+        },
+        "legal_basis": {
+            "title": "Adatkezelés jogalapja",
+            "basis1_title": "Hozzájárulás",
+            "basis1_desc": "Marketing célokra és elemző sütikhez kifejezett hozzájárulását kérjük.",
+            "basis2_title": "Szerződés teljesítése",
+            "basis2_desc": "Szolgáltatásaink nyújtásához szükséges adatokat kezeljük (adóbevallások, dokumentumok).",
+            "basis3_title": "Jogos érdek",
+            "basis3_desc": "A platform biztosítása és a csalások megelőzése érdekében kezeljük az adatokat.",
+            "basis4_title": "Jogi kötelezettség",
+            "basis4_desc": "Az adó- és számviteli jogi kötelezettségek teljesítéséhez szükséges adatokat megőrizzük."
+        },
+        "retention": {
+            "title": "Adatmegőrzési időszak",
+            "item1_label": "Számviteli dokumentumok:",
+            "item1_period": "10 év (jogi kötelezettség)",
+            "item2_label": "Adóbevallások:",
+            "item2_period": "10 év (jogi kötelezettség)",
+            "item3_label": "Chat előzmények:",
+            "item3_period": "2 év vagy a fiók törléséig",
+            "item4_label": "Felhasználói profil:",
+            "item4_period": "A fiók törléséig",
+            "item5_label": "Marketing hozzájárulás:",
+            "item5_period": "A hozzájárulás visszavonásáig"
+        },
+        "security": {
+            "title": "Adatbiztonság",
+            "intro": "Technikai és szervezési intézkedéseket hajtottunk végre személyes adatai védelmére:",
+            "measure1": "SSL/TLS titkosítás",
+            "measure2": "Tűzfal védelem",
+            "measure3": "Rendszeres biztonsági mentések",
+            "measure4": "Adatbázis titkosítás",
+            "measure5": "Hozzáférés-ellenőrzés",
+            "measure6": "Biztonsági auditok"
+        },
+        "dpo": {
+            "title": "DPO kapcsolat",
+            "intro": "Ha kérdése van a személyes adatok védelmével kapcsolatban, lépjen kapcsolatba Adatvédelmi tisztviselőnkkel (DPO):",
+            "email_label": "E-mail:",
+            "phone_label": "Telefon:",
+            "address_label": "Cím:",
+            "address": "TAXA Platform, Pozsony, Szlovákia"
+        },
+        "authority": {
+            "title": "Szlovák Köztársaság Személyes Adatok Védelmi Hivatala",
+            "intro": "Önnek joga van panaszt benyújtani a felügyeleti hatósághoz:",
+            "name": "Szlovák Köztársaság Személyes Adatok Védelmi Hivatala",
+            "address": "Hraničná 12, 820 07 Pozsony 27",
+            "phone": "Tel: +421 2 3231 3214",
+            "email": "E-mail: statny.dozor@pdp.gov.sk",
+            "web": "Web: www.dataprotection.gov.sk"
+        }
+    },
+    "settings": {
+        "title": "Beállítások és adatvédelem",
+        "subtitle": "Kezelje adatait és adatvédelmét a GDPR-nak megfelelően",
+        "gdpr_compliance": "GDPR megfelelőség",
+        "data_location": "Adatok helye",
+        "encryption": "Titkosítás",
+        "your_rights": "Az Ön GDPR jogai:",
+        "right_access": "Hozzáférés az adatokhoz (export lent)",
+        "right_delete": "Törléshez való jog (fiók törlése)",
+        "right_portability": "Adathordozhatóság (JSON formátum)",
+        "right_rectification": "Helyesbítéshez való jog (profil beállítások)",
+        "export_title": "Adatok exportálása",
+        "export_description": "GDPR 15. cikk: Jog a személyes adatokhoz való hozzáféréshez. Töltse le minden adatát géppel olvasható formátumban (JSON).",
+        "download_data": "Adataim letöltése (JSON)",
+        "exporting": "Exportálás...",
+        "export_includes": "Az export tartalmazza: profil, dokumentumok, chat előzmények, statisztikák",
+        "export_success": "Adatai sikeresen exportálva!",
+        "export_error": "Hiba az adatok exportálása során",
+        "connection_error": "Kapcsolati hiba",
+        "delete_account_title": "Fiók törlése",
+        "delete_description": "GDPR 17. cikk: Törléshez való jog (\"elfeledtetéshez való jog\"). Véglegesen törölje fiókját és minden kapcsolódó adatot.",
+        "warning": "Figyelmeztetés:",
+        "warning_irreversible": "Ez a művelet VISSZAFORDÍTHATATLAN",
+        "warning_documents": "Minden dokumentum véglegesen törlésre kerül",
+        "warning_chat": "A chat előzmények eltávolításra kerülnek",
+        "warning_profile": "A profil és minden adat törlésre kerül",
+        "warning_no_recovery": "Az adatok nem állíthatók vissza",
+        "want_delete": "Törölni szeretném a fiókomat",
+        "confirm_delete": "Biztos benne? Ez a művelet visszafordíthatatlan!",
+        "yes_delete": "Igen, fiók törlése",
+        "deleting": "Törlés...",
+        "cancel": "Mégse",
+        "delete_success": "Fiók sikeresen törölve.",
+        "deleted_data": "Törölt adatok",
+        "profile": "Profil",
+        "documents": "Dokumentumok",
+        "messages": "Üzenetek",
+        "all_data_removed": "Minden adata véglegesen eltávolításra került a TAXA rendszereiből.",
+        "delete_error": "Hiba a fiók törlése során",
+        "security_measures": "Biztonsági intézkedések"
+    },
+    "documents": {
+        "loading": "Dokumentumok betöltése...",
+        "no_documents": "Még nincsenek dokumentumok",
+        "upload_first": "Töltse fel első dokumentumát és kezdje el a bevételek és kiadások nyomon követését",
+        "upload_button": "Dokumentum feltöltése"
+    }
+}
