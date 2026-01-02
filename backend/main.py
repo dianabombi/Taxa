@@ -541,7 +541,21 @@ def get_document(
     return document
 
 # Helper function for AI responses with Slovak Tax Knowledge Base
-def get_ai_response(message: str, docs_count: int) -> str:
+def check_missing_documents(db: Session, user_id: int) -> dict:
+    """Check what important documents are missing for tax return"""
+    documents = db.query(Document).filter(Document.user_id == user_id).all()
+    
+    doc_types = [doc.document_type.lower() if doc.document_type else "" for doc in documents]
+    
+    missing = {
+        "bank_statement": not any("bank" in dt or "výpis" in dt for dt in doc_types),
+        "health_insurance": not any("health" in dt or "zdravotná" in dt or "zdravotna" in dt for dt in doc_types),
+        "social_insurance": not any("social" in dt or "sociálna" in dt or "socialna" in dt for dt in doc_types)
+    }
+    
+    return missing
+
+def get_ai_response(message: str, docs_count: int, missing_docs: dict = None) -> str:
     """
     Generate intelligent tax consulting responses using Slovak Tax Knowledge Base
     Falls back to OpenAI if available, otherwise uses knowledge base directly
@@ -587,6 +601,28 @@ PRAVIDLÁ:
             # Add document count context if relevant
             if docs_count > 0 and any(word in message_lower for word in ['dokument', 'doklad', 'faktúr', 'príjem', 'výdavk']):
                 ai_response += f"\n\n✓ Momentálne máte evidovaných {docs_count} dokladov v systéme TAXA."
+            
+            # Request missing documents if discussing relevant topics
+            if missing_docs:
+                doc_requests = []
+                
+                # Check if discussing tax returns, income, or financial overview
+                if any(word in message_lower for word in ['daňové priznanie', 'danove priznanie', 'príjem', 'prijem', 'výdavk', 'vydavk', 'odvod', 'kalkuláci', 'kalkulaci']):
+                    if missing_docs.get("bank_statement"):
+                        doc_requests.append("📄 **Výpis z účtu** (bankový výpis za celý rok)")
+                
+                # Check if discussing insurance or social contributions
+                if any(word in message_lower for word in ['odvod', 'poisteni', 'poistné', 'poistne', 'zdravotná', 'zdravotna', 'sociálna', 'socialna']):
+                    if missing_docs.get("health_insurance"):
+                        doc_requests.append("🏥 **Potvrdenie od zdravotnej poisťovne** (o zaplatených odvodoch)")
+                    if missing_docs.get("social_insurance"):
+                        doc_requests.append("👥 **Potvrdenie od Sociálnej poisťovne** (o zaplatených odvodoch)")
+                
+                if doc_requests:
+                    ai_response += "\n\n" + "="*50 + "\n"
+                    ai_response += "📋 **PRE PRESNÝ VÝPOČET POTREBUJEM:**\n\n"
+                    ai_response += "\n".join(doc_requests)
+                    ai_response += "\n\nNahrajte tieto dokumenty do systému TAXA pre kompletný daňový výpočet."
             
             return ai_response
             
@@ -1068,7 +1104,7 @@ POZOR:
     
     else:
         # Default helpful response
-        return f"""Dobrý deň! Som váš AI daňový konzultant.
+        response = f"""Dobrý deň! Som váš AI daňový konzultant.
 
 Momentálny stav:
 • Evidované doklady: {docs_count}
@@ -1100,6 +1136,24 @@ Príklady otázok:
 "Aký je daňový bonus na deti?"
 
 Opýtajte sa ma na čokoľvek!"""
+        
+        # Add document requests if missing and relevant
+        if missing_docs:
+            doc_requests = []
+            if missing_docs.get("bank_statement"):
+                doc_requests.append("📄 **Výpis z účtu** (bankový výpis za celý rok)")
+            if missing_docs.get("health_insurance"):
+                doc_requests.append("🏥 **Potvrdenie od zdravotnej poisťovne** (o zaplatených odvodoch)")
+            if missing_docs.get("social_insurance"):
+                doc_requests.append("👥 **Potvrdenie od Sociálnej poisťovne** (o zaplatených odvodoch)")
+            
+            if doc_requests:
+                response += "\n\n" + "="*50 + "\n"
+                response += "📋 **PRE KOMPLETNÝ DAŇOVÝ VÝPOČET POTREBUJEM:**\n\n"
+                response += "\n".join(doc_requests)
+                response += "\n\nNahrajte tieto dokumenty do systému TAXA."
+        
+        return response
 
 # Chat endpoint
 @app.post("/api/chat", response_model=ChatResponse)
@@ -1121,32 +1175,15 @@ async def chat(
         Document.user_id == current_user.id
     ).count()
     
+    # Check for missing important documents
+    missing_docs = check_missing_documents(db, current_user.id)
+    
     # Get AI response using built-in knowledge base
     try:
-        # If OpenAI is configured, use it
-        if openai.api_key and openai.api_key != "":
-            recent_docs = db.query(Document).filter(
-                Document.user_id == current_user.id
-            ).order_by(Document.uploaded_at.desc()).limit(5).all()
-            
-            context = f"Používateľ má {docs_count} evidovaných dokladov.\n"
-            for doc in recent_docs:
-                if doc.extracted_data:
-                    context += f"- {doc.filename} ({doc.document_type}): {doc.extracted_data.get('total_amount', 'N/A')} EUR\n"
-            
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": f"Ste odborný daňový konzultant pre Slovensko. Odpovedajte na otázky o slovenskom daňovom systéme presne a profesionálne.\n\n{context}"},
-                    {"role": "user", "content": request.message}
-                ]
-            )
-            ai_response = response.choices[0].message.content
-        else:
-            # Use built-in knowledge base
-            ai_response = get_ai_response(request.message, docs_count)
+        # Use built-in knowledge base with document checking
+        ai_response = get_ai_response(request.message, docs_count, missing_docs)
     except Exception as e:
-        # Fallback to built-in responses
+        # Fallback to built-in responses without missing docs check
         ai_response = get_ai_response(request.message, docs_count)
     
     # Save AI response
