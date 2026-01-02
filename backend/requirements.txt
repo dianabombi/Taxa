@@ -23,3 +23,5 @@ pytesseract
 Pillow
 requests
 mindee
+# Scheduler for weekly law updates
+APScheduler

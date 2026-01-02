@@ -1,0 +1,315 @@
+{
+  "social_insurance_law": {
+    "law_number": "461/2003 Z.z.",
+    "full_name": "Zákon č. 461/2003 Z.z. o sociálnom poistení",
+    "description": "Komplexne upravuje sociálne poistenie vrátane živnostníkov (samostatne zárobkovo činných osôb - SZČO)",
+    "authority": {
+      "name": "Sociálna poisťovňa",
+      "website": "www.socpoist.sk",
+      "description": "Vykonáva správu sociálneho poistenia"
+    },
+    "key_provisions": {
+      "obligation_to_pay": {
+        "description": "Povinnosť platiť sociálne poistenie pre SZČO",
+        "applies_to": "Všetky SZČO s príjmom nad minimálny vymeriavací základ"
+      },
+      "assessment_base": {
+        "description": "Výška vymeriavacieho základu",
+        "minimum_2024": "701.37 € mesačne (8,416.44 € ročne)",
+        "maximum_2024": "8,484 € mesačne",
+        "calculation": "50% z daňového základu z predchádzajúceho roka / 12 mesiacov",
+        "note": "Sumy sa aktualizujú každoročne vyhláškou"
+      },
+      "insurance_rates": {
+        "total": "31.2%",
+        "breakdown": {
+          "sickness_insurance": {
+            "rate": "4.4%",
+            "name": "Nemocenské poistenie",
+            "voluntary": false
+          },
+          "pension_insurance": {
+            "rate": "18.0%",
+            "name": "Dôchodkové poistenie",
+            "voluntary": false
+          },
+          "disability_insurance": {
+            "rate": "6.0%",
+            "name": "Invalidné poistenie",
+            "voluntary": false
+          },
+          "guarantee_insurance": {
+            "rate": "0.0%",
+            "name": "Garančné poistenie",
+            "note": "SZČO neplatí"
+          },
+          "accident_insurance": {
+            "rate": "Variabilná",
+            "name": "Úrazové poistenie",
+            "voluntary": true
+          },
+          "reserve_solidarity_fund": {
+            "rate": "2.8%",
+            "name": "Rezervný fond solidarity",
+            "voluntary": false
+          }
+        }
+      },
+      "payment_deadlines": {
+        "monthly_payment": "Do 8. dnia nasledujúceho mesiaca",
+        "annual_statement": "Do 1. mája nasledujúceho roka",
+        "note": "Ročné zúčtovanie poistného"
+      },
+      "registration_obligations": {
+        "start_of_activity": "Ohlásenie začiatku činnosti Sociálnej poisťovni",
+        "changes": "Povinnosť ohlásiť zmeny (prerušenie, ukončenie činnosti, zmena vymeriavacieho základu)",
+        "deadline": "Do 8 dní od vzniku zmeny"
+      },
+      "exemptions": {
+        "description": "Výnimky a oslobodenia od poistenia",
+        "cases": [
+          {
+            "type": "Materská/rodičovská dovolenka",
+            "description": "Počas poberania materského alebo rodičovského príspevku"
+          },
+          {
+            "type": "Starobný dôchodok",
+            "description": "Poberateľ starobného dôchodku"
+          },
+          {
+            "type": "Invalidný dôchodok",
+            "description": "Poberateľ invalidného dôchodku"
+          },
+          {
+            "type": "Súbeh zamestnaní",
+            "description": "Príjem pod minimálnym vymeriavacím základom pri súbehu so zamestnaním"
+          }
+        ]
+      },
+      "penalties": {
+        "late_payment": {
+          "rate": "0.05% denne",
+          "base": "Z dlžnej sumy",
+          "description": "Penále za oneskorené platby"
+        },
+        "non_registration": {
+          "amount": "Až do výšky 331 €",
+          "description": "Pokuta za neregistráciu alebo neoznámenie zmien"
+        }
+      }
+    },
+    "implementing_regulations": [
+      {
+        "type": "Vyhláška Ministerstva práce, sociálnych vecí a rodiny SR",
+        "description": "Stanovuje každoročne aktuálnu výšku minimálneho a maximálneho vymeriavacieho základu",
+        "frequency": "Ročne",
+        "effective_date": "Zvyčajne od 1. januára"
+      }
+    ],
+    "related_laws": [
+      {
+        "law_number": "580/2004 Z.z.",
+        "name": "Zákon o zdravotnom poistení",
+        "relation": "Upravuje zdravotné poistenie SZČO, ktoré sa platí súbežne so sociálnym poistením"
+      }
+    ],
+    "practical_examples": {
+      "example_1": {
+        "scenario": "Nová SZČO začína podnikať v roku 2024",
+        "steps": [
+          "1. Ohlásenie začiatku činnosti Sociálnej poisťovni do 8 dní",
+          "2. Prvý rok platí minimálne odvody: 218.82 € mesačne (31.2% z 701.37 €)",
+          "3. Platba do 8. dňa každého mesiaca",
+          "4. Do 1. mája nasledujúceho roka podá ročné zúčtovanie"
+        ]
+      },
+      "example_2": {
+        "scenario": "SZČO s príjmom 30,000 € ročne (paušálne výdavky 60%)",
+        "calculation": {
+          "income": "30,000 €",
+          "expenses": "18,000 € (60%)",
+          "tax_base": "12,000 €",
+          "assessment_base_monthly": "500 € (50% z 12,000 / 12)",
+          "note": "Ak je výsledok pod minimálnym základom 701.37 €, platí sa z minima",
+          "monthly_payment": "218.82 € (31.2% z 701.37 €)"
+        }
+      }
+    },
+    "important_contacts": {
+      "social_insurance_agency": {
+        "name": "Sociálna poisťovňa",
+        "website": "www.socpoist.sk",
+        "phone": "+421 2 5978 5978",
+        "email": "podatelna@socpoist.sk"
+      }
+    },
+    "last_updated": "2024-01-01",
+    "notes": [
+      "Sumy vymeriavacích základov sa aktualizujú každoročne",
+      "Pre rok 2025 môžu byť iné hodnoty - sledujte vyhlášky",
+      "Tento zákon sa vzťahuje na všetky SZČO vrátane živnostníkov"
+    ]
+  },
+  "health_insurance_law": {
+    "law_number": "580/2004 Z.z.",
+    "full_name": "Zákon č. 580/2004 Z.z. o zdravotnom poistení",
+    "description": "Komplexne upravuje zdravotné poistenie vrátane živnostníkov (samostatne zárobkovo činných osôb - SZČO)",
+    "authorities": {
+      "health_insurance_companies": [
+        {
+          "name": "Všeobecná zdravotná poisťovňa (VšZP)",
+          "website": "www.vszp.sk",
+          "note": "Najväčšia zdravotná poisťovňa na Slovensku"
+        },
+        {
+          "name": "Dôvera zdravotná poisťovňa",
+          "website": "www.dovera.sk"
+        },
+        {
+          "name": "Union zdravotná poisťovňa",
+          "website": "www.union.sk"
+        }
+      ],
+      "note": "Živnostník si môže vybrať ktorúkoľvek poisťovňu a je povinný platiť poistné tej poisťovni, v ktorej je registrovaný"
+    },
+    "key_provisions": {
+      "obligation_to_pay": {
+        "description": "Povinnosť platiť zdravotné poistenie pre SZČO",
+        "applies_to": "Všetky SZČO s príjmom nad minimálny vymeriavací základ"
+      },
+      "assessment_base": {
+        "description": "Výška vymeriavacieho základu",
+        "minimum_2024": "701.37 € mesačne (8,416.44 € ročne)",
+        "maximum_2024": "8,484 € mesačne",
+        "calculation": "50% z daňového základu z predchádzajúceho roka / 12 mesiacov",
+        "note": "Sumy sa aktualizujú každoročne vyhláškou Ministerstva zdravotníctva SR"
+      },
+      "insurance_rate": {
+        "rate": "14%",
+        "description": "Sadzba poistného z vymeriavacieho základu",
+        "minimum_monthly_payment_2024": "98.19 € (14% z 701.37 €)"
+      },
+      "payment_deadlines": {
+        "monthly_payment": "Do 8. dňa nasledujúceho mesiaca",
+        "income_reports": "Povinnosť podávať prehľady o príjmoch",
+        "annual_statement": "Ročné zúčtovanie poistného"
+      },
+      "registration_obligations": {
+        "initial_registration": "Registrácia u vybranej zdravotnej poisťovne pri začatí činnosti",
+        "changes": "Povinnosť ohlásiť zmeny (prerušenie, ukončenie činnosti)",
+        "change_of_insurer": "Možnosť zmeny zdravotnej poisťovne raz za 12 mesiacov"
+      },
+      "exemptions": {
+        "description": "Výnimky a oslobodenia od platenia poistného",
+        "cases": [
+          {
+            "type": "Súbežné zamestnanie",
+            "description": "Pri súbežnom zamestnaní, kde zamestnávateľ platí zdravotné poistné"
+          },
+          {
+            "type": "Materská/rodičovská dovolenka",
+            "description": "Počas poberania materského alebo rodičovského príspevku"
+          },
+          {
+            "type": "Starobný dôchodok",
+            "description": "Poberateľ starobného dôchodku"
+          }
+        ]
+      },
+      "rights_and_obligations": {
+        "rights": [
+          "Právo na zdravotnú starostlivosť v rozsahu verejného zdravotného poistenia",
+          "Voľba zdravotnej poisťovne",
+          "Zmena zdravotnej poisťovne (raz za 12 mesiacov)",
+          "Právo na informácie o stave svojho účtu"
+        ],
+        "obligations": [
+          "Platiť poistné včas a v správnej výške",
+          "Podávať prehľady o príjmoch zdravotnej poisťovni",
+          "Ohlásiť zmeny v činnosti (prerušenie, ukončenie)",
+          "Uhradiť nedoplatky na poistnom",
+          "Poskytnúť pravdivé údaje"
+        ]
+      },
+      "penalties": {
+        "late_payment": {
+          "description": "Penále za oneskorené platby podľa zákona",
+          "note": "Zdravotná poisťovňa môže uplatniť sankcie"
+        },
+        "non_reporting": {
+          "description": "Sankcie za nepodanie prehľadov o príjmoch",
+          "note": "Môže viesť k dodatočným platbám"
+        }
+      }
+    },
+    "implementing_regulations": [
+      {
+        "type": "Vyhláška Ministerstva zdravotníctva SR",
+        "description": "Stanovuje každoročne aktuálnu výšku minimálneho a maximálneho vymeriavacieho základu",
+        "frequency": "Ročne",
+        "effective_date": "Zvyčajne od 1. januára"
+      }
+    ],
+    "related_laws": [
+      {
+        "law_number": "461/2003 Z.z.",
+        "name": "Zákon o sociálnom poistení",
+        "relation": "Upravuje sociálne poistenie SZČO, ktoré sa platí súbežne so zdravotným poistením"
+      }
+    ],
+    "practical_examples": {
+      "example_1": {
+        "scenario": "Nová SZČO začína podnikať v roku 2024",
+        "steps": [
+          "1. Výber zdravotnej poisťovne (VšZP, Dôvera alebo Union)",
+          "2. Registrácia u vybranej poisťovne do 8 dní od začiatku činnosti",
+          "3. Prvý rok platí minimálne odvody: 98.19 € mesačne (14% z 701.37 €)",
+          "4. Platba do 8. dňa každého mesiaca",
+          "5. Podávanie prehľadov o príjmoch podľa požiadaviek poisťovne"
+        ]
+      },
+      "example_2": {
+        "scenario": "SZČO s príjmom 30,000 € ročne (paušálne výdavky 60%)",
+        "calculation": {
+          "income": "30,000 €",
+          "expenses": "18,000 € (60%)",
+          "tax_base": "12,000 €",
+          "assessment_base_monthly": "500 € (50% z 12,000 / 12)",
+          "note": "Ak je výsledok pod minimálnym základom 701.37 €, platí sa z minima",
+          "monthly_payment": "98.19 € (14% z 701.37 €)"
+        }
+      },
+      "example_3": {
+        "scenario": "SZČO so súbežným zamestnaním",
+        "description": "Ak má SZČO súbežne zamestnanie na plný úväzok, kde zamestnávateľ platí zdravotné poistné, SZČO môže byť oslobodená od platenia zdravotného poistného z živnosti (za určitých podmienok)."
+      }
+    },
+    "important_contacts": {
+      "vszp": {
+        "name": "Všeobecná zdravotná poisťovňa",
+        "website": "www.vszp.sk",
+        "phone": "+421 2 5935 5111",
+        "email": "info@vszp.sk"
+      },
+      "dovera": {
+        "name": "Dôvera zdravotná poisťovňa",
+        "website": "www.dovera.sk",
+        "phone": "+421 2 5720 5720",
+        "email": "info@dovera.sk"
+      },
+      "union": {
+        "name": "Union zdravotná poisťovňa",
+        "website": "www.union.sk",
+        "phone": "+421 2 3211 1111",
+        "email": "union@union.sk"
+      }
+    },
+    "last_updated": "2024-01-01",
+    "notes": [
+      "Sumy vymeriavacích základov sa aktualizujú každoročne",
+      "Pre rok 2025 môžu byť iné hodnoty - sledujte vyhlášky Ministerstva zdravotníctva SR",
+      "Tento zákon sa vzťahuje na všetky SZČO vrátane živnostníkov",
+      "Živnostník si môže vybrať zdravotnú poisťovňu a zmeniť ju raz za 12 mesiacov"
+    ]
+  }
+}

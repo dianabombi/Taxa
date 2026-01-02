@@ -240,32 +240,129 @@ class SlovakTaxKnowledgeBase:
         """Social and health insurance for self-employed"""
         return {
             "social_insurance": {
+                "governing_law": {
+                    "main_law": "Zákon č. 461/2003 Z.z. o sociálnom poistení",
+                    "description": "Komplexne upravuje sociálne poistenie vrátane živnostníkov (SZČO)",
+                    "authority": "Sociálna poisťovňa (www.socpoist.sk)",
+                    "implementing_regulations": "Vyhláška Ministerstva práce, sociálnych vecí a rodiny SR - stanovuje ročne aktuálnu výšku min/max vymeriavacieho základu"
+                },
                 "rate": "31.2%",
                 "components": {
-                    "sickness": "4.4%",
-                    "pension": "18.0%",
-                    "disability": "6.0%",
-                    "unemployment": "0.0% (SZČO neplatí)",
+                    "sickness": "4.4% (nemocenské poistenie)",
+                    "pension": "18.0% (dôchodkové poistenie)",
+                    "disability": "6.0% (invalidné poistenie)",
+                    "unemployment": "0.0% (SZČO neplatí - garančné poistenie)",
                     "guarantee": "0.0% (SZČO neplatí)",
-                    "reserve_fund": "2.8%"
+                    "reserve_fund": "2.8% (rezervný fond solidarity)",
+                    "accident": "Úrazové poistenie - dobrovoľné pre SZČO"
                 },
                 "minimum_base_2024": {
                     "amount": "701.37 € mesačne",
                     "annual": "8,416.44 €"
                 },
+                "maximum_base_2024": {
+                    "amount": "8,484 € mesačne",
+                    "description": "Maximálny vymeriavací základ pre výpočet poistného"
+                },
                 "minimum_monthly_payment": "218.82 € (31.2% z 701.37 €)",
-                "deadline": "Do 8. dňa nasledujúceho mesiaca"
+                "deadline": "Do 8. dňa nasledujúceho mesiaca",
+                "key_obligations": {
+                    "registration": "Ohlásenie začiatku činnosti Sociálnej poisťovni",
+                    "payment_deadline": "Do 8. dňa v mesiaci",
+                    "reporting_changes": "Povinnosť ohlásiť zmeny (prerušenie, ukončenie činnosti)",
+                    "annual_statement": "Ročné zúčtovanie do 1. mája nasledujúceho roka"
+                },
+                "exemptions": {
+                    "description": "Výnimky a oslobodenia od poistenia",
+                    "examples": [
+                        "Materská/rodičovská dovolenka",
+                        "Starobný dôchodok",
+                        "Invalidný dôchodok",
+                        "Príjem pod minimálnym vymeriavacím základom (pri súbehu zamestnaní)"
+                    ]
+                },
+                "penalties": {
+                    "late_payment": "Penále 0.05% denne z dlžnej sumy",
+                    "non_registration": "Pokuta až do výšky 331 €"
+                }
             },
             "health_insurance": {
+                "governing_law": {
+                    "main_law": "Zákon č. 580/2004 Z.z. o zdravotnom poistení",
+                    "description": "Komplexne upravuje zdravotné poistenie vrátane živnostníkov (SZČO)",
+                    "implementing_regulations": "Vyhláška Ministerstva zdravotníctva SR - stanovuje ročne aktuálnu výšku min/max vymeriavacieho základu"
+                },
                 "rate": "14%",
-                "minimum_base_2024": "701.37 € mesačne",
+                "description": "Sadzba zdravotného poistného z vymeriavacieho základu",
+                "minimum_base_2024": {
+                    "amount": "701.37 € mesačne",
+                    "annual": "8,416.44 €"
+                },
+                "maximum_base_2024": {
+                    "amount": "8,484 € mesačne",
+                    "description": "Maximálny vymeriavací základ pre výpočet poistného"
+                },
                 "minimum_monthly_payment": "98.19 € (14% z 701.37 €)",
                 "deadline": "Do 8. dňa nasledujúceho mesiaca",
-                "providers": [
-                    "Všeobecná zdravotná poisťovňa (VšZP)",
-                    "Dôvera zdravotná poisťovňa",
-                    "Union zdravotná poisťovňa"
-                ]
+                "providers": {
+                    "description": "Živnostník si môže vybrať ktorúkoľvek poisťovňu a platí tej, v ktorej je registrovaný",
+                    "list": [
+                        {
+                            "name": "Všeobecná zdravotná poisťovňa (VšZP)",
+                            "website": "www.vszp.sk",
+                            "note": "Najväčšia zdravotná poisťovňa na Slovensku"
+                        },
+                        {
+                            "name": "Dôvera zdravotná poisťovňa",
+                            "website": "www.dovera.sk"
+                        },
+                        {
+                            "name": "Union zdravotná poisťovňa",
+                            "website": "www.union.sk"
+                        }
+                    ]
+                },
+                "key_obligations": {
+                    "registration": "Registrácia u vybranej zdravotnej poisťovne",
+                    "payment_deadline": "Do 8. dňa nasledujúceho mesiaca",
+                    "income_reports": "Povinnosť podávať prehľady o príjmoch",
+                    "annual_statement": "Ročné zúčtovanie poistného",
+                    "change_notification": "Ohlásenie zmien (prerušenie, ukončenie činnosti)"
+                },
+                "exemptions": {
+                    "description": "Výnimky a oslobodenia od platenia poistného",
+                    "cases": [
+                        {
+                            "type": "Súbežné zamestnanie",
+                            "description": "Pri súbežnom zamestnaní, kde zamestnávateľ platí poistné"
+                        },
+                        {
+                            "type": "Materská/rodičovská dovolenka",
+                            "description": "Počas poberania materského alebo rodičovského príspevku"
+                        },
+                        {
+                            "type": "Starobný dôchodok",
+                            "description": "Poberateľ starobného dôchodku"
+                        }
+                    ]
+                },
+                "rights_and_obligations": {
+                    "rights": [
+                        "Právo na zdravotnú starostlivosť",
+                        "Voľba zdravotnej poisťovne",
+                        "Zmena zdravotnej poisťovne (raz za 12 mesiacov)"
+                    ],
+                    "obligations": [
+                        "Platiť poistné včas a v správnej výške",
+                        "Podávať prehľady o príjmoch",
+                        "Ohlásiť zmeny v činnosti",
+                        "Uhradiť nedoplatky"
+                    ]
+                },
+                "penalties": {
+                    "late_payment": "Penále za oneskorené platby podľa zákona",
+                    "non_reporting": "Sankcie za nepodanie prehľadov o príjmoch"
+                }
             },
             "calculation_example": {
                 "scenario": "SZČO s príjmom 30,000 € ročne, paušálne výdavky 60%",

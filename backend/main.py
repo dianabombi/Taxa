@@ -15,10 +15,14 @@ from services.ocr_service import OCRService, OCRProvider, classify_document
 from services.tax_calculator import SlovakTaxCalculator
 from services.encryption_service import EncryptionService, DataAnonymizationService, SecurityAuditLogger
 from services.ico_verification import ICOVerificationService
+from services.law_updater import SlovakTaxLawUpdater, run_weekly_update
 from knowledge.slovak_tax_kb import SlovakTaxKnowledgeBase, get_ai_context
 from decimal import Decimal
 import uuid
 from pathlib import Path
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
+import logging
 
 # Database setup
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./taxa.db")
@@ -184,6 +188,44 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Initialize scheduler for weekly law updates
+scheduler = BackgroundScheduler()
+
+@app.on_event("startup")
+async def startup_event():
+    """
+    Spustí sa pri štarte aplikácie
+    Nastaví týždenný scheduler pre aktualizáciu daňových zákonov
+    """
+    logger.info("🚀 Spúšťam TAXA API server...")
+    
+    # Nastavenie týždennej kontroly zákonov (každý pondelok o 9:00)
+    scheduler.add_job(
+        run_weekly_update,
+        CronTrigger(day_of_week='mon', hour=9, minute=0),
+        id='weekly_law_update',
+        name='Týždenná kontrola daňových zákonov',
+        replace_existing=True
+    )
+    
+    scheduler.start()
+    logger.info("✅ Scheduler nastavený - týždenná kontrola zákonov každý pondelok o 9:00")
+    
+    # Voliteľne: Spustiť prvú kontrolu hneď pri štarte (pre testovanie)
+    # run_weekly_update()
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """
+    Vypne scheduler pri vypnutí aplikácie
+    """
+    scheduler.shutdown()
+    logger.info("🛑 Scheduler vypnutý")
 
 # Dependency
 def get_db():
@@ -1773,4 +1815,64 @@ async def update_consent(
         "timestamp": datetime.utcnow().isoformat(),
         "user_id": current_user.id,
         "consents_updated": consent_data
+    }
+
+# Law Updates Endpoints
+@app.post("/api/admin/law-updates/check")
+async def trigger_law_update_check(
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Manuálne spustenie kontroly aktualizácií daňových zákonov
+    Dostupné len pre administrátorov
+    """
+    logger.info(f"🔍 Manuálne spustená kontrola zákonov používateľom {current_user.email}")
+    
+    try:
+        result = run_weekly_update()
+        return {
+            "status": "success",
+            "message": "Kontrola zákonov dokončená",
+            "result": result
+        }
+    except Exception as e:
+        logger.error(f"❌ Chyba pri kontrole zákonov: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/admin/law-updates/latest")
+async def get_latest_law_updates(
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Získa najnovšie aktualizácie daňových zákonov
+    """
+    updater = SlovakTaxLawUpdater()
+    updates = updater.get_latest_updates()
+    
+    if updates:
+        return {
+            "status": "success",
+            "updates": updates
+        }
+    else:
+        return {
+            "status": "no_updates",
+            "message": "Zatiaľ neboli nájdené žiadne aktualizácie"
+        }
+
+@app.get("/api/admin/law-updates/history")
+async def get_law_update_history(
+    limit: int = 10,
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Získa históriu kontrol aktualizácií zákonov
+    """
+    updater = SlovakTaxLawUpdater()
+    history = updater.get_update_history(limit=limit)
+    
+    return {
+        "status": "success",
+        "history": history,
+        "count": len(history)
     }
