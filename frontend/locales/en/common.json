@@ -25,7 +25,8 @@
             "error_invalid": "Invalid email or password",
             "error_connection": "Server connection error",
             "placeholder_email": "your@email.com",
-            "placeholder_password": "••••••••"
+            "placeholder_password": "••••••••",
+            "remember_me": "Remember me"
         },
         "register": {
             "title": "Register",

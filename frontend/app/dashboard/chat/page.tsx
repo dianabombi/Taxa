@@ -47,7 +47,34 @@ export default function ChatPage() {
         }
         
         setUser(parsedUser);
+        
+        // Load chat history
+        loadChatHistory(token);
     }, []);
+
+    const loadChatHistory = async (token: string) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/chat/history`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.messages && data.messages.length > 0) {
+                    // Replace initial welcome message with actual history
+                    setMessages(data.messages.map((msg: any) => ({
+                        role: msg.role,
+                        content: msg.content
+                    })));
+                }
+            }
+        } catch (error) {
+            console.error('Failed to load chat history:', error);
+            // Keep the welcome message if history fails to load
+        }
+    };
 
     const handleLogout = () => {
         localStorage.removeItem('token');

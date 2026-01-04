@@ -22,6 +22,7 @@ function LoginForm() {
         email: '',
         password: ''
     });
+    const [rememberMe, setRememberMe] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -44,8 +45,23 @@ function LoginForm() {
 
             if (response.ok) {
                 const data = await response.json();
+                
+                // Store token and user data
                 localStorage.setItem('token', data.access_token);
                 localStorage.setItem('user', JSON.stringify(data.user));
+                
+                // Store remember me preference
+                if (rememberMe) {
+                    localStorage.setItem('rememberMe', 'true');
+                    // Store token expiry time (30 days for remember me)
+                    const expiryTime = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
+                    localStorage.setItem('tokenExpiry', expiryTime.toString());
+                } else {
+                    localStorage.setItem('rememberMe', 'false');
+                    // Store token expiry time (1 day for normal login)
+                    const expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+                    localStorage.setItem('tokenExpiry', expiryTime.toString());
+                }
                 
                 // Redirect to onboarding if not completed
                 if (data.user.onboarding_completed < 3) {
@@ -164,6 +180,20 @@ function LoginForm() {
                                     placeholder={t('auth.login.placeholder_password')}
                                 />
                             </div>
+                        </div>
+
+                        {/* Remember Me */}
+                        <div className="flex items-center">
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                                checked={rememberMe}
+                                onChange={(e) => setRememberMe(e.target.checked)}
+                                className="w-4 h-4 text-accent bg-bg-card border-text-light rounded focus:ring-accent focus:ring-2 cursor-pointer"
+                            />
+                            <label htmlFor="rememberMe" className="ml-2 text-sm text-text-dark cursor-pointer">
+                                {t('auth.login.remember_me')}
+                            </label>
                         </div>
 
                         {/* Submit Button */}

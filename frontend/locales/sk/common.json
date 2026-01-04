@@ -25,7 +25,8 @@
             "error_invalid": "Nesprávny email alebo heslo",
             "error_connection": "Chyba pripojenia k serveru",
             "placeholder_email": "your@email.com",
-            "placeholder_password": "••••••••"
+            "placeholder_password": "••••••••",
+            "remember_me": "Zapamätať si ma"
         },
         "register": {
             "title": "Registrácia",

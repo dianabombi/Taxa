@@ -1197,6 +1197,31 @@ Opýtajte sa ma na čokoľvek!"""
         
         return response
 
+# Get chat history endpoint
+@app.get("/api/chat/history")
+async def get_chat_history(
+    limit: int = 50,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Retrieve chat history for the current user
+    """
+    messages = db.query(ChatMessage).filter(
+        ChatMessage.user_id == current_user.id
+    ).order_by(ChatMessage.created_at.asc()).limit(limit).all()
+    
+    return {
+        "messages": [
+            {
+                "role": msg.role,
+                "content": msg.content,
+                "created_at": msg.created_at.isoformat()
+            }
+            for msg in messages
+        ]
+    }
+
 # Chat endpoint
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(

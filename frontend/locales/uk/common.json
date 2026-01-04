@@ -25,7 +25,8 @@
             "error_invalid": "Неправильний email або пароль",
             "error_connection": "Помилка з'єднання з сервером",
             "placeholder_email": "your@email.com",
-            "placeholder_password": "••••••••"
+            "placeholder_password": "••••••••",
+            "remember_me": "Запам'ятати мене"
         },
         "register": {
             "title": "Реєстрація",

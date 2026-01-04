@@ -23,9 +23,10 @@
             "register_link": "Зарегистрироваться",
             "success_registered": "Регистрация успешна! Теперь вы можете войти.",
             "error_invalid": "Неверный email или пароль",
-            "error_connection": "Ошибка соединения с сервером",
+            "error_connection": "Ошибка подключения к серверу",
             "placeholder_email": "your@email.com",
-            "placeholder_password": "••••••••"
+            "placeholder_password": "••••••••",
+            "remember_me": "Запомнить меня"
         },
         "register": {
             "title": "Регистрация",

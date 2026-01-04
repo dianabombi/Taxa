@@ -25,7 +25,8 @@
             "error_invalid": "Érvénytelen e-mail vagy jelszó",
             "error_connection": "Szerver kapcsolati hiba",
             "placeholder_email": "az@email.hu",
-            "placeholder_password": "••••••••"
+            "placeholder_password": "••••••••",
+            "remember_me": "Emlékezz rám"
         },
         "register": {
             "title": "Regisztráció",
