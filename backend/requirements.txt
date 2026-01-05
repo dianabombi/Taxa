@@ -25,3 +25,12 @@ requests
 mindee
 # Scheduler for weekly law updates
 APScheduler
+# Security packages
+slowapi>=0.1.9
+python-magic>=0.4.27
+pyotp>=2.9.0
+qrcode>=7.4.2
+clamd>=1.0.2
+sentry-sdk[fastapi]>=1.40.0
+prometheus-client>=0.19.0
+sqlalchemy-utils>=0.41.1
